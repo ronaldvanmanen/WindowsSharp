@@ -43,6 +43,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{AD07
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generation", "generation", "{65345BBF-BCE7-4EF2-8460-1B491062F266}"
+	ProjectSection(SolutionItems) = preProject
+		generation\header.txt = generation\header.txt
+		generation\remap-d3d9.rsp = generation\remap-d3d9.rsp
+		generation\remap-guiddef.rsp = generation\remap-guiddef.rsp
+		generation\remap-windef.rsp = generation\remap-windef.rsp
+		generation\remap-wingdi.rsp = generation\remap-wingdi.rsp
+		generation\remap-winnt.rsp = generation\remap-winnt.rsp
+		generation\remap.rsp = generation\remap.rsp
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E44F67D8-F1B0-4E9F-8C01-AE57186A36A6}"
 EndProject
@@ -51,6 +60,34 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{DDECEBA4-9B53-468B-84C3-35D161870B2C}"
 	ProjectSection(SolutionItems) = preProject
 		.config\dotnet-tools.json = .config\dotnet-tools.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "d3d9", "d3d9", "{7A8DCE13-D140-497E-93CA-5D3992F6046A}"
+	ProjectSection(SolutionItems) = preProject
+		generation\d3d9\file.h = generation\d3d9\file.h
+		generation\d3d9\generate.ps1 = generation\d3d9\generate.ps1
+		generation\d3d9\settings.rsp = generation\d3d9\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wingdi", "wingdi", "{1C3C4975-6236-4B39-BBFB-7D52C1317889}"
+	ProjectSection(SolutionItems) = preProject
+		generation\wingdi\file.h = generation\wingdi\file.h
+		generation\wingdi\generate.ps1 = generation\wingdi\generate.ps1
+		generation\wingdi\settings.rsp = generation\wingdi\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "windef", "windef", "{99144D50-25DF-45DD-81ED-42B647902DA8}"
+	ProjectSection(SolutionItems) = preProject
+		generation\windef\file.h = generation\windef\file.h
+		generation\windef\generate.ps1 = generation\windef\generate.ps1
+		generation\windef\settings.rsp = generation\windef\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "winnt", "winnt", "{E5D646F0-3731-4635-B347-5B546EB0BB51}"
+	ProjectSection(SolutionItems) = preProject
+		generation\winnt\file.h = generation\winnt\file.h
+		generation\winnt\generate.ps1 = generation\winnt\generate.ps1
+		generation\winnt\settings.rsp = generation\winnt\settings.rsp
 	EndProjectSection
 EndProject
 Global
@@ -75,6 +112,10 @@ Global
 		{122B0BD4-4D9A-4172-A097-19BE0ABC0732} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
 		{527EC2A1-BCE1-464E-B7B1-E8331DAE2180} = {FDFC47DF-C171-40FA-8DB6-650CBB54E7BF}
 		{45348CFF-BA58-4115-923C-B5C6F3EC9456} = {E44F67D8-F1B0-4E9F-8C01-AE57186A36A6}
+		{7A8DCE13-D140-497E-93CA-5D3992F6046A} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{1C3C4975-6236-4B39-BBFB-7D52C1317889} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{99144D50-25DF-45DD-81ED-42B647902DA8} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{E5D646F0-3731-4635-B347-5B546EB0BB51} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3219424D-8967-4446-B810-B80316687C37}

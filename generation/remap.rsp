@@ -1,0 +1,5 @@
+@..\remap-d3d9.rsp
+@..\remap-guiddef.rsp
+@..\remap-windef.rsp
+@..\remap-wingdi.rsp
+@..\remap-winnt.rsp
