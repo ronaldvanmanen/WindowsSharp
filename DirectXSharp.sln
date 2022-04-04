@@ -90,6 +90,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "winnt", "winnt", "{E5D646F0
 		generation\winnt\settings.rsp = generation\winnt\settings.rsp
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{0B9DBC85-BE4B-47EC-9512-F9C0054B24DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "samples\WpfApp\WpfApp.csproj", "{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +108,10 @@ Global
 		{45348CFF-BA58-4115-923C-B5C6F3EC9456}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45348CFF-BA58-4115-923C-B5C6F3EC9456}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45348CFF-BA58-4115-923C-B5C6F3EC9456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +124,7 @@ Global
 		{1C3C4975-6236-4B39-BBFB-7D52C1317889} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 		{99144D50-25DF-45DD-81ED-42B647902DA8} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 		{E5D646F0-3731-4635-B347-5B546EB0BB51} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79} = {0B9DBC85-BE4B-47EC-9512-F9C0054B24DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3219424D-8967-4446-B810-B80316687C37}
