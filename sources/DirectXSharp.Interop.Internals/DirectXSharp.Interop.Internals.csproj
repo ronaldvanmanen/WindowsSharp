@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DirectXSharp.Interop.Internals\DirectXSharp.Interop.Internals.csproj" />
+    <InternalsVisibleTo Include="DirectXSharp.Interop" Key="$(AssemblyOriginatorPublicKey)" />
   </ItemGroup>
 
 </Project>

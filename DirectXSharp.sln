@@ -149,6 +149,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "excpt", "excpt", "{3C1D91F4
 		generation\excpt\settings.rsp = generation\excpt\settings.rsp
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectXSharp.Interop.Internals", "sources\DirectXSharp.Interop.Internals\DirectXSharp.Interop.Internals.csproj", "{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +169,10 @@ Global
 		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -187,6 +193,7 @@ Global
 		{D77873FF-EAC1-4D63-A0D7-E4D2016BF00A} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 		{F884AE78-D1B3-4E27-AF7D-15EE044CA658} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 		{3C1D91F4-52B9-422E-979E-B8A6E2F8635E} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3219424D-8967-4446-B810-B80316687C37}
