@@ -1,5 +1,12 @@
 @..\remap-d3d9.rsp
+@..\remap-excpt.rsp
+@..\remap-fileapi.rsp
 @..\remap-guiddef.rsp
+@..\remap-minwinbase.rsp
+@..\remap-minwindef.rsp
+@..\remap-processthreadsapi.rsp
+@..\remap-winbase.rsp
 @..\remap-windef.rsp
 @..\remap-wingdi.rsp
 @..\remap-winnt.rsp
+@..\remap-winuser.rsp

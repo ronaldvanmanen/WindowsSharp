@@ -14,6 +14,7 @@
 -Wno-pragma-pack
 --config
 exclude-enum-operators
+exclude-funcs-with-body
 generate-aggressive-inlining
 generate-cpp-attributes
 generate-doc-includes
@@ -569,7 +570,7 @@ c++
 --libraryPath
 D3D9.dll
 --methodClassName
-DirectX
+NativeMethods
 --namespace
 DirectXSharp.Interop
 --output

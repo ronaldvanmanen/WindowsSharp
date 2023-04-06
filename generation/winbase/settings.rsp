@@ -38,15 +38,17 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\winrt
 --language
 c++
+--libraryPath
+Kernel32.dll
 --methodClassName
 NativeMethods
 --namespace
 DirectXSharp.Interop
 --output
-..\..\sources\DirectXSharp.Interop\windef
+..\..\sources\DirectXSharp.Interop\winbase
 --test-output
-..\..\tests\DirectXSharp.Interop.Tests\windef
+..\..\tests\DirectXSharp.Interop.Tests\winbase
 --traverse
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\windef.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\Winbase.h
 --with-callconv
 *=Winapi

@@ -38,7 +38,7 @@ function Generate() {
   $generateRspFiles = Get-ChildItem -Path "$generationDir" -Recurse -Filter "generate.ps1"
   $generateRspFiles | ForEach-Object {
     Push-Location -Path $_.DirectoryName
-    & ".\$($_.Name)"
+    & ".\$($_.Name)" > ".\$($_.BaseName).log"
     Pop-Location
   }
 }

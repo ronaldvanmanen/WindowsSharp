@@ -46,10 +46,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generation", "generation", 
 	ProjectSection(SolutionItems) = preProject
 		generation\header.txt = generation\header.txt
 		generation\remap-d3d9.rsp = generation\remap-d3d9.rsp
+		generation\remap-excpt.rsp = generation\remap-excpt.rsp
+		generation\remap-fileapi.rsp = generation\remap-fileapi.rsp
 		generation\remap-guiddef.rsp = generation\remap-guiddef.rsp
+		generation\remap-minwinbase.rsp = generation\remap-minwinbase.rsp
+		generation\remap-minwindef.rsp = generation\remap-minwindef.rsp
+		generation\remap-processthreadsapi.rsp = generation\remap-processthreadsapi.rsp
+		generation\remap-winbase.rsp = generation\remap-winbase.rsp
 		generation\remap-windef.rsp = generation\remap-windef.rsp
 		generation\remap-wingdi.rsp = generation\remap-wingdi.rsp
 		generation\remap-winnt.rsp = generation\remap-winnt.rsp
+		generation\remap-winuser.rsp = generation\remap-winuser.rsp
 		generation\remap.rsp = generation\remap.rsp
 	EndProjectSection
 EndProject
@@ -93,6 +100,54 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{0B9DBC85-BE4B-47EC-9512-F9C0054B24DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "samples\WpfApp\WpfApp.csproj", "{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "winuser", "winuser", "{C4B08D53-A968-4242-AECD-9F0C12346205}"
+	ProjectSection(SolutionItems) = preProject
+		generation\winuser\file.h = generation\winuser\file.h
+		generation\winuser\generate.ps1 = generation\winuser\generate.ps1
+		generation\winuser\settings.rsp = generation\winuser\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "minwindef", "minwindef", "{E4950F2C-EEE1-413E-BF8A-2A5A070D728D}"
+	ProjectSection(SolutionItems) = preProject
+		generation\minwindef\file.h = generation\minwindef\file.h
+		generation\minwindef\generate.ps1 = generation\minwindef\generate.ps1
+		generation\minwindef\settings.rsp = generation\minwindef\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "winbase", "winbase", "{039D72FB-2E70-4DA6-A370-F7AE4A6669C0}"
+	ProjectSection(SolutionItems) = preProject
+		generation\winbase\file.h = generation\winbase\file.h
+		generation\winbase\generate.ps1 = generation\winbase\generate.ps1
+		generation\winbase\settings.rsp = generation\winbase\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "minwinbase", "minwinbase", "{E855D549-752D-44A6-B385-2FC04AAB840C}"
+	ProjectSection(SolutionItems) = preProject
+		generation\minwinbase\file.h = generation\minwinbase\file.h
+		generation\minwinbase\generate.ps1 = generation\minwinbase\generate.ps1
+		generation\minwinbase\settings.rsp = generation\minwinbase\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "processthreadsapi", "processthreadsapi", "{D77873FF-EAC1-4D63-A0D7-E4D2016BF00A}"
+	ProjectSection(SolutionItems) = preProject
+		generation\processthreadsapi\file.h = generation\processthreadsapi\file.h
+		generation\processthreadsapi\generate.ps1 = generation\processthreadsapi\generate.ps1
+		generation\processthreadsapi\settings.rsp = generation\processthreadsapi\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fileapi", "fileapi", "{F884AE78-D1B3-4E27-AF7D-15EE044CA658}"
+	ProjectSection(SolutionItems) = preProject
+		generation\fileapi\file.h = generation\fileapi\file.h
+		generation\fileapi\generate.ps1 = generation\fileapi\generate.ps1
+		generation\fileapi\settings.rsp = generation\fileapi\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "excpt", "excpt", "{3C1D91F4-52B9-422E-979E-B8A6E2F8635E}"
+	ProjectSection(SolutionItems) = preProject
+		generation\excpt\file.h = generation\excpt\file.h
+		generation\excpt\generate.ps1 = generation\excpt\generate.ps1
+		generation\excpt\settings.rsp = generation\excpt\settings.rsp
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +180,13 @@ Global
 		{99144D50-25DF-45DD-81ED-42B647902DA8} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 		{E5D646F0-3731-4635-B347-5B546EB0BB51} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79} = {0B9DBC85-BE4B-47EC-9512-F9C0054B24DD}
+		{C4B08D53-A968-4242-AECD-9F0C12346205} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{E4950F2C-EEE1-413E-BF8A-2A5A070D728D} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{039D72FB-2E70-4DA6-A370-F7AE4A6669C0} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{E855D549-752D-44A6-B385-2FC04AAB840C} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{D77873FF-EAC1-4D63-A0D7-E4D2016BF00A} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{F884AE78-D1B3-4E27-AF7D-15EE044CA658} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{3C1D91F4-52B9-422E-979E-B8A6E2F8635E} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3219424D-8967-4446-B810-B80316687C37}
