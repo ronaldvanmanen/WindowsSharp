@@ -40,36 +40,20 @@ namespace WpfApp
             var vLookatPt = new Vector3(0.0f, 0.0f, 0.0f);
             var vUpVec = new Vector3(0.0f, 1.0f, 0.0f);
 
-            // Set up the VB
-            CustomVertex[] vertices =
+            // Set up the vertex buffer
+            var vertices = new CustomVertex[3]
             {
-                new CustomVertex
-                {
-                    X = -1.0f,
-                    Y = -1.0f,
-                    Z = 0.0f,
-                    Color = 0xffff0000
-                }, // x, y, z, color
-                new CustomVertex
-                {
-                    X = 1.0f,
-                    Y = -1.0f,
-                    Z = 0.0f,
-                    Color = 0xff00ff00
-                },
-                new CustomVertex
-                {
-                    X = 0.0f,
-                    Y = 1.0f,
-                    Z = 0.0f,
-                    Color = 0xff00ffff
-                }
+                new CustomVertex { X = -1.0f, Y = -1.0f, Z = 0.0f, Color = 0xffff0000 },
+                new CustomVertex { X = 1.0f, Y = -1.0f, Z = 0.0f, Color = 0xff00ff00 },
+                new CustomVertex { X = 0.0f, Y = 1.0f, Z = 0.0f, Color = 0xff00ffff }
             };
+
+            var byteLength = (uint)(vertices.Length * Marshal.SizeOf<CustomVertex>());
 
             fixed (IDirect3DVertexBuffer9** pd3dVB = &m_pd3dVB)
             {
                 m_pd3dDevice->CreateVertexBuffer(
-                  (uint)Marshal.SizeOf(vertices),
+                  byteLength,
                   0,
                   CustomVertex.FVF,
                   D3DPOOL.D3DPOOL_DEFAULT,
@@ -78,7 +62,7 @@ namespace WpfApp
             }
 
             void* pVertices;
-            m_pd3dVB->Lock(0, (uint)Marshal.SizeOf(vertices), &pVertices, 0);
+            m_pd3dVB->Lock(0, byteLength, &pVertices, 0);
             var destVertices = new Span<CustomVertex>(pVertices, vertices.Length);
             vertices.CopyTo(destVertices);
             m_pd3dVB->Unlock();

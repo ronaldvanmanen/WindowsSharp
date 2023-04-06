@@ -23,6 +23,7 @@
 // SOFTWARE.
 
 using System;
+using System.ComponentModel;
 using DirectXSharp.Interop;
 
 namespace WpfApp
@@ -141,14 +142,14 @@ namespace WpfApp
             fixed (IDirect3DSurface9** pd3dRTS = &m_pd3dRTS)
             {
                 m_pd3dDevice->CreateRenderTarget(
-                uWidth,
-                uHeight,
-                fUseAlpha ? D3DFORMAT.D3DFMT_A8R8G8B8 : D3DFORMAT.D3DFMT_X8R8G8B8,
-                (D3DMULTISAMPLE_TYPE)m_uNumSamples,
-                0,
-                m_pd3dDeviceEx != null ? 0 : 1,  // Lockable RT required for good XP perf
-                pd3dRTS,
-                null);
+                    uWidth,
+                    uHeight,
+                    fUseAlpha ? D3DFORMAT.D3DFMT_A8R8G8B8 : D3DFORMAT.D3DFMT_X8R8G8B8,
+                    (D3DMULTISAMPLE_TYPE)m_uNumSamples,
+                    0,
+                    m_pd3dDeviceEx != null ? 0 : 1,  // Lockable RT required for good XP perf
+                    pd3dRTS,
+                    null);
             }
 
             m_pd3dDevice->SetRenderTarget(0, m_pd3dRTS);

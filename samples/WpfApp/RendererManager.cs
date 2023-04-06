@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
@@ -57,7 +58,7 @@ namespace WpfApp
 
         private bool m_fUseAlpha = false;
 
-        private bool m_fSurfaceSettingsChanged = false;
+        private bool m_fSurfaceSettingsChanged = true;
 
         public RendererManager() { }
 
@@ -207,7 +208,7 @@ namespace WpfApp
         {
             if (m_hwnd == null)
             {
-                var lpszClassName = new MarshaledString("DirectX");
+                var lpszClassName = new MarshaledString("D3DImageSample");
                 var wndclass = new WNDCLASSW
                 {
                     style = NativeMethods.CS_HREDRAW | NativeMethods.CS_VREDRAW,
@@ -229,18 +230,21 @@ namespace WpfApp
                     throw exception;
                 }
 
-                m_hwnd = NativeMethods.CreateWindowW(
+                var lpszWindowName = new MarshaledString("D3DImageSample");
+                var hwnd = NativeMethods.CreateWindowW(
                     lpszClassName,
-                    null,
+                    lpszWindowName,
                     NativeMethods.WS_OVERLAPPEDWINDOW,
-                    0,                   // Initial X
-                    0,                   // Initial Y
-                    0,                   // Width
-                    0,                   // Height
+                    0,    // Initial X
+                    0,    // Initial Y
+                    0,    // Width
+                    0,    // Height
                     null,
                     null,
                     null,
                     null);
+
+                m_hwnd = hwnd;
             }
         }
 

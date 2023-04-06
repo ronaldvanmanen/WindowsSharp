@@ -5,11 +5,12 @@
         xmlns:i="clr-namespace:System.Windows.Interop;assembly=PresentationCore"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="DirectX in WPF" Height="450" Width="800">
+        Title="DirectX in WPF" Height="384" Width="512">
+
     <Grid>
-        <Image x:Name="Image">
+        <Image x:Name="Image" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill">
             <Image.Source>
-                <i:D3DImage x:Name="D3DImage"/>
+                <i:D3DImage x:Name="D3DImage"  />
             </Image.Source>
         </Image>
     </Grid>
