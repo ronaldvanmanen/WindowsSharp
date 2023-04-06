@@ -190,9 +190,9 @@ namespace DirectXSharp.Interop
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(17)]
         [return: NativeTypeName("HRESULT")]
-        public int Present([NativeTypeName("const RECT *")] RECT* pSourceRect, [NativeTypeName("const RECT *")] RECT* pDestRect, [NativeTypeName("HWND")] HWND* hDestWindowOverride, [NativeTypeName("const RGNDATA *")] RGNDATA* pDirtyRegion)
+        public int Present([NativeTypeName("const RECT *")] RECT* pSourceRect, [NativeTypeName("const RECT *")] RECT* pDestRect, [NativeTypeName("HWND")] HWND__* hDestWindowOverride, [NativeTypeName("const RGNDATA *")] RGNDATA* pDirtyRegion)
         {
-            return ((delegate* unmanaged<IDirect3DDevice9*, RECT*, RECT*, HWND*, RGNDATA*, int>)(lpVtbl[17]))((IDirect3DDevice9*)Unsafe.AsPointer(ref this), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
+            return ((delegate* unmanaged<IDirect3DDevice9*, RECT*, RECT*, HWND__*, RGNDATA*, int>)(lpVtbl[17]))((IDirect3DDevice9*)Unsafe.AsPointer(ref this), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
         }
 
         /// <include file='IDirect3DDevice9.xml' path='doc/member[@name="IDirect3DDevice9.GetBackBuffer"]/*' />

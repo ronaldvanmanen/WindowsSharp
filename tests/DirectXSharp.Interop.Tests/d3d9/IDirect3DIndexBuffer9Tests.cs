@@ -25,7 +25,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Xunit;
-using static DirectXSharp.Interop.DirectX;
+using static DirectXSharp.Interop.NativeMethods;
 
 namespace DirectXSharp.Interop.UnitTests
 {

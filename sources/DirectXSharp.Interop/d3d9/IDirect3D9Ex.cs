@@ -173,18 +173,18 @@ namespace DirectXSharp.Interop
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(15)]
         [return: NativeTypeName("HMONITOR")]
-        public HMONITOR* GetAdapterMonitor(uint Adapter)
+        public HMONITOR__* GetAdapterMonitor(uint Adapter)
         {
-            return ((delegate* unmanaged<IDirect3D9Ex*, uint, HMONITOR*>)(lpVtbl[15]))((IDirect3D9Ex*)Unsafe.AsPointer(ref this), Adapter);
+            return ((delegate* unmanaged<IDirect3D9Ex*, uint, HMONITOR__*>)(lpVtbl[15]))((IDirect3D9Ex*)Unsafe.AsPointer(ref this), Adapter);
         }
 
         /// <inheritdoc cref="IDirect3D9.CreateDevice" />
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(16)]
         [return: NativeTypeName("HRESULT")]
-        public int CreateDevice(uint Adapter, D3DDEVTYPE DeviceType, [NativeTypeName("HWND")] HWND* hFocusWindow, [NativeTypeName("DWORD")] uint BehaviorFlags, D3DPRESENT_PARAMETERS* pPresentationParameters, IDirect3DDevice9** ppReturnedDeviceInterface)
+        public int CreateDevice(uint Adapter, D3DDEVTYPE DeviceType, [NativeTypeName("HWND")] HWND__* hFocusWindow, [NativeTypeName("DWORD")] uint BehaviorFlags, D3DPRESENT_PARAMETERS* pPresentationParameters, IDirect3DDevice9** ppReturnedDeviceInterface)
         {
-            return ((delegate* unmanaged<IDirect3D9Ex*, uint, D3DDEVTYPE, HWND*, uint, D3DPRESENT_PARAMETERS*, IDirect3DDevice9**, int>)(lpVtbl[16]))((IDirect3D9Ex*)Unsafe.AsPointer(ref this), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
+            return ((delegate* unmanaged<IDirect3D9Ex*, uint, D3DDEVTYPE, HWND__*, uint, D3DPRESENT_PARAMETERS*, IDirect3DDevice9**, int>)(lpVtbl[16]))((IDirect3D9Ex*)Unsafe.AsPointer(ref this), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
         }
 
         /// <include file='IDirect3D9Ex.xml' path='doc/member[@name="IDirect3D9Ex.GetAdapterModeCountEx"]/*' />
@@ -217,9 +217,9 @@ namespace DirectXSharp.Interop
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(20)]
         [return: NativeTypeName("HRESULT")]
-        public int CreateDeviceEx(uint Adapter, D3DDEVTYPE DeviceType, [NativeTypeName("HWND")] HWND* hFocusWindow, [NativeTypeName("DWORD")] uint BehaviorFlags, D3DPRESENT_PARAMETERS* pPresentationParameters, D3DDISPLAYMODEEX* pFullscreenDisplayMode, IDirect3DDevice9Ex** ppReturnedDeviceInterface)
+        public int CreateDeviceEx(uint Adapter, D3DDEVTYPE DeviceType, [NativeTypeName("HWND")] HWND__* hFocusWindow, [NativeTypeName("DWORD")] uint BehaviorFlags, D3DPRESENT_PARAMETERS* pPresentationParameters, D3DDISPLAYMODEEX* pFullscreenDisplayMode, IDirect3DDevice9Ex** ppReturnedDeviceInterface)
         {
-            return ((delegate* unmanaged<IDirect3D9Ex*, uint, D3DDEVTYPE, HWND*, uint, D3DPRESENT_PARAMETERS*, D3DDISPLAYMODEEX*, IDirect3DDevice9Ex**, int>)(lpVtbl[20]))((IDirect3D9Ex*)Unsafe.AsPointer(ref this), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, pFullscreenDisplayMode, ppReturnedDeviceInterface);
+            return ((delegate* unmanaged<IDirect3D9Ex*, uint, D3DDEVTYPE, HWND__*, uint, D3DPRESENT_PARAMETERS*, D3DDISPLAYMODEEX*, IDirect3DDevice9Ex**, int>)(lpVtbl[20]))((IDirect3D9Ex*)Unsafe.AsPointer(ref this), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, pFullscreenDisplayMode, ppReturnedDeviceInterface);
         }
 
         /// <include file='IDirect3D9Ex.xml' path='doc/member[@name="IDirect3D9Ex.GetAdapterLUID"]/*' />

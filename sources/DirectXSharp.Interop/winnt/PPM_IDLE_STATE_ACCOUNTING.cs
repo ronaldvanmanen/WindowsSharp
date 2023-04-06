@@ -1,0 +1,50 @@
+// DirectXSharp
+//
+// Copyright (C) 2021 Ronald van Manen <rvanmanen@gmail.com>
+//
+// MIT License
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+namespace DirectXSharp.Interop
+{
+    /// <include file='PPM_IDLE_STATE_ACCOUNTING.xml' path='doc/member[@name="PPM_IDLE_STATE_ACCOUNTING"]/*' />
+    public unsafe partial struct PPM_IDLE_STATE_ACCOUNTING
+    {
+        /// <include file='PPM_IDLE_STATE_ACCOUNTING.xml' path='doc/member[@name="PPM_IDLE_STATE_ACCOUNTING.IdleTransitions"]/*' />
+        [NativeTypeName("DWORD")]
+        public uint IdleTransitions;
+
+        /// <include file='PPM_IDLE_STATE_ACCOUNTING.xml' path='doc/member[@name="PPM_IDLE_STATE_ACCOUNTING.FailedTransitions"]/*' />
+        [NativeTypeName("DWORD")]
+        public uint FailedTransitions;
+
+        /// <include file='PPM_IDLE_STATE_ACCOUNTING.xml' path='doc/member[@name="PPM_IDLE_STATE_ACCOUNTING.InvalidBucketIndex"]/*' />
+        [NativeTypeName("DWORD")]
+        public uint InvalidBucketIndex;
+
+        /// <include file='PPM_IDLE_STATE_ACCOUNTING.xml' path='doc/member[@name="PPM_IDLE_STATE_ACCOUNTING.TotalTime"]/*' />
+        [NativeTypeName("DWORD64")]
+        public ulong TotalTime;
+
+        /// <include file='PPM_IDLE_STATE_ACCOUNTING.xml' path='doc/member[@name="PPM_IDLE_STATE_ACCOUNTING.IdleTimeBuckets"]/*' />
+        [NativeTypeName("DWORD [6]")]
+        public fixed uint IdleTimeBuckets[6];
+    }
+}

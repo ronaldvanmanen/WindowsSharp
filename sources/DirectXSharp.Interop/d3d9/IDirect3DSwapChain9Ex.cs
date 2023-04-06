@@ -67,9 +67,9 @@ namespace DirectXSharp.Interop
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(3)]
         [return: NativeTypeName("HRESULT")]
-        public int Present([NativeTypeName("const RECT *")] RECT* pSourceRect, [NativeTypeName("const RECT *")] RECT* pDestRect, [NativeTypeName("HWND")] HWND* hDestWindowOverride, [NativeTypeName("const RGNDATA *")] RGNDATA* pDirtyRegion, [NativeTypeName("DWORD")] uint dwFlags)
+        public int Present([NativeTypeName("const RECT *")] RECT* pSourceRect, [NativeTypeName("const RECT *")] RECT* pDestRect, [NativeTypeName("HWND")] HWND__* hDestWindowOverride, [NativeTypeName("const RGNDATA *")] RGNDATA* pDirtyRegion, [NativeTypeName("DWORD")] uint dwFlags)
         {
-            return ((delegate* unmanaged<IDirect3DSwapChain9Ex*, RECT*, RECT*, HWND*, RGNDATA*, uint, int>)(lpVtbl[3]))((IDirect3DSwapChain9Ex*)Unsafe.AsPointer(ref this), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
+            return ((delegate* unmanaged<IDirect3DSwapChain9Ex*, RECT*, RECT*, HWND__*, RGNDATA*, uint, int>)(lpVtbl[3]))((IDirect3DSwapChain9Ex*)Unsafe.AsPointer(ref this), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
         }
 
         /// <inheritdoc cref="IDirect3DSwapChain9.GetFrontBufferData" />

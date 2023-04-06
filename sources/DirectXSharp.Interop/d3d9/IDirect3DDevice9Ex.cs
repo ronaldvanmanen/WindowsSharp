@@ -190,9 +190,9 @@ namespace DirectXSharp.Interop
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(17)]
         [return: NativeTypeName("HRESULT")]
-        public int Present([NativeTypeName("const RECT *")] RECT* pSourceRect, [NativeTypeName("const RECT *")] RECT* pDestRect, [NativeTypeName("HWND")] HWND* hDestWindowOverride, [NativeTypeName("const RGNDATA *")] RGNDATA* pDirtyRegion)
+        public int Present([NativeTypeName("const RECT *")] RECT* pSourceRect, [NativeTypeName("const RECT *")] RECT* pDestRect, [NativeTypeName("HWND")] HWND__* hDestWindowOverride, [NativeTypeName("const RGNDATA *")] RGNDATA* pDirtyRegion)
         {
-            return ((delegate* unmanaged<IDirect3DDevice9Ex*, RECT*, RECT*, HWND*, RGNDATA*, int>)(lpVtbl[17]))((IDirect3DDevice9Ex*)Unsafe.AsPointer(ref this), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
+            return ((delegate* unmanaged<IDirect3DDevice9Ex*, RECT*, RECT*, HWND__*, RGNDATA*, int>)(lpVtbl[17]))((IDirect3DDevice9Ex*)Unsafe.AsPointer(ref this), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
         }
 
         /// <inheritdoc cref="IDirect3DDevice9.GetBackBuffer" />
@@ -1123,9 +1123,9 @@ namespace DirectXSharp.Interop
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(121)]
         [return: NativeTypeName("HRESULT")]
-        public int PresentEx([NativeTypeName("const RECT *")] RECT* pSourceRect, [NativeTypeName("const RECT *")] RECT* pDestRect, [NativeTypeName("HWND")] HWND* hDestWindowOverride, [NativeTypeName("const RGNDATA *")] RGNDATA* pDirtyRegion, [NativeTypeName("DWORD")] uint dwFlags)
+        public int PresentEx([NativeTypeName("const RECT *")] RECT* pSourceRect, [NativeTypeName("const RECT *")] RECT* pDestRect, [NativeTypeName("HWND")] HWND__* hDestWindowOverride, [NativeTypeName("const RGNDATA *")] RGNDATA* pDirtyRegion, [NativeTypeName("DWORD")] uint dwFlags)
         {
-            return ((delegate* unmanaged<IDirect3DDevice9Ex*, RECT*, RECT*, HWND*, RGNDATA*, uint, int>)(lpVtbl[121]))((IDirect3DDevice9Ex*)Unsafe.AsPointer(ref this), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
+            return ((delegate* unmanaged<IDirect3DDevice9Ex*, RECT*, RECT*, HWND__*, RGNDATA*, uint, int>)(lpVtbl[121]))((IDirect3DDevice9Ex*)Unsafe.AsPointer(ref this), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
         }
 
         /// <include file='IDirect3DDevice9Ex.xml' path='doc/member[@name="IDirect3DDevice9Ex.GetGPUThreadPriority"]/*' />
@@ -1186,9 +1186,9 @@ namespace DirectXSharp.Interop
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(128)]
         [return: NativeTypeName("HRESULT")]
-        public int CheckDeviceState([NativeTypeName("HWND")] HWND* hDestinationWindow)
+        public int CheckDeviceState([NativeTypeName("HWND")] HWND__* hDestinationWindow)
         {
-            return ((delegate* unmanaged<IDirect3DDevice9Ex*, HWND*, int>)(lpVtbl[128]))((IDirect3DDevice9Ex*)Unsafe.AsPointer(ref this), hDestinationWindow);
+            return ((delegate* unmanaged<IDirect3DDevice9Ex*, HWND__*, int>)(lpVtbl[128]))((IDirect3DDevice9Ex*)Unsafe.AsPointer(ref this), hDestinationWindow);
         }
 
         /// <include file='IDirect3DDevice9Ex.xml' path='doc/member[@name="IDirect3DDevice9Ex.CreateRenderTargetEx"]/*' />

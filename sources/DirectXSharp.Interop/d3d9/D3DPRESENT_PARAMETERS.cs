@@ -51,7 +51,7 @@ namespace DirectXSharp.Interop
 
         /// <include file='D3DPRESENT_PARAMETERS.xml' path='doc/member[@name="D3DPRESENT_PARAMETERS.hDeviceWindow"]/*' />
         [NativeTypeName("HWND")]
-        public HWND* hDeviceWindow;
+        public HWND__* hDeviceWindow;
 
         /// <include file='D3DPRESENT_PARAMETERS.xml' path='doc/member[@name="D3DPRESENT_PARAMETERS.Windowed"]/*' />
         [NativeTypeName("BOOL")]

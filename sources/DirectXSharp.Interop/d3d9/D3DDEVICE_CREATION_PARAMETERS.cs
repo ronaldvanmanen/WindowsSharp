@@ -35,7 +35,7 @@ namespace DirectXSharp.Interop
 
         /// <include file='D3DDEVICE_CREATION_PARAMETERS.xml' path='doc/member[@name="D3DDEVICE_CREATION_PARAMETERS.hFocusWindow"]/*' />
         [NativeTypeName("HWND")]
-        public HWND* hFocusWindow;
+        public HWND__* hFocusWindow;
 
         /// <include file='D3DDEVICE_CREATION_PARAMETERS.xml' path='doc/member[@name="D3DDEVICE_CREATION_PARAMETERS.BehaviorFlags"]/*' />
         [NativeTypeName("DWORD")]

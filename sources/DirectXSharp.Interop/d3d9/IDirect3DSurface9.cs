@@ -173,18 +173,18 @@ namespace DirectXSharp.Interop
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(15)]
         [return: NativeTypeName("HRESULT")]
-        public int GetDC([NativeTypeName("HDC *")] HDC** phdc)
+        public int GetDC([NativeTypeName("HDC *")] HDC__** phdc)
         {
-            return ((delegate* unmanaged<IDirect3DSurface9*, HDC**, int>)(lpVtbl[15]))((IDirect3DSurface9*)Unsafe.AsPointer(ref this), phdc);
+            return ((delegate* unmanaged<IDirect3DSurface9*, HDC__**, int>)(lpVtbl[15]))((IDirect3DSurface9*)Unsafe.AsPointer(ref this), phdc);
         }
 
         /// <include file='IDirect3DSurface9.xml' path='doc/member[@name="IDirect3DSurface9.ReleaseDC"]/*' />
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(16)]
         [return: NativeTypeName("HRESULT")]
-        public int ReleaseDC([NativeTypeName("HDC")] HDC* hdc)
+        public int ReleaseDC([NativeTypeName("HDC")] HDC__* hdc)
         {
-            return ((delegate* unmanaged<IDirect3DSurface9*, HDC*, int>)(lpVtbl[16]))((IDirect3DSurface9*)Unsafe.AsPointer(ref this), hdc);
+            return ((delegate* unmanaged<IDirect3DSurface9*, HDC__*, int>)(lpVtbl[16]))((IDirect3DSurface9*)Unsafe.AsPointer(ref this), hdc);
         }
     }
 }
