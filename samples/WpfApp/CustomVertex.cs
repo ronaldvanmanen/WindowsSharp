@@ -22,13 +22,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Windows;
+using DirectXSharp.Interop;
 
-[assembly: ThemeInfo(
-    ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
-                                     //(used if a resource is not found in the page,
-                                     // or application resource dictionaries)
-    ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
-                                              //(used if a resource is not found in the page,
-                                              // app, or any theme specific resource dictionaries)
-)]
+namespace WpfApp
+{
+    internal struct CustomVertex
+    {
+        public const int FVF = NativeMethods.D3DFVF_XYZ | NativeMethods.D3DFVF_DIFFUSE;
+
+        public float X, Y, Z;
+
+        public uint Color;
+    };
+}
