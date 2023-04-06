@@ -38,11 +38,12 @@ namespace DirectX.Internals
             }
             else
             {
-                var valueBytes = (input.Length != 0) ? Encoding.Unicode.GetBytes(input) : Array.Empty<byte>();
-                length = valueBytes.Length;
-                value = Marshal.AllocHGlobal(length + 2);
-                Marshal.Copy(valueBytes, 0, value, length);
-                Marshal.WriteInt16(value, length, 0);
+                var bytes = (input.Length != 0) ? Encoding.Unicode.GetBytes(input) : Array.Empty<byte>();
+                var byteLength = bytes.Length;
+                value = Marshal.AllocHGlobal(byteLength + 2);
+                length = byteLength / 2;
+                Marshal.Copy(bytes, 0, value, byteLength);
+                Marshal.WriteInt16(value, byteLength, 0);
             }
 
             Length = length;
