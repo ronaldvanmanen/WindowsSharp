@@ -211,7 +211,7 @@ namespace WpfApp
                 var wndclass = new WNDCLASSW
                 {
                     style = NativeMethods.CS_HREDRAW | NativeMethods.CS_VREDRAW,
-                    lpfnWndProc = null,
+                    lpfnWndProc = &WindowProc,
                     cbClsExtra = 0,
                     cbWndExtra = 0,
                     hInstance = null,
@@ -242,6 +242,12 @@ namespace WpfApp
                     null,
                     null);
             }
+        }
+
+        [UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvStdcall) })]
+        private static long WindowProc(HWND__* hwnd, uint msg, ulong wparam, long lparam)
+        {
+            return NativeMethods.DefWindowProcW(hwnd, msg, wparam, lparam);
         }
 
         private void EnsureD3DObjects()

@@ -1,4 +1,4 @@
-// DirectXSharp
+﻿// DirectXSharp
 //
 // Copyright (C) 2021 Ronald van Manen <rvanmanen@gmail.com>
 //
@@ -32,7 +32,7 @@ namespace DirectXSharp.Interop
 
         /// <include file='WNDCLASSW.xml' path='doc/member[@name="WNDCLASSW.lpfnWndProc"]/*' />
         [NativeTypeName("WNDPROC")]
-        public delegate* unmanaged<HWND__*, uint, ulong, long, long> lpfnWndProc;
+        public delegate* unmanaged[Stdcall]<HWND__*, uint, ulong, long, long> lpfnWndProc;
 
         /// <include file='WNDCLASSW.xml' path='doc/member[@name="WNDCLASSW.cbClsExtra"]/*' />
         public int cbClsExtra;
