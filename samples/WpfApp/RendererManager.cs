@@ -29,18 +29,18 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows;
-using DirectX.Internals;
+using DirectXSharp;
+using DirectXSharp.Internals;
 using DirectXSharp.Interop;
 
 namespace WpfApp
 {
     internal sealed unsafe class RendererManager : IDisposable
     {
-        private IDirect3D9* m_pD3D = null;
+        private Direct3D9 m_pD3D = null!;
 
-        private IDirect3D9Ex* m_pD3DEx = null;
+        private Direct3D9Ex m_pD3DEx = null!;
 
         private int m_cAdapters = 0;
 
@@ -117,12 +117,10 @@ namespace WpfApp
 
             if (m_pD3D != null && m_rgRenderers != null)
             {
-                var hMon = NativeMethods.MonitorFromPoint(screenSpacePoint.ToPOINT(),
-                    NativeMethods.MONITOR_DEFAULTTONULL);
-
+                var monitor = Monitor.FromPoint(screenSpacePoint.ToPOINT());
                 for (uint i = 0; i < m_cAdapters; ++i)
                 {
-                    if (hMon == m_pD3D->GetAdapterMonitor(i))
+                    if (monitor == m_pD3D.GetAdapterMonitor(i))
                     {
                         m_pCurrentRenderer = m_rgRenderers[(int)i];
                         break;
@@ -194,9 +192,9 @@ namespace WpfApp
 
                 for (var i = 0; i < m_cAdapters; ++i)
                 {
-                    var renderer = new TriangleRenderer(
-                        m_pD3D, m_pD3DEx, m_hwnd, (uint)i);
-                    m_rgRenderers.Add(renderer);
+                    m_rgRenderers.Add(
+                        new TriangleRenderer(
+                            m_pD3D, m_pD3DEx, m_hwnd, (uint)i));
                 }
 
                 // Default to the default adapter 
@@ -258,25 +256,15 @@ namespace WpfApp
         {
             try
             {
-                fixed (IDirect3D9Ex** pD3DEx = &m_pD3DEx)
-                {
-                    NativeMethods.Direct3DCreate9Ex(NativeMethods.D3D_SDK_VERSION, pD3DEx);
-                }
-
-                fixed (IDirect3D9** pD3D = &m_pD3D)
-                {
-                    fixed (Guid* riid = &NativeMethods.IID_IDirect3D9)
-                    {
-                        m_pD3DEx->QueryInterface(riid, (void**)pD3D);
-                    }
-                }
+                m_pD3DEx = new Direct3D9Ex();
+                m_pD3D = (Direct3D9)m_pD3DEx;
             }
             catch
             {
-                m_pD3D = NativeMethods.Direct3DCreate9(NativeMethods.D3D_SDK_VERSION);
+                m_pD3D = new Direct3D9();
             }
 
-            m_cAdapters = (int)m_pD3D->GetAdapterCount();
+            m_cAdapters = (int)m_pD3D.AdapterCount;
         }
 
         private bool TestSurfaceSettings()
@@ -293,18 +281,18 @@ namespace WpfApp
             for (uint i = 0; i < m_cAdapters; ++i)
             {
                 // Can we get HW rendering?
-                if (m_pD3D->CheckDeviceType(
+                if (m_pD3D.CheckDeviceType(
                     i,
                     D3DDEVTYPE.D3DDEVTYPE_HAL,
                     D3DFORMAT.D3DFMT_X8R8G8B8,
                     fmt,
-                    1) < 0)
+                    true) < 0)
                 {
                     return false;
                 }
 
                 // Is the format okay?
-                if (m_pD3D->CheckDeviceFormat(
+                if (m_pD3D.CheckDeviceFormat(
                     i,
                     D3DDEVTYPE.D3DDEVTYPE_HAL,
                     D3DFORMAT.D3DFMT_X8R8G8B8,
@@ -321,13 +309,12 @@ namespace WpfApp
                 {
                     Debug.Assert(m_uNumSamples <= 16);
 
-                    if (m_pD3D->CheckDeviceMultiSampleType(
+                    if (m_pD3D.CheckDeviceMultiSampleType(
                         i,
                         D3DDEVTYPE.D3DDEVTYPE_HAL,
                         fmt,
-                        1,
-                        (D3DMULTISAMPLE_TYPE)m_uNumSamples,
-                        null) < 0)
+                        true,
+                        (D3DMULTISAMPLE_TYPE)m_uNumSamples) < 0)
                     {
                         m_uNumSamples = 0;
                     }
@@ -345,14 +332,14 @@ namespace WpfApp
         {
             if (m_pD3D != null)
             {
-                m_pD3D->Release();
-                m_pD3D = null;
+                m_pD3D.Dispose();
+                m_pD3D = null!;
             }
 
             if (m_pD3DEx != null)
             {
-                m_pD3DEx->Release();
-                m_pD3DEx = null;
+                m_pD3DEx.Dispose();
+                m_pD3DEx = null!;
             }
 
             for (var i = 0; i < m_rgRenderers.Count; ++i)

@@ -44,7 +44,6 @@ namespace WpfApp
         {
             InitializeComponent();
 
-
             _rendererManager = new RendererManager();
             _rendererManager.SetSize(512, 384);
             _rendererManager.SetAlpha(false);

@@ -22,7 +22,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace DirectX.Internals
+namespace DirectXSharp.Internals
 {
     public unsafe struct MarshaledString : IDisposable
     {

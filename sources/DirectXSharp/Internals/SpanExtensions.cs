@@ -21,7 +21,7 @@
 using System;
 using System.Text;
 
-namespace DirectX.Internals
+namespace DirectXSharp.Internals
 {
     internal static unsafe class SpanExtensions
     {
