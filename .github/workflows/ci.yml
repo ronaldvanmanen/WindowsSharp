@@ -2,61 +2,39 @@ name: ci
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - 'main'
+      - 'releases/**'
+      - 'develop'
   pull_request:
-    branches: [ main ]
+    branches:
+      - 'main'
 
 jobs:
-  windows-x64:
+  windows:
     runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
-        architecture: [ x64 ]
+        architecture: [ x86, x64 ]
         configuration: [ debug, release ]
         os: [ windows ]
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.x'
-        source-url: https://pkgs.dev.azure.com/ronaldvanmanen/_packaging/ronaldvanmanen/nuget/v3/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{ secrets.AZURE_DEVOPS_PAT }}
-    - run: .\scripts\cibuild.cmd -configuration ${{ matrix.configuration }} -architecture ${{ matrix.architecture }}
-      shell: cmd
-      env: 
-        OVERRIDE_RUNTIME_IDENTIFIER: win-x64
-    - uses: actions/upload-artifact@v2
-      with:
-        name: ${{ matrix.os }}_${{ matrix.configuration }}_${{ matrix.architecture }}
-        path: |
-          .\artifacts\bin\**\*
-          .\artifacts\log\**\*
-          .\artifacts\pkg\**\*
-          .\artifacts\tst\**\*
-        if-no-files-found: error
-  windows-x86:
-    runs-on: ${{ matrix.os }}-latest
-    strategy:
-      matrix:
-        architecture: [ x86 ]
-        configuration: [ debug, release ]
-        os: [ windows ]
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '5.0.x'
+        dotnet-version: '6.0.x'
         source-url: https://pkgs.dev.azure.com/ronaldvanmanen/_packaging/ronaldvanmanen/nuget/v3/index.json
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.AZURE_DEVOPS_PAT }}
     - run: .\scripts\cibuild.cmd -configuration ${{ matrix.configuration }} -architecture ${{ matrix.architecture }} /p:PlatformTarget=${{ matrix.architecture }}
-      env: 
-        OVERRIDE_RUNTIME_IDENTIFIER: win-x86
       shell: cmd
+      env: 
+        OVERRIDE_RUNTIME_IDENTIFIER: win-${{ matrix.architecture }}
     - uses: actions/upload-artifact@v2
       with:
-        name: ${{ matrix.os }}_${{ matrix.configuration }}_x86
+        name: ${{ matrix.os }}_${{ matrix.configuration }}_${{ matrix.architecture }}
         path: |
           .\artifacts\bin\**\*
           .\artifacts\log\**\*
@@ -67,9 +45,11 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.x'
+        dotnet-version: '6.0.x'
         source-url: https://pkgs.dev.azure.com/ronaldvanmanen/_packaging/ronaldvanmanen/nuget/v3/index.json
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.AZURE_DEVOPS_PAT }}
@@ -89,15 +69,15 @@ jobs:
   publish-nightlies-azure:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
-    needs: [ windows-x64, windows-x86, build-nuget ]
+    needs: [ windows, build-nuget ]
     steps:
     - uses: actions/download-artifact@v2
       with:
-        name: windows_release_x64
+        name: nuget
         path: ./artifacts
     - uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.x'
+        dotnet-version: '6.0.x'
         source-url: https://pkgs.dev.azure.com/ronaldvanmanen/_packaging/ronaldvanmanen/nuget/v3/index.json
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.AZURE_DEVOPS_PAT }}
@@ -105,15 +85,15 @@ jobs:
   publish-nightlies-github:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
-    needs: [ windows-x64, windows-x86, build-nuget ]
+    needs: [ windows, build-nuget ]
     steps:
     - uses: actions/download-artifact@v2
       with:
-        name: windows_release_x64
+        name: nuget
         path: ./artifacts
     - uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.x'
+        dotnet-version: '6.0.x'
         source-url: https://nuget.pkg.github.com/ronaldvanmanen/index.json
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
