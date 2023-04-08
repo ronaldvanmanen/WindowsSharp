@@ -38,9 +38,8 @@ namespace DirectXSharp
         { }
 
         public Direct3D9(uint sdkVersion)
-        {
-            _handle = NativeMethods.Direct3DCreate9(sdkVersion);
-        }
+        : this(NativeMethods.Direct3DCreate9(sdkVersion))
+        { }
 
         internal Direct3D9(IDirect3D9* handle)
         {
