@@ -83,7 +83,7 @@ namespace DirectXSharp
                 deviceType,
                 adapterFormat,
                 backBufferFormat,
-                windowed ? NativeMethods.TRUE : NativeMethods.FALSE);
+                windowed.ToBOOL());
         }
 
         public int CheckDeviceFormat(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT adapterFormat, uint usage, D3DRESOURCETYPE resourceType, D3DFORMAT checkFormat)
@@ -103,7 +103,7 @@ namespace DirectXSharp
                 adapter,
                 deviceType,
                 surfaceFormat,
-                windowed ? NativeMethods.TRUE : NativeMethods.FALSE,
+                windowed.ToBOOL(),
                 multiSampleType,
                 null);
         }
