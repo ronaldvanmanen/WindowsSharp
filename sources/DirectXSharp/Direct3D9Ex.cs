@@ -69,14 +69,16 @@ namespace DirectXSharp
         {
             IDirect3DDevice9Ex* handle = null;
 
-            _handle->CreateDeviceEx(
-                adapter,
-                deviceType,
-                focusWindow,
-                behaviorFlags,
-                presentationParameters,
-                null,
-                &handle);
+            Direct3D9Error.ThrowOnFailure(
+               _handle->CreateDeviceEx(
+                    adapter,
+                    deviceType,
+                    focusWindow,
+                    behaviorFlags,
+                    presentationParameters,
+                    null,
+                    &handle)
+            );
 
             return new Direct3DDevice9Ex(handle);
         }

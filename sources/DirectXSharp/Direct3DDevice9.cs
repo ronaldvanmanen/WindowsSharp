@@ -69,76 +69,98 @@ namespace DirectXSharp
         {
             IDirect3DSurface9* handle = null;
 
-            _handle->CreateRenderTarget(
-                width,
-                height,
-                format,
-                multiSample,
-                multiSampleQuality,
-                lockable ? NativeMethods.TRUE : NativeMethods.FALSE,
-                &handle, null);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->CreateRenderTarget(
+                    width,
+                    height,
+                    format,
+                    multiSample,
+                    multiSampleQuality,
+                    lockable.ToBOOL(),
+                    &handle, null)
+            );
 
             return new Direct3DSurface9(handle);
         }
 
         public void SetRenderTarget(uint renderTargetIndex, Direct3DSurface9 renderTarget)
         {
-            _handle->SetRenderTarget(renderTargetIndex, renderTarget);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->SetRenderTarget(renderTargetIndex, renderTarget)
+            );
         }
 
         public Direct3DVertexBuffer9 CreateVertexBuffer(uint length, uint usage, uint fvf, D3DPOOL pool)
         {
             IDirect3DVertexBuffer9* handle = null;
 
-            _handle->CreateVertexBuffer(
-                length,
-                usage,
-                fvf,
-                pool,
-                &handle,
-                null);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->CreateVertexBuffer(
+                    length,
+                    usage,
+                    fvf,
+                    pool,
+                    &handle,
+                    null)
+            );
 
             return new Direct3DVertexBuffer9(handle);
         }
 
         public void SetFVF(uint fvf)
         {
-            _handle->SetFVF(fvf);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->SetFVF(fvf)
+            );
         }
 
         public void SetRenderState(D3DRENDERSTATETYPE state, uint value)
         {
-            _handle->SetRenderState(state, value);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->SetRenderState(state, value)
+            );
         }
 
         public void SetStreamSource(uint streamNumber, Direct3DVertexBuffer9 streamData, uint offsetInBytes, uint stride)
         {
-            _handle->SetStreamSource(streamNumber, streamData, offsetInBytes, stride);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->SetStreamSource(streamNumber, streamData, offsetInBytes, stride)
+            );
         }
 
         public void SetTransform(D3DTRANSFORMSTATETYPE state, D3DMATRIX* matrix)
         {
-            _handle->SetTransform(state, matrix);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->SetTransform(state, matrix)
+            );
         }
 
         public void BeginScene()
         {
-            _handle->BeginScene();
+            Direct3D9Error.ThrowOnFailure(
+                _handle->BeginScene()
+            );
         }
 
         public void EndScene()
         {
-            _handle->EndScene();
+            Direct3D9Error.ThrowOnFailure(
+                _handle->EndScene()
+            );
         }
 
         public void Clear(uint flags, uint color, float z, uint stencil)
         {
-            _handle->Clear(0, null, flags, color, z, stencil);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->Clear(0, null, flags, color, z, stencil)
+            );
         }
 
         public void DrawPrimitive(D3DPRIMITIVETYPE primitiveType, uint startVertex, uint primitiveCount)
         {
-            _handle->DrawPrimitive(primitiveType, startVertex, primitiveCount);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->DrawPrimitive(primitiveType, startVertex, primitiveCount)
+            );
         }
     }
 }

@@ -29,7 +29,7 @@ using DirectXSharp.Interop;
 namespace DirectXSharp
 {
     [Serializable]
-    internal sealed class Direct3D9Error : Exception
+    public sealed class Direct3D9Error : Exception
     {
         public int ErrorCode { get; }
 

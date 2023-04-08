@@ -62,12 +62,16 @@ namespace DirectXSharp
 
         public void Lock(uint offsetToLock, uint sizeToLock, void** data, uint flags)
         {
-            _handle->Lock(offsetToLock, sizeToLock, data, flags);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->Lock(offsetToLock, sizeToLock, data, flags)
+            );
         }
 
         public void Unlock()
         {
-            _handle->Unlock();
+            Direct3D9Error.ThrowOnFailure(
+                _handle->Unlock()
+            );
         }
 
         public static implicit operator IDirect3DVertexBuffer9*(Direct3DVertexBuffer9 instance)

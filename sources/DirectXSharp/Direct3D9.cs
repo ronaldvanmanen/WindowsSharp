@@ -112,7 +112,9 @@ namespace DirectXSharp
         public D3DCAPS9 GetDeviceCaps(uint adapter, D3DDEVTYPE deviceType)
         {
             var caps = new D3DCAPS9();
-            _handle->GetDeviceCaps(adapter, D3DDEVTYPE.D3DDEVTYPE_HAL, &caps);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->GetDeviceCaps(adapter, D3DDEVTYPE.D3DDEVTYPE_HAL, &caps)
+            );
             return caps;
         }
 
@@ -120,13 +122,15 @@ namespace DirectXSharp
         {
             IDirect3DDevice9* handle = null;
 
-            _handle->CreateDevice(
-                adapter,
-                deviceType,
-                focusWindow,
-                behaviorFlags,
-                presentationParameters,
-                &handle);
+            Direct3D9Error.ThrowOnFailure(
+                _handle->CreateDevice(
+                    adapter,
+                    deviceType,
+                    focusWindow,
+                    behaviorFlags,
+                    presentationParameters,
+                    &handle)
+            );
 
             return new Direct3DDevice9(handle);
         }
