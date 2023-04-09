@@ -30,13 +30,13 @@ namespace WpfApp
 {
     internal abstract unsafe class Renderer : IDisposable
     {
-        protected readonly Direct3DDevice9 m_pd3dDevice = null!;
+        protected readonly Direct3DDevice9 _device = null!;
 
-        protected readonly Direct3DDevice9Ex m_pd3dDeviceEx = null!;
+        protected readonly Direct3DDevice9Ex _deviceEx = null!;
 
-        protected Direct3DSurface9 m_pd3dRTS = null!;
+        protected Direct3DSurface9 _surface = null!;
 
-        public Renderer(Direct3D9 pD3D, Direct3D9Ex pD3DEx, HWND__* hwnd, uint uAdapter)
+        public Renderer(Direct3D9 d3d, Direct3D9Ex d3dEx, HWND__* hwnd, uint adapter)
         {
             var d3dpp = new D3DPRESENT_PARAMETERS
             {
@@ -47,7 +47,7 @@ namespace WpfApp
                 SwapEffect = D3DSWAPEFFECT.D3DSWAPEFFECT_DISCARD
             };
 
-            var caps = pD3D.GetDeviceCaps(uAdapter, D3DDEVTYPE.D3DDEVTYPE_HAL);
+            var caps = d3d.GetDeviceCaps(adapter, D3DDEVTYPE.D3DDEVTYPE_HAL);
             int dwVertexProcessing;
             if ((caps.DevCaps & NativeMethods.D3DDEVCAPS_HWTRANSFORMANDLIGHT) == NativeMethods.D3DDEVCAPS_HWTRANSFORMANDLIGHT)
             {
@@ -58,21 +58,21 @@ namespace WpfApp
                 dwVertexProcessing = NativeMethods.D3DCREATE_SOFTWARE_VERTEXPROCESSING;
             }
 
-            if (pD3DEx != null)
+            if (d3dEx != null)
             {
-                m_pd3dDeviceEx = pD3DEx.CreateDeviceEx(
-                    uAdapter,
+                _deviceEx = d3dEx.CreateDeviceEx(
+                    adapter,
                     D3DDEVTYPE.D3DDEVTYPE_HAL,
                     hwnd,
                     (uint)(dwVertexProcessing | NativeMethods.D3DCREATE_MULTITHREADED | NativeMethods.D3DCREATE_FPU_PRESERVE),
                     &d3dpp);
 
-                m_pd3dDevice = m_pd3dDeviceEx;
+                _device = _deviceEx;
             }
             else
             {
-                m_pd3dDevice = pD3D.CreateDevice(
-                    uAdapter,
+                _device = d3d.CreateDevice(
+                    adapter,
                     D3DDEVTYPE.D3DDEVTYPE_HAL,
                     hwnd,
                     (uint)(dwVertexProcessing | NativeMethods.D3DCREATE_MULTITHREADED | NativeMethods.D3DCREATE_FPU_PRESERVE),
@@ -101,13 +101,13 @@ namespace WpfApp
 
         public int CheckDeviceState()
         {
-            if (m_pd3dDeviceEx != null)
+            if (_deviceEx != null)
             {
-                return m_pd3dDeviceEx.CheckDeviceState();
+                return _deviceEx.CheckDeviceState();
             }
-            else if (m_pd3dDevice != null)
+            else if (_device != null)
             {
-                return m_pd3dDevice.TestCooperativeLevel();
+                return _device.TestCooperativeLevel();
             }
             else
             {
@@ -115,27 +115,27 @@ namespace WpfApp
             }
         }
 
-        public void CreateSurface(uint uWidth, uint uHeight, bool fUseAlpha, uint m_uNumSamples)
+        public void CreateSurface(uint width, uint height, bool useAlpha, uint numSamples)
         {
-            if (m_pd3dRTS != null)
+            if (_surface != null)
             {
-                m_pd3dRTS.Dispose();
+                _surface.Dispose();
             }
 
-            m_pd3dRTS = m_pd3dDevice.CreateRenderTarget(
-                uWidth,
-                uHeight,
-                fUseAlpha ? D3DFORMAT.D3DFMT_A8R8G8B8 : D3DFORMAT.D3DFMT_X8R8G8B8,
-                (D3DMULTISAMPLE_TYPE)m_uNumSamples,
+            _surface = _device.CreateRenderTarget(
+                width,
+                height,
+                useAlpha ? D3DFORMAT.D3DFMT_A8R8G8B8 : D3DFORMAT.D3DFMT_X8R8G8B8,
+                (D3DMULTISAMPLE_TYPE)numSamples,
                 0,
-                m_pd3dDeviceEx == null);  // Lockable RT required for good XP perf
+                _deviceEx == null);  // Lockable RT required for good XP perf
 
-            m_pd3dDevice.SetRenderTarget(0, m_pd3dRTS);
+            _device.SetRenderTarget(0, _surface);
         }
 
-        public Direct3DSurface9 GetSurfaceNoRef()
+        public Direct3DSurface9 GetSurface()
         {
-            return m_pd3dRTS;
+            return _surface;
         }
 
         public abstract void Render(TimeSpan renderingTime);

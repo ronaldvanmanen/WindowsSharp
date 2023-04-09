@@ -38,27 +38,27 @@ namespace WpfApp
 {
     internal sealed unsafe class RendererManager : IDisposable
     {
-        private Direct3D9 m_pD3D = null!;
+        private Direct3D9 _d3d = null!;
 
-        private Direct3D9Ex m_pD3DEx = null!;
+        private Direct3D9Ex _d3dEx = null!;
 
-        private int m_cAdapters = 0;
+        private int _adapterCount = 0;
 
-        private List<Renderer> m_rgRenderers = null!;
+        private List<Renderer> _renderers = null!;
 
-        private Renderer m_pCurrentRenderer = null!;
+        private Renderer _currentRenderer = null!;
 
-        private HWND__* m_hwnd = null;
+        private HWND__* _hwnd = null;
 
-        private uint m_uWidth = 0;
+        private uint _width = 0;
 
-        private uint m_uHeight = 0;
+        private uint _height = 0;
 
-        private uint m_uNumSamples = 0;
+        private uint _numSamples = 0;
 
-        private bool m_fUseAlpha = false;
+        private bool _useAlpha = false;
 
-        private bool m_fSurfaceSettingsChanged = true;
+        private bool _surfaceSettingsChanged = true;
 
         public RendererManager() { }
 
@@ -73,36 +73,36 @@ namespace WpfApp
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        private void Dispose(bool _)
         {
-
+            DestroyResources();
         }
 
-        public void SetSize(uint uWidth, uint uHeight)
+        public void SetSize(uint width, uint height)
         {
-            if (uWidth != m_uWidth || uHeight != m_uHeight)
+            if (width != _width || height != _height)
             {
-                m_uWidth = uWidth;
-                m_uHeight = uHeight;
-                m_fSurfaceSettingsChanged = true;
+                _width = width;
+                _height = height;
+                _surfaceSettingsChanged = true;
             }
         }
 
-        public void SetAlpha(bool fUseAlpha)
+        public void SetAlpha(bool useAlpha)
         {
-            if (fUseAlpha != m_fUseAlpha)
+            if (useAlpha != _useAlpha)
             {
-                m_fUseAlpha = fUseAlpha;
-                m_fSurfaceSettingsChanged = true;
+                _useAlpha = useAlpha;
+                _surfaceSettingsChanged = true;
             }
         }
 
-        public void SetNumDesiredSamples(uint uNumSamples)
+        public void SetNumDesiredSamples(uint numSamples)
         {
-            if (m_uNumSamples != uNumSamples)
+            if (_numSamples != numSamples)
             {
-                m_uNumSamples = uNumSamples;
-                m_fSurfaceSettingsChanged = true;
+                _numSamples = numSamples;
+                _surfaceSettingsChanged = true;
             }
         }
 
@@ -115,14 +115,14 @@ namespace WpfApp
             // recreate them here, ignore the adapter update and wait for render to recreate.
             //
 
-            if (m_pD3D != null && m_rgRenderers != null)
+            if (_d3d != null && _renderers != null)
             {
                 var monitor = Monitor.FromPoint(screenSpacePoint.ToPOINT());
-                for (uint i = 0; i < m_cAdapters; ++i)
+                for (uint i = 0; i < _adapterCount; ++i)
                 {
-                    if (monitor == m_pD3D.GetAdapterMonitor(i))
+                    if (monitor == _d3d.GetAdapterMonitor(i))
                     {
-                        m_pCurrentRenderer = m_rgRenderers[(int)i];
+                        _currentRenderer = _renderers[(int)i];
                         break;
                     }
                 }
@@ -146,24 +146,24 @@ namespace WpfApp
 
             EnsureRenderers();
 
-            if (m_fSurfaceSettingsChanged)
+            if (_surfaceSettingsChanged)
             {
                 if (!TestSurfaceSettings())
                 {
                     throw new InvalidOperationException();
                 }
 
-                for (var i = 0; i < m_cAdapters; ++i)
+                for (var i = 0; i < _adapterCount; ++i)
                 {
-                    m_rgRenderers[i].CreateSurface(m_uWidth, m_uHeight, m_fUseAlpha, m_uNumSamples);
+                    _renderers[i].CreateSurface(_width, _height, _useAlpha, _numSamples);
                 }
 
-                m_fSurfaceSettingsChanged = false;
+                _surfaceSettingsChanged = false;
             }
 
-            if (m_pCurrentRenderer != null)
+            if (_currentRenderer != null)
             {
-                return m_pCurrentRenderer.GetSurfaceNoRef();
+                return _currentRenderer.GetSurface();
             }
 
             return null;
@@ -171,12 +171,12 @@ namespace WpfApp
 
         public void Render(TimeSpan renderingTime)
         {
-            m_pCurrentRenderer?.Render(renderingTime);
+            _currentRenderer?.Render(renderingTime);
         }
 
         private void CleanupInvalidDevices()
         {
-            if (m_rgRenderers is not null && m_rgRenderers.Any(e => e.CheckDeviceState() < 0))
+            if (_renderers is not null && _renderers.Any(e => e.CheckDeviceState() < 0))
             {
                 DestroyResources();
             }
@@ -184,27 +184,27 @@ namespace WpfApp
 
         private void EnsureRenderers()
         {
-            if (m_rgRenderers == null)
+            if (_renderers == null)
             {
                 EnsureHWND();
 
-                m_rgRenderers = new List<Renderer>(m_cAdapters);
+                _renderers = new List<Renderer>(_adapterCount);
 
-                for (var i = 0; i < m_cAdapters; ++i)
+                for (var i = 0; i < _adapterCount; ++i)
                 {
-                    m_rgRenderers.Add(
+                    _renderers.Add(
                         new TriangleRenderer(
-                            m_pD3D, m_pD3DEx, m_hwnd, (uint)i));
+                            _d3d, _d3dEx, _hwnd, (uint)i));
                 }
 
                 // Default to the default adapter 
-                m_pCurrentRenderer = m_rgRenderers[0];
+                _currentRenderer = _renderers[0];
             }
         }
 
         private void EnsureHWND()
         {
-            if (m_hwnd == null)
+            if (_hwnd == null)
             {
                 var lpszClassName = new MarshaledString("D3DImageSample");
                 var wndclass = new WNDCLASSW
@@ -242,7 +242,7 @@ namespace WpfApp
                     null,
                     null);
 
-                m_hwnd = hwnd;
+                _hwnd = hwnd;
             }
         }
 
@@ -256,20 +256,20 @@ namespace WpfApp
         {
             try
             {
-                m_pD3DEx = new Direct3D9Ex();
-                m_pD3D = (Direct3D9)m_pD3DEx;
+                _d3dEx = new Direct3D9Ex();
+                _d3d = (Direct3D9)_d3dEx;
             }
             catch
             {
-                m_pD3D = new Direct3D9();
+                _d3d = new Direct3D9();
             }
 
-            m_cAdapters = (int)m_pD3D.AdapterCount;
+            _adapterCount = (int)_d3d.AdapterCount;
         }
 
         private bool TestSurfaceSettings()
         {
-            D3DFORMAT fmt = m_fUseAlpha ? D3DFORMAT.D3DFMT_A8R8G8B8 : D3DFORMAT.D3DFMT_X8R8G8B8;
+            var format = _useAlpha ? D3DFORMAT.D3DFMT_A8R8G8B8 : D3DFORMAT.D3DFMT_X8R8G8B8;
 
             // 
             // We test all adapters because because we potentially use all adapters.
@@ -278,50 +278,51 @@ namespace WpfApp
             // another adapter for you!
             //
 
-            for (uint i = 0; i < m_cAdapters; ++i)
+            for (uint adapter = 0; adapter < _adapterCount; ++adapter)
             {
                 // Can we get HW rendering?
-                if (m_pD3D.CheckDeviceType(
-                    i,
+                if (!_d3d.CheckDeviceType(
+                    adapter,
                     D3DDEVTYPE.D3DDEVTYPE_HAL,
                     D3DFORMAT.D3DFMT_X8R8G8B8,
-                    fmt,
-                    true) < 0)
+                    format,
+                    true))
                 {
                     return false;
                 }
 
                 // Is the format okay?
-                if (m_pD3D.CheckDeviceFormat(
-                    i,
+                if (!_d3d.CheckDeviceFormat(
+                    adapter,
                     D3DDEVTYPE.D3DDEVTYPE_HAL,
                     D3DFORMAT.D3DFMT_X8R8G8B8,
                     NativeMethods.D3DUSAGE_RENDERTARGET | NativeMethods.D3DUSAGE_DYNAMIC, // We'll use dynamic when on XP
                     D3DRESOURCETYPE.D3DRTYPE_SURFACE,
-                    fmt) < 0)
+                    format))
                 {
                     return false;
                 }
 
                 // D3DImage only allows multisampling on 9Ex devices. If we can't 
                 // multisample, overwrite the desired number of samples with 0.
-                if (m_pD3DEx != null && m_uNumSamples > 1)
+                if (_d3dEx != null && _numSamples > 1)
                 {
-                    Debug.Assert(m_uNumSamples <= 16);
+                    Debug.Assert(_numSamples <= 16);
 
-                    if (m_pD3D.CheckDeviceMultiSampleType(
-                        i,
+                    if (!_d3d.CheckDeviceMultiSampleType(
+                        adapter,
                         D3DDEVTYPE.D3DDEVTYPE_HAL,
-                        fmt,
+                        format,
                         true,
-                        (D3DMULTISAMPLE_TYPE)m_uNumSamples) < 0)
+                        (D3DMULTISAMPLE_TYPE)_numSamples,
+                        out _))
                     {
-                        m_uNumSamples = 0;
+                        _numSamples = 0;
                     }
                 }
                 else
                 {
-                    m_uNumSamples = 0;
+                    _numSamples = 0;
                 }
             }
 
@@ -330,29 +331,29 @@ namespace WpfApp
 
         private void DestroyResources()
         {
-            if (m_pD3D != null)
+            if (_d3d != null)
             {
-                m_pD3D.Dispose();
-                m_pD3D = null!;
+                _d3d.Dispose();
+                _d3d = null!;
             }
 
-            if (m_pD3DEx != null)
+            if (_d3dEx != null)
             {
-                m_pD3DEx.Dispose();
-                m_pD3DEx = null!;
+                _d3dEx.Dispose();
+                _d3dEx = null!;
             }
 
-            for (var i = 0; i < m_rgRenderers.Count; ++i)
+            for (var i = 0; i < _renderers.Count; ++i)
             {
-                m_rgRenderers[i].Dispose();
+                _renderers[i].Dispose();
             }
 
-            m_rgRenderers.Clear();
-            m_rgRenderers = null!;
-            m_pCurrentRenderer = null!;
-            m_cAdapters = 0;
+            _renderers.Clear();
+            _renderers = null!;
+            _currentRenderer = null!;
+            _adapterCount = 0;
 
-            m_fSurfaceSettingsChanged = true;
+            _surfaceSettingsChanged = true;
         }
     };
 }

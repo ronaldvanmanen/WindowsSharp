@@ -23,6 +23,7 @@
 // SOFTWARE.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using DirectXSharp.Interop;
 
@@ -56,11 +57,17 @@ namespace DirectXSharp
 
         public static unsafe void ThrowOnFailure(int returnCode)
         {
-            if (returnCode != NativeMethods.D3D_OK)
+            if (!Succeeded(returnCode, out var error))
             {
-                throw new Direct3D9Error(returnCode);
+                throw error;
             }
         }
 
+        public static bool Succeeded(int returnCode, [NotNullWhen(false)] out Direct3D9Error? error)
+        {
+            var succeeded = returnCode == NativeMethods.D3D_OK;
+            error = succeeded ? default : new Direct3D9Error(returnCode);
+            return succeeded;
+        }
     }
 }

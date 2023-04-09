@@ -23,7 +23,9 @@
 // SOFTWARE.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using DirectXSharp.Interop;
+using static DirectXSharp.Direct3D9Error;
 
 namespace DirectXSharp
 {
@@ -76,42 +78,58 @@ namespace DirectXSharp
             return Monitor.FromHandle(_handle->GetAdapterMonitor(i));
         }
 
-        public int CheckDeviceType(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT adapterFormat, D3DFORMAT backBufferFormat, bool windowed)
+        public bool CheckDeviceType(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT adapterFormat, D3DFORMAT backBufferFormat, bool windowed)
         {
-            return _handle->CheckDeviceType(
+            return CheckDeviceType(adapter, deviceType, adapterFormat, backBufferFormat, windowed, out _);
+        }
+
+        public bool CheckDeviceType(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT adapterFormat, D3DFORMAT backBufferFormat, bool windowed, [NotNullWhen(false)] out Direct3D9Error? error)
+        {
+            var result = _handle->CheckDeviceType(
                 adapter,
                 deviceType,
                 adapterFormat,
                 backBufferFormat,
                 windowed.ToBOOL());
+            var succeeded = Succeeded(result, out error);
+            return succeeded;
         }
 
-        public int CheckDeviceFormat(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT adapterFormat, uint usage, D3DRESOURCETYPE resourceType, D3DFORMAT checkFormat)
+        public bool CheckDeviceFormat(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT adapterFormat, uint usage, D3DRESOURCETYPE resourceType, D3DFORMAT checkFormat)
         {
-            return _handle->CheckDeviceFormat(
+            return CheckDeviceFormat(adapter, deviceType, adapterFormat, usage, resourceType, checkFormat, out _);
+        }
+
+        public bool CheckDeviceFormat(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT adapterFormat, uint usage, D3DRESOURCETYPE resourceType, D3DFORMAT checkFormat, [NotNullWhen(false)] out Direct3D9Error? error)
+        {
+            var result = _handle->CheckDeviceFormat(
                 adapter,
                 deviceType,
                 adapterFormat,
                 usage,
                 resourceType,
                 checkFormat);
+            var succeeded = Succeeded(result, out error);
+            return succeeded;
         }
 
-        public int CheckDeviceMultiSampleType(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT surfaceFormat, bool windowed, D3DMULTISAMPLE_TYPE multiSampleType)
+        public bool CheckDeviceMultiSampleType(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT surfaceFormat, bool windowed, D3DMULTISAMPLE_TYPE multiSampleType, [NotNullWhen(false)] out Direct3D9Error? error)
         {
-            return _handle->CheckDeviceMultiSampleType(
+            var result = _handle->CheckDeviceMultiSampleType(
                 adapter,
                 deviceType,
                 surfaceFormat,
                 windowed.ToBOOL(),
                 multiSampleType,
                 null);
+            var succeeded = Succeeded(result, out error);
+            return succeeded;
         }
 
         public D3DCAPS9 GetDeviceCaps(uint adapter, D3DDEVTYPE deviceType)
         {
             var caps = new D3DCAPS9();
-            Direct3D9Error.ThrowOnFailure(
+            ThrowOnFailure(
                 _handle->GetDeviceCaps(adapter, D3DDEVTYPE.D3DDEVTYPE_HAL, &caps)
             );
             return caps;
@@ -121,7 +139,7 @@ namespace DirectXSharp
         {
             IDirect3DDevice9* handle = null;
 
-            Direct3D9Error.ThrowOnFailure(
+            ThrowOnFailure(
                 _handle->CreateDevice(
                     adapter,
                     deviceType,

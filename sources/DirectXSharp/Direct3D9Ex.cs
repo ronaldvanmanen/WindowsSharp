@@ -24,6 +24,7 @@
 
 using System;
 using DirectXSharp.Interop;
+using static DirectXSharp.Direct3D9Error;
 
 namespace DirectXSharp
 {
@@ -39,7 +40,7 @@ namespace DirectXSharp
         {
             fixed (IDirect3D9Ex** handle = &_handle)
             {
-                Direct3D9Error.ThrowOnFailure(
+                ThrowOnFailure(
                     NativeMethods.Direct3DCreate9Ex(sdkVersion, handle)
                 );
             }
@@ -69,7 +70,7 @@ namespace DirectXSharp
         {
             IDirect3DDevice9Ex* handle = null;
 
-            Direct3D9Error.ThrowOnFailure(
+            ThrowOnFailure(
                _handle->CreateDeviceEx(
                     adapter,
                     deviceType,

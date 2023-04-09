@@ -24,6 +24,7 @@
 
 using System;
 using DirectXSharp.Interop;
+using static DirectXSharp.Direct3D9Error;
 
 namespace DirectXSharp
 {
@@ -62,14 +63,14 @@ namespace DirectXSharp
 
         public void Lock(uint offsetToLock, uint sizeToLock, void** data, uint flags)
         {
-            Direct3D9Error.ThrowOnFailure(
+            ThrowOnFailure(
                 _handle->Lock(offsetToLock, sizeToLock, data, flags)
             );
         }
 
         public void Unlock()
         {
-            Direct3D9Error.ThrowOnFailure(
+            ThrowOnFailure(
                 _handle->Unlock()
             );
         }

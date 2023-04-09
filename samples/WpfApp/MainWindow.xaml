@@ -8,7 +8,7 @@
         Title="DirectX in WPF" Height="384" Width="512">
 
     <Grid>
-        <Image x:Name="Image" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill">
+        <Image x:Name="Image" Stretch="Fill">
             <Image.Source>
                 <i:D3DImage x:Name="D3DImage"  />
             </Image.Source>

@@ -32,14 +32,14 @@ namespace WpfApp
 {
     internal sealed unsafe class TriangleRenderer : Renderer
     {
-        private Direct3DVertexBuffer9 m_pd3dVB;
+        private Direct3DVertexBuffer9 _vertexBuffer;
 
-        public TriangleRenderer(Direct3D9 pD3D, Direct3D9Ex pD3DEx, HWND__* hwnd, uint uAdapter)
-        : base(pD3D, pD3DEx, hwnd, uAdapter)
+        public TriangleRenderer(Direct3D9 d3d, Direct3D9Ex d3dEx, HWND__* hwnd, uint adapter)
+        : base(d3d, d3dEx, hwnd, adapter)
         {
-            var vEyePt = new Vector3(0.0f, 0.0f, -5.0f);
-            var vLookatPt = new Vector3(0.0f, 0.0f, 0.0f);
-            var vUpVec = new Vector3(0.0f, 1.0f, 0.0f);
+            var eyePoint = new Vector3(0.0f, 0.0f, -5.0f);
+            var lookatPoint = new Vector3(0.0f, 0.0f, 0.0f);
+            var upVector = new Vector3(0.0f, 1.0f, 0.0f);
 
             // Set up the vertex buffer
             var vertices = new CustomVertex[3]
@@ -51,29 +51,29 @@ namespace WpfApp
 
             var byteLength = (uint)(vertices.Length * Marshal.SizeOf<CustomVertex>());
 
-            m_pd3dVB = m_pd3dDevice.CreateVertexBuffer(
+            _vertexBuffer = _device.CreateVertexBuffer(
                 byteLength,
                 0,
                 CustomVertex.FVF,
                 D3DPOOL.D3DPOOL_DEFAULT);
 
             void* pVertices;
-            m_pd3dVB.Lock(0, byteLength, &pVertices, 0);
+            _vertexBuffer.Lock(0, byteLength, &pVertices, 0);
             var destVertices = new Span<CustomVertex>(pVertices, vertices.Length);
             vertices.CopyTo(destVertices);
-            m_pd3dVB.Unlock();
+            _vertexBuffer.Unlock();
 
             // Set up the camera
-            var matView = Matrix4x4.CreateLookAt(vEyePt, vLookatPt, vUpVec).ToD3DMATRIX();
-            m_pd3dDevice.SetTransform(D3DTRANSFORMSTATETYPE.D3DTS_VIEW, &matView);
+            var matView = Matrix4x4.CreateLookAt(eyePoint, lookatPoint, upVector).ToD3DMATRIX();
+            _device.SetTransform(D3DTRANSFORMSTATETYPE.D3DTS_VIEW, &matView);
             var matProj = Matrix4x4.CreatePerspectiveFieldOfView((float)(Math.PI / 4.0), 1.0f, 1.0f, 100.0f).ToD3DMATRIX();
-            m_pd3dDevice.SetTransform(D3DTRANSFORMSTATETYPE.D3DTS_PROJECTION, &matProj);
+            _device.SetTransform(D3DTRANSFORMSTATETYPE.D3DTS_PROJECTION, &matProj);
 
             // Set up the global state
-            m_pd3dDevice.SetRenderState(D3DRENDERSTATETYPE.D3DRS_CULLMODE, (uint)D3DCULL.D3DCULL_NONE);
-            m_pd3dDevice.SetRenderState(D3DRENDERSTATETYPE.D3DRS_LIGHTING, 0);
-            m_pd3dDevice.SetStreamSource(0, m_pd3dVB, 0, (uint)Marshal.SizeOf<CustomVertex>());
-            m_pd3dDevice.SetFVF(CustomVertex.FVF);
+            _device.SetRenderState(D3DRENDERSTATETYPE.D3DRS_CULLMODE, (uint)D3DCULL.D3DCULL_NONE);
+            _device.SetRenderState(D3DRENDERSTATETYPE.D3DRS_LIGHTING, 0);
+            _device.SetStreamSource(0, _vertexBuffer, 0, (uint)Marshal.SizeOf<CustomVertex>());
+            _device.SetFVF(CustomVertex.FVF);
         }
 
         protected override void Dispose(bool disposing)
@@ -82,30 +82,30 @@ namespace WpfApp
 
             if (disposing)
             {
-                if (m_pd3dVB != null)
+                if (_vertexBuffer != null)
                 {
-                    m_pd3dVB.Dispose();
-                    m_pd3dVB = null!;
+                    _vertexBuffer.Dispose();
+                    _vertexBuffer = null!;
                 }
             }
         }
 
         public override void Render(TimeSpan renderingTime)
         {
-            m_pd3dDevice.BeginScene();
-            m_pd3dDevice.Clear(
+            _device.BeginScene();
+            _device.Clear(
                 NativeMethods.D3DCLEAR_TARGET,
                 0x7F00007F,  // NOTE: Premultiplied alpha!
                 1.0f,
                 0);
 
             // Set up the rotation
-            var iTime = renderingTime.TotalMilliseconds % 1000;
-            var fAngle = iTime * (2.0 * Math.PI) / 1000.0;
-            var matWorld = Matrix4x4.CreateRotationY((float)fAngle).ToD3DMATRIX();
-            m_pd3dDevice.SetTransform(NativeMethods.D3DTS_WORLD, &matWorld);
-            m_pd3dDevice.DrawPrimitive(D3DPRIMITIVETYPE.D3DPT_TRIANGLELIST, 0, 1);
-            m_pd3dDevice.EndScene();
+            var time = renderingTime.TotalMilliseconds % 1000;
+            var angle = time * (2.0 * Math.PI) / 1000.0;
+            var matWorld = Matrix4x4.CreateRotationY((float)angle).ToD3DMATRIX();
+            _device.SetTransform(NativeMethods.D3DTS_WORLD, &matWorld);
+            _device.DrawPrimitive(D3DPRIMITIVETYPE.D3DPT_TRIANGLELIST, 0, 1);
+            _device.EndScene();
         }
     }
 }

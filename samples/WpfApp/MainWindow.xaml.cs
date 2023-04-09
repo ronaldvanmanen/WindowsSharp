@@ -38,7 +38,7 @@ namespace WpfApp
 
         private readonly DispatcherTimer _adapterTimer;
 
-        private TimeSpan _lastRender;
+        private TimeSpan _lastRenderingTime;
 
         public MainWindow()
         {
@@ -139,7 +139,7 @@ namespace WpfApp
 
             // It's possible for Rendering to call back twice in the same frame
             // so only render when we haven't already rendered in this frame.
-            if (D3DImage.IsFrontBufferAvailable && _lastRender != renderingTime)
+            if (D3DImage.IsFrontBufferAvailable && _lastRenderingTime != renderingTime)
             {
                 unsafe
                 {
@@ -153,7 +153,7 @@ namespace WpfApp
                         D3DImage.AddDirtyRect(new Int32Rect(0, 0, D3DImage.PixelWidth, D3DImage.PixelHeight));
                         D3DImage.Unlock();
 
-                        _lastRender = renderingTime;
+                        _lastRenderingTime = renderingTime;
                     }
                 }
             }
