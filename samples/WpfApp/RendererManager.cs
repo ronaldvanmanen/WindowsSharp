@@ -129,7 +129,7 @@ namespace WpfApp
             }
         }
 
-        public IDirect3DSurface9* GetBackBufferNoRef()
+        public Direct3DSurface9? GetBackBuffer()
         {
             CleanupInvalidDevices();
 

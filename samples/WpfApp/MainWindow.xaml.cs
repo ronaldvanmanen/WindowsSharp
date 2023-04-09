@@ -143,12 +143,12 @@ namespace WpfApp
             {
                 unsafe
                 {
-                    var pSurface = _rendererManager.GetBackBufferNoRef();
-                    if (pSurface != null)
+                    var surface = _rendererManager.GetBackBuffer();
+                    if (surface is not null)
                     {
                         // Repeatedly calling SetBackBuffer with the same IntPtr is a no-op. There is no performance penalty.
                         D3DImage.Lock();
-                        D3DImage.SetBackBuffer(D3DResourceType.IDirect3DSurface9, (IntPtr)pSurface);
+                        D3DImage.SetBackBuffer(surface);
                         _rendererManager.Render(renderingTime);
                         D3DImage.AddDirtyRect(new Int32Rect(0, 0, D3DImage.PixelWidth, D3DImage.PixelHeight));
                         D3DImage.Unlock();

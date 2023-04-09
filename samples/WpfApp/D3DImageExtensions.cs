@@ -23,51 +23,16 @@
 // SOFTWARE.
 
 using System;
-using DirectXSharp.Interop;
+using System.Windows.Interop;
+using DirectXSharp;
 
-namespace DirectXSharp
+namespace WpfApp
 {
-    public sealed unsafe class Direct3DSurface9 : IDisposable
+    internal static class D3DImageExtensions
     {
-        private IDirect3DSurface9* _handle;
-
-        public Direct3DSurface9(IDirect3DSurface9* handle)
+        public static unsafe void SetBackBuffer(this D3DImage image, Direct3DSurface9 surface)
         {
-            if (handle == null)
-            {
-                throw new ArgumentNullException(nameof(handle));
-            }
-            _handle = handle;
-        }
-
-        ~Direct3DSurface9()
-        {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (_handle != null)
-            {
-                _handle->Release();
-                _handle = null;
-            }
-        }
-
-        public static implicit operator IDirect3DSurface9*(Direct3DSurface9 instance)
-        {
-            return instance._handle;
-        }
-
-        public static explicit operator IntPtr(Direct3DSurface9 instance)
-        {
-            return new IntPtr(instance._handle);
+            image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, (IntPtr)surface);
         }
     }
 }
