@@ -62,6 +62,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generation", "generation", 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E44F67D8-F1B0-4E9F-8C01-AE57186A36A6}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Build.props = tests\Directory.Build.props
+		tests\Directory.Build.targets = tests\Directory.Build.targets
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectXSharp.Interop.Tests", "tests\DirectXSharp.Interop.Tests\DirectXSharp.Interop.Tests.csproj", "{45348CFF-BA58-4115-923C-B5C6F3EC9456}"
 EndProject
@@ -99,6 +103,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "winnt", "winnt", "{E5D646F0
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{0B9DBC85-BE4B-47EC-9512-F9C0054B24DD}"
+	ProjectSection(SolutionItems) = preProject
+		samples\Directory.Build.props = samples\Directory.Build.props
+		samples\Directory.Build.targets = samples\Directory.Build.targets
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp", "samples\WpfApp\WpfApp.csproj", "{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}"
 EndProject
