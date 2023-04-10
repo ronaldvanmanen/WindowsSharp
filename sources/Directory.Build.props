@@ -13,7 +13,7 @@
   <PropertyGroup>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileDirectory)..\Directory.Build.props</MSBuildAllProjects>
-    <FFmpegSharpProjectCategory>sources</FFmpegSharpProjectCategory>
+    <DirectXSharpProjectCategory>sources</DirectXSharpProjectCategory>
   </PropertyGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
