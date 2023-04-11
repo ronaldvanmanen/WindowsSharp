@@ -25,11 +25,11 @@
 using System;
 using System.Windows.Interop;
 
-namespace DirectXSharp.In.WPF
+namespace DirectXSharp.Extensions.Windows.Interop
 {
-    internal static class D3DImageExtensions
+    public static class D3DImageExtensions
     {
-        public static unsafe void SetBackBuffer(this D3DImage image, Direct3DSurface9 surface)
+        public static void SetBackBuffer(this D3DImage image, Direct3DSurface9 surface)
         {
             image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, (IntPtr)surface);
         }

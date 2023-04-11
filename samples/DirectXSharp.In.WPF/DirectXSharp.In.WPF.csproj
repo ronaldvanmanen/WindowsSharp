@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\sources\DirectXSharp.Extensions.Windows\DirectXSharp.Extensions.Windows.csproj" />
     <ProjectReference Include="..\..\sources\DirectXSharp.Interop\DirectXSharp.Interop.csproj" />
     <ProjectReference Include="..\..\sources\DirectXSharp\DirectXSharp.csproj" />
   </ItemGroup>

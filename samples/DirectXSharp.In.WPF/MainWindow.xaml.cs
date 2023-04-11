@@ -27,6 +27,7 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
+using DirectXSharp.Extensions.Windows.Interop;
 
 namespace DirectXSharp.In.WPF
 {
