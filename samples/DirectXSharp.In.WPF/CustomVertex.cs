@@ -22,40 +22,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Numerics;
 using DirectXSharp.Interop;
 
-namespace WpfApp
+namespace DirectXSharp.In.WPF
 {
-    internal static class Matrix4x4Extensions
+    internal struct CustomVertex
     {
-        public static D3DMATRIX ToD3DMATRIX(this Matrix4x4 matrix)
-        {
-            return new D3DMATRIX
-            {
-                Anonymous = new D3DMATRIX._Anonymous_e__Union
-                {
-                    Anonymous = new D3DMATRIX._Anonymous_e__Union._Anonymous_e__Struct
-                    {
-                        _11 = matrix.M11,
-                        _12 = matrix.M12,
-                        _13 = matrix.M13,
-                        _14 = matrix.M14,
-                        _21 = matrix.M21,
-                        _22 = matrix.M22,
-                        _23 = matrix.M23,
-                        _24 = matrix.M24,
-                        _31 = matrix.M31,
-                        _32 = matrix.M32,
-                        _33 = matrix.M33,
-                        _34 = matrix.M34,
-                        _41 = matrix.M41,
-                        _42 = matrix.M42,
-                        _43 = matrix.M43,
-                        _44 = matrix.M44,
-                    }
-                }
-            };
-        }
-    }
+        public const int FVF = NativeMethods.D3DFVF_XYZ | NativeMethods.D3DFVF_DIFFUSE;
+
+        public float X, Y, Z;
+
+        public uint Color;
+    };
 }

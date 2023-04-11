@@ -28,7 +28,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace WpfApp
+namespace DirectXSharp.In.WPF
 {
     public partial class MainWindow : Window
     {

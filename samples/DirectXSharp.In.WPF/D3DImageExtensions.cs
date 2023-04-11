@@ -22,14 +22,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Windows;
+using System;
+using System.Windows.Interop;
 
-namespace WpfApp
+namespace DirectXSharp.In.WPF
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    internal static class D3DImageExtensions
     {
+        public static unsafe void SetBackBuffer(this D3DImage image, Direct3DSurface9 surface)
+        {
+            image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, (IntPtr)surface);
+        }
     }
 }

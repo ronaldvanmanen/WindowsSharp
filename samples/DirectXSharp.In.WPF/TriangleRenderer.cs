@@ -25,10 +25,9 @@
 using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using DirectXSharp;
 using DirectXSharp.Interop;
 
-namespace WpfApp
+namespace DirectXSharp.In.WPF
 {
     internal sealed unsafe class TriangleRenderer : Renderer
     {

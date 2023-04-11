@@ -23,10 +23,9 @@
 // SOFTWARE.
 
 using System;
-using DirectXSharp;
 using DirectXSharp.Interop;
 
-namespace WpfApp
+namespace DirectXSharp.In.WPF
 {
     internal abstract unsafe class Renderer : IDisposable
     {

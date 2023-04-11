@@ -30,11 +30,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
-using DirectXSharp;
 using DirectXSharp.Internals;
 using DirectXSharp.Interop;
 
-namespace WpfApp
+namespace DirectXSharp.In.WPF
 {
     internal sealed unsafe class RendererManager : IDisposable
     {

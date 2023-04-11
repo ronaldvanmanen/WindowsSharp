@@ -22,17 +22,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Windows.Interop;
-using DirectXSharp;
+using System.Windows;
+using DirectXSharp.Interop;
 
-namespace WpfApp
+namespace DirectXSharp.In.WPF
 {
-    internal static class D3DImageExtensions
+    internal static class PointExtensions
     {
-        public static unsafe void SetBackBuffer(this D3DImage image, Direct3DSurface9 surface)
+        public static POINT ToPOINT(this Point point)
         {
-            image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, (IntPtr)surface);
+            return new POINT
+            {
+                x = (int)point.X,
+                y = (int)point.Y
+            };
         }
     }
 }
