@@ -18,16 +18,16 @@ This project has adopted the [Contributor Covenant Code of Conduct](https://www.
 ### License
 
 Copyright (c) Ronald van Manen. All rights reserved.
-Licensed under the z-lib license.
+Licensed under the MIT license.
 See [LICENSE](LICENSE) in the project root for license information.
 
 ### Languages and Frameworks
 
-DirectXSharp uses C# as its primary development language and .NET 5 as its primary target framework.
+DirectXSharp uses C# as its primary development language and .NET 6 as its primary target framework.
 
 ### Building
 
-DirectXSharp requires the [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) and can be built simply with `dotnet build -c Release`.
+DirectXSharp requires the [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) and can be built simply with `dotnet build -c Release`.
 
 You can reproduce what the CI environment does by running `./scripts/cibuild.cmd` on Windows.
 This will download the required .NET SDK locally and use that to build the repo; it will also run through all available actions in the appropriate order.
