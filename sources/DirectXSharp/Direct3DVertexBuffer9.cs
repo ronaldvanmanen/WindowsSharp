@@ -23,14 +23,25 @@
 // SOFTWARE.
 
 using System;
+using System.Runtime.InteropServices;
 using DirectXSharp.Interop;
 using static DirectXSharp.Direct3D9Error;
 
 namespace DirectXSharp
 {
-    public sealed unsafe class Direct3DVertexBuffer9 : IDisposable
+    public sealed unsafe class Direct3DVertexBuffer9<TVertex> : IDisposable
     {
         private IDirect3DVertexBuffer9* _handle;
+
+        public D3DVERTEXBUFFER_DESC Desc
+        {
+            get
+            {
+                var desc = new D3DVERTEXBUFFER_DESC();
+                _handle->GetDesc(&desc);
+                return desc;
+            }
+        }
 
         public Direct3DVertexBuffer9(IDirect3DVertexBuffer9* handle)
         {
@@ -38,6 +49,7 @@ namespace DirectXSharp
             {
                 throw new ArgumentNullException(nameof(handle));
             }
+
             _handle = handle;
         }
 
@@ -61,11 +73,17 @@ namespace DirectXSharp
             }
         }
 
-        public void Lock(uint offsetToLock, uint sizeToLock, void** data, uint flags)
+        public Span<TVertex> Lock(uint offset, uint size, uint flags)
         {
+            var byteSize = (uint)Marshal.SizeOf<TVertex>();
+            var offsetToLock = offset * byteSize;
+            var sizeToLock = size * byteSize;
+
+            void* data;
             ThrowOnFailure(
-                _handle->Lock(offsetToLock, sizeToLock, data, flags)
+                _handle->Lock(offsetToLock, sizeToLock, &data, flags)
             );
+            return new Span<TVertex>(data, (int)size);
         }
 
         public void Unlock()
@@ -75,7 +93,7 @@ namespace DirectXSharp
             );
         }
 
-        public static implicit operator IDirect3DVertexBuffer9*(Direct3DVertexBuffer9 instance)
+        public static implicit operator IDirect3DVertexBuffer9*(Direct3DVertexBuffer9<TVertex> instance)
         {
             return instance._handle;
         }

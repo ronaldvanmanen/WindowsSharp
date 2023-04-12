@@ -24,7 +24,6 @@
 
 using System;
 using System.Numerics;
-using System.Runtime.InteropServices;
 using DirectXSharp.Extensions.Numerics;
 using DirectXSharp.Interop;
 
@@ -32,7 +31,7 @@ namespace DirectXSharp.In.WPF
 {
     internal sealed unsafe class TriangleRenderer : Renderer
     {
-        private Direct3DVertexBuffer9 _vertexBuffer;
+        private Direct3DVertexBuffer9<CustomVertex> _vertexBuffer;
 
         public TriangleRenderer(Direct3D9 d3d, Direct3D9Ex d3dEx, HWND__* hwnd, uint adapter)
         : base(d3d, d3dEx, hwnd, adapter)
@@ -42,25 +41,17 @@ namespace DirectXSharp.In.WPF
             var upVector = new Vector3(0.0f, 1.0f, 0.0f);
 
             // Set up the vertex buffer
-            var vertices = new CustomVertex[3]
-            {
-                new CustomVertex { X = -1.0f, Y = -1.0f, Z = 0.0f, Color = 0xffff0000 },
-                new CustomVertex { X = 1.0f, Y = -1.0f, Z = 0.0f, Color = 0xff00ff00 },
-                new CustomVertex { X = 0.0f, Y = 1.0f, Z = 0.0f, Color = 0xff00ffff }
-            };
+            const uint vertexBufferSize = 3;
 
-            var byteLength = (uint)(vertices.Length * Marshal.SizeOf<CustomVertex>());
-
-            _vertexBuffer = _device.CreateVertexBuffer(
-                byteLength,
+            _vertexBuffer = _device.CreateVertexBuffer<CustomVertex>(
+                vertexBufferSize,
                 0,
-                CustomVertex.FVF,
                 D3DPOOL.D3DPOOL_DEFAULT);
 
-            void* pVertices;
-            _vertexBuffer.Lock(0, byteLength, &pVertices, 0);
-            var destVertices = new Span<CustomVertex>(pVertices, vertices.Length);
-            vertices.CopyTo(destVertices);
+            var destVertices = _vertexBuffer.Lock(0, vertexBufferSize, 0);
+            destVertices[0] = new CustomVertex { X = -1.0f, Y = -1.0f, Z = 0.0f, Color = 0xffff0000 };
+            destVertices[1] = new CustomVertex { X = 1.0f, Y = -1.0f, Z = 0.0f, Color = 0xff00ff00 };
+            destVertices[2] = new CustomVertex { X = 0.0f, Y = 1.0f, Z = 0.0f, Color = 0xff00ffff };
             _vertexBuffer.Unlock();
 
             // Set up the camera
@@ -72,8 +63,8 @@ namespace DirectXSharp.In.WPF
             // Set up the global state
             _device.SetRenderState(D3DRENDERSTATETYPE.D3DRS_CULLMODE, (uint)D3DCULL.D3DCULL_NONE);
             _device.SetRenderState(D3DRENDERSTATETYPE.D3DRS_LIGHTING, 0);
-            _device.SetStreamSource(0, _vertexBuffer, 0, (uint)Marshal.SizeOf<CustomVertex>());
-            _device.SetFVF(CustomVertex.FVF);
+            _device.SetStreamSource(0, _vertexBuffer, 0);
+            _device.SetFVF(_vertexBuffer.Desc.FVF);
         }
 
         protected override void Dispose(bool disposing)

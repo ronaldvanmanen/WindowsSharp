@@ -26,10 +26,9 @@ using DirectXSharp.Interop;
 
 namespace DirectXSharp.In.WPF
 {
+    [FlexibleVertexFormat(NativeMethods.D3DFVF_XYZ | NativeMethods.D3DFVF_DIFFUSE)]
     internal struct CustomVertex
     {
-        public const int FVF = NativeMethods.D3DFVF_XYZ | NativeMethods.D3DFVF_DIFFUSE;
-
         public float X, Y, Z;
 
         public uint Color;

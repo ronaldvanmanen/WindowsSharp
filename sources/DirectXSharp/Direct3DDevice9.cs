@@ -23,6 +23,8 @@
 // SOFTWARE.
 
 using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using DirectXSharp.Interop;
 using static DirectXSharp.Direct3D9Error;
 
@@ -91,13 +93,16 @@ namespace DirectXSharp
             );
         }
 
-        public Direct3DVertexBuffer9 CreateVertexBuffer(uint length, uint usage, uint fvf, D3DPOOL pool)
+        public Direct3DVertexBuffer9<TVertex> CreateVertexBuffer<TVertex>(uint length, uint usage, D3DPOOL pool)
         {
             IDirect3DVertexBuffer9* handle = null;
 
+            var fvf = GetFlexibleVertexFormat<TVertex>();
+            var byteLength = (uint)(length * Marshal.SizeOf<TVertex>());
+
             ThrowOnFailure(
                 _handle->CreateVertexBuffer(
-                    length,
+                    byteLength,
                     usage,
                     fvf,
                     pool,
@@ -105,7 +110,7 @@ namespace DirectXSharp
                     null)
             );
 
-            return new Direct3DVertexBuffer9(handle);
+            return new Direct3DVertexBuffer9<TVertex>(handle);
         }
 
         public void SetFVF(uint fvf)
@@ -122,10 +127,12 @@ namespace DirectXSharp
             );
         }
 
-        public void SetStreamSource(uint streamNumber, Direct3DVertexBuffer9 streamData, uint offsetInBytes, uint stride)
+        public void SetStreamSource<TVertex>(uint streamNumber, Direct3DVertexBuffer9<TVertex> streamData, uint offset)
         {
+            var stride = (uint)Marshal.SizeOf<TVertex>();
+
             ThrowOnFailure(
-                _handle->SetStreamSource(streamNumber, streamData, offsetInBytes, stride)
+                _handle->SetStreamSource(streamNumber, streamData, offset, stride)
             );
         }
 
@@ -162,6 +169,18 @@ namespace DirectXSharp
             ThrowOnFailure(
                 _handle->DrawPrimitive(primitiveType, startVertex, primitiveCount)
             );
+        }
+
+        private static uint GetFlexibleVertexFormat<TVertex>()
+        {
+            var type = typeof(TVertex);
+            var attribute = type.GetCustomAttribute<FlexibleVertexFormatAttribute>();
+            if (attribute is null)
+            {
+                throw new ArgumentException();
+            }
+
+            return attribute.Format;
         }
     }
 }
