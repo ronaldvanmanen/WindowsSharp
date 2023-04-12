@@ -25,9 +25,9 @@
 using System.Windows;
 using DirectXSharp.Interop;
 
-namespace DirectXSharp.In.WPF
+namespace DirectXSharp.Extensions.Windows
 {
-    internal static class PointExtensions
+    public static class PointExtensions
     {
         public static POINT ToPOINT(this Point point)
         {

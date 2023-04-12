@@ -30,6 +30,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
+using DirectXSharp.Extensions.Windows;
 using DirectXSharp.Internals;
 using DirectXSharp.Interop;
 
