@@ -165,6 +165,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectXSharp.Interop.Intern
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectXSharp.Extensions.Windows", "sources\DirectXSharp.Extensions.Windows\DirectXSharp.Extensions.Windows.csproj", "{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectXSharp.Extensions.Numerics", "sources\DirectXSharp.Extensions.Numerics\DirectXSharp.Extensions.Numerics.csproj", "{6512219F-DE21-4565-908C-8E64B530D77C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -195,6 +197,10 @@ Global
 		{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6512219F-DE21-4565-908C-8E64B530D77C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6512219F-DE21-4565-908C-8E64B530D77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6512219F-DE21-4565-908C-8E64B530D77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6512219F-DE21-4565-908C-8E64B530D77C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -218,6 +224,7 @@ Global
 		{3C1D91F4-52B9-422E-979E-B8A6E2F8635E} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
 		{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+		{6512219F-DE21-4565-908C-8E64B530D77C} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3219424D-8967-4446-B810-B80316687C37}

@@ -25,9 +25,9 @@
 using System.Numerics;
 using DirectXSharp.Interop;
 
-namespace DirectXSharp.In.WPF
+namespace DirectXSharp.Extensions.Numerics
 {
-    internal static class Matrix4x4Extensions
+    public static class Matrix4x4Extensions
     {
         public static D3DMATRIX ToD3DMATRIX(this Matrix4x4 matrix)
         {

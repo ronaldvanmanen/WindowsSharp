@@ -25,6 +25,7 @@
 using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using DirectXSharp.Extensions.Numerics;
 using DirectXSharp.Interop;
 
 namespace DirectXSharp.In.WPF
