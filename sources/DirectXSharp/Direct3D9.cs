@@ -33,7 +33,25 @@ namespace DirectXSharp
     {
         private IDirect3D9* _handle;
 
-        public uint AdapterCount => _handle->GetAdapterCount();
+        public IDirect3D9* Handle
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _handle;
+            }
+        }
+
+        public uint AdapterCount
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _handle->GetAdapterCount();
+            }
+        }
 
         public Direct3D9()
         : this(NativeMethods.D3D_SDK_VERSION)
@@ -75,6 +93,8 @@ namespace DirectXSharp
 
         public Monitor GetAdapterMonitor(uint i)
         {
+            ThrowIfDisposed();
+
             return Monitor.FromHandle(_handle->GetAdapterMonitor(i));
         }
 
@@ -85,6 +105,8 @@ namespace DirectXSharp
 
         public bool CheckDeviceType(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT adapterFormat, D3DFORMAT backBufferFormat, bool windowed, [NotNullWhen(false)] out Direct3D9Error? error)
         {
+            ThrowIfDisposed();
+
             var result = _handle->CheckDeviceType(
                 adapter,
                 deviceType,
@@ -102,6 +124,8 @@ namespace DirectXSharp
 
         public bool CheckDeviceFormat(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT adapterFormat, uint usage, D3DRESOURCETYPE resourceType, D3DFORMAT checkFormat, [NotNullWhen(false)] out Direct3D9Error? error)
         {
+            ThrowIfDisposed();
+
             var result = _handle->CheckDeviceFormat(
                 adapter,
                 deviceType,
@@ -115,6 +139,8 @@ namespace DirectXSharp
 
         public bool CheckDeviceMultiSampleType(uint adapter, D3DDEVTYPE deviceType, D3DFORMAT surfaceFormat, bool windowed, D3DMULTISAMPLE_TYPE multiSampleType, [NotNullWhen(false)] out Direct3D9Error? error)
         {
+            ThrowIfDisposed();
+
             var result = _handle->CheckDeviceMultiSampleType(
                 adapter,
                 deviceType,
@@ -128,6 +154,8 @@ namespace DirectXSharp
 
         public D3DCAPS9 GetDeviceCaps(uint adapter, D3DDEVTYPE deviceType)
         {
+            ThrowIfDisposed();
+
             var caps = new D3DCAPS9();
             ThrowOnFailure(
                 _handle->GetDeviceCaps(adapter, D3DDEVTYPE.D3DDEVTYPE_HAL, &caps)
@@ -137,6 +165,8 @@ namespace DirectXSharp
 
         public Direct3DDevice9 CreateDevice(uint adapter, D3DDEVTYPE deviceType, Window focusWindow, uint behaviorFlags, D3DPRESENT_PARAMETERS* presentationParameters)
         {
+            ThrowIfDisposed();
+
             IDirect3DDevice9* handle = null;
 
             ThrowOnFailure(
@@ -150,6 +180,26 @@ namespace DirectXSharp
             );
 
             return new Direct3DDevice9(handle);
+        }
+
+        private void ThrowIfDisposed()
+        {
+            if (_handle == null)
+            {
+                var type = GetType();
+                var exception = new ObjectDisposedException(type.FullName);
+                throw exception;
+            }
+        }
+
+        public static implicit operator IDirect3D9*(Direct3D9 instance)
+        {
+            if (instance is null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
+            return instance.Handle;
         }
     }
 }

@@ -31,12 +31,23 @@ namespace DirectXSharp
     {
         private IDirect3DSurface9* _handle;
 
+        public IDirect3DSurface9* Handle
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _handle;
+            }
+        }
+
         public Direct3DSurface9(IDirect3DSurface9* handle)
         {
             if (handle == null)
             {
                 throw new ArgumentNullException(nameof(handle));
             }
+
             _handle = handle;
         }
 
@@ -60,14 +71,34 @@ namespace DirectXSharp
             }
         }
 
+        private void ThrowIfDisposed()
+        {
+            if (_handle == null)
+            {
+                var type = GetType();
+                var exception = new ObjectDisposedException(type.FullName);
+                throw exception;
+            }
+        }
+
         public static implicit operator IDirect3DSurface9*(Direct3DSurface9 instance)
         {
-            return instance._handle;
+            if (instance is null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
+            return instance.Handle;
         }
 
         public static explicit operator IntPtr(Direct3DSurface9 instance)
         {
-            return new IntPtr(instance._handle);
+            if (instance is null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
+            return new IntPtr(instance.Handle);
         }
     }
 }

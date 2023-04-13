@@ -32,6 +32,16 @@ namespace DirectXSharp
     {
         private IDirect3D9Ex* _handle;
 
+        public IDirect3D9Ex* Handle
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _handle;
+            }
+        }
+
         public Direct3D9Ex()
         : this(NativeMethods.D3D_SDK_VERSION)
         { }
@@ -68,6 +78,8 @@ namespace DirectXSharp
 
         public Direct3DDevice9Ex CreateDeviceEx(uint adapter, D3DDEVTYPE deviceType, Window focusWindow, uint behaviorFlags, D3DPRESENT_PARAMETERS* presentationParameters)
         {
+            ThrowIfDisposed();
+
             IDirect3DDevice9Ex* handle = null;
 
             ThrowOnFailure(
@@ -84,12 +96,27 @@ namespace DirectXSharp
             return new Direct3DDevice9Ex(handle);
         }
 
+        private void ThrowIfDisposed()
+        {
+            if (_handle == null)
+            {
+                var type = GetType();
+                var exception = new ObjectDisposedException(type.FullName);
+                throw exception;
+            }
+        }
+
         public static implicit operator Direct3D9(Direct3D9Ex instance)
         {
+            if (instance is null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
             fixed (Guid* riid = &NativeMethods.IID_IDirect3D9)
             {
                 IDirect3D9* handle = null;
-                instance._handle->QueryInterface(riid, (void**)&handle);
+                instance.Handle->QueryInterface(riid, (void**)&handle);
                 return new Direct3D9(handle);
             }
         }

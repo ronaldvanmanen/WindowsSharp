@@ -31,9 +31,17 @@ namespace DirectXSharp
 {
     public sealed unsafe class Window : IDisposable
     {
-        private readonly HWND__* _handle;
+        private HWND__* _handle;
 
-        private bool _disposed;
+        public HWND__* Handle
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _handle;
+            }
+        }
 
         internal Window(HWND__* handle)
         {
@@ -43,7 +51,6 @@ namespace DirectXSharp
             }
 
             _handle = handle;
-            _disposed = false;
         }
 
         ~Window()
@@ -59,7 +66,7 @@ namespace DirectXSharp
 
         private void Dispose(bool _)
         {
-            if (_disposed)
+            if (_handle == null)
             {
                 return;
             }
@@ -76,7 +83,17 @@ namespace DirectXSharp
             }
             finally
             {
-                _disposed = true;
+                _handle = null;
+            }
+        }
+
+        private void ThrowIfDisposed()
+        {
+            if (_handle == null)
+            {
+                var type = GetType();
+                var exception = new ObjectDisposedException(type.FullName);
+                throw exception;
             }
         }
 
@@ -87,7 +104,7 @@ namespace DirectXSharp
                 throw new ArgumentNullException(nameof(window));
             }
 
-            return window._handle;
+            return window.Handle;
         }
     }
 }

@@ -34,12 +34,23 @@ namespace DirectXSharp
     {
         private IDirect3DDevice9* _handle;
 
+        public IDirect3DDevice9* Handle
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _handle;
+            }
+        }
+
         public Direct3DDevice9(IDirect3DDevice9* handle)
         {
             if (handle == null)
             {
                 throw new ArgumentNullException(nameof(handle));
             }
+
             _handle = handle;
         }
 
@@ -65,11 +76,15 @@ namespace DirectXSharp
 
         public int TestCooperativeLevel()
         {
+            ThrowIfDisposed();
+
             return _handle->TestCooperativeLevel();
         }
 
         public Direct3DSurface9 CreateRenderTarget(uint width, uint height, D3DFORMAT format, D3DMULTISAMPLE_TYPE multiSample, uint multiSampleQuality, bool lockable)
         {
+            ThrowIfDisposed();
+
             IDirect3DSurface9* handle = null;
 
             ThrowOnFailure(
@@ -88,6 +103,8 @@ namespace DirectXSharp
 
         public void SetRenderTarget(uint renderTargetIndex, Direct3DSurface9 renderTarget)
         {
+            ThrowIfDisposed();
+
             ThrowOnFailure(
                 _handle->SetRenderTarget(renderTargetIndex, renderTarget)
             );
@@ -95,6 +112,8 @@ namespace DirectXSharp
 
         public Direct3DVertexBuffer9<TVertex> CreateVertexBuffer<TVertex>(uint length, uint usage, D3DPOOL pool)
         {
+            ThrowIfDisposed();
+
             IDirect3DVertexBuffer9* handle = null;
 
             var fvf = GetFlexibleVertexFormat<TVertex>();
@@ -115,6 +134,8 @@ namespace DirectXSharp
 
         public void SetFVF(uint fvf)
         {
+            ThrowIfDisposed();
+
             ThrowOnFailure(
                 _handle->SetFVF(fvf)
             );
@@ -122,6 +143,8 @@ namespace DirectXSharp
 
         public void SetRenderState(D3DRENDERSTATETYPE state, uint value)
         {
+            ThrowIfDisposed();
+
             ThrowOnFailure(
                 _handle->SetRenderState(state, value)
             );
@@ -129,6 +152,8 @@ namespace DirectXSharp
 
         public void SetStreamSource<TVertex>(uint streamNumber, Direct3DVertexBuffer9<TVertex> streamData, uint offset)
         {
+            ThrowIfDisposed();
+
             var stride = (uint)Marshal.SizeOf<TVertex>();
 
             ThrowOnFailure(
@@ -138,6 +163,8 @@ namespace DirectXSharp
 
         public void SetTransform(D3DTRANSFORMSTATETYPE state, D3DMATRIX* matrix)
         {
+            ThrowIfDisposed();
+
             ThrowOnFailure(
                 _handle->SetTransform(state, matrix)
             );
@@ -145,6 +172,8 @@ namespace DirectXSharp
 
         public void BeginScene()
         {
+            ThrowIfDisposed();
+
             ThrowOnFailure(
                 _handle->BeginScene()
             );
@@ -152,6 +181,8 @@ namespace DirectXSharp
 
         public void EndScene()
         {
+            ThrowIfDisposed();
+
             ThrowOnFailure(
                 _handle->EndScene()
             );
@@ -159,6 +190,8 @@ namespace DirectXSharp
 
         public void Clear(uint flags, uint color, float z, uint stencil)
         {
+            ThrowIfDisposed();
+
             ThrowOnFailure(
                 _handle->Clear(0, null, flags, color, z, stencil)
             );
@@ -166,6 +199,8 @@ namespace DirectXSharp
 
         public void DrawPrimitive(D3DPRIMITIVETYPE primitiveType, uint startVertex, uint primitiveCount)
         {
+            ThrowIfDisposed();
+
             ThrowOnFailure(
                 _handle->DrawPrimitive(primitiveType, startVertex, primitiveCount)
             );
@@ -181,6 +216,26 @@ namespace DirectXSharp
             }
 
             return attribute.Format;
+        }
+
+        private void ThrowIfDisposed()
+        {
+            if (_handle == null)
+            {
+                var type = GetType();
+                var exception = new ObjectDisposedException(type.FullName);
+                throw exception;
+            }
+        }
+
+        public static implicit operator IDirect3DDevice9*(Direct3DDevice9 instance)
+        {
+            if (instance is null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
+            return instance.Handle;
         }
     }
 }

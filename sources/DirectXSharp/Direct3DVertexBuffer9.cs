@@ -33,10 +33,22 @@ namespace DirectXSharp
     {
         private IDirect3DVertexBuffer9* _handle;
 
+        public IDirect3DVertexBuffer9* Handle
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _handle;
+            }
+        }
+
         public D3DVERTEXBUFFER_DESC Desc
         {
             get
             {
+                ThrowIfDisposed();
+
                 var desc = new D3DVERTEXBUFFER_DESC();
                 _handle->GetDesc(&desc);
                 return desc;
@@ -75,6 +87,8 @@ namespace DirectXSharp
 
         public Span<TVertex> Lock(uint offset, uint size, uint flags)
         {
+            ThrowIfDisposed();
+
             var byteSize = (uint)Marshal.SizeOf<TVertex>();
             var offsetToLock = offset * byteSize;
             var sizeToLock = size * byteSize;
@@ -88,14 +102,31 @@ namespace DirectXSharp
 
         public void Unlock()
         {
+            ThrowIfDisposed();
+
             ThrowOnFailure(
                 _handle->Unlock()
             );
         }
 
+        private void ThrowIfDisposed()
+        {
+            if (_handle == null)
+            {
+                var type = GetType();
+                var exception = new ObjectDisposedException(type.FullName);
+                throw exception;
+            }
+        }
+
         public static implicit operator IDirect3DVertexBuffer9*(Direct3DVertexBuffer9<TVertex> instance)
         {
-            return instance._handle;
+            if (instance is null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
+            return instance.Handle;
         }
     }
 }

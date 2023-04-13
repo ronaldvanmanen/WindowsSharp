@@ -31,12 +31,23 @@ namespace DirectXSharp
     {
         private IDirect3DDevice9Ex* _handle;
 
+        public IDirect3DDevice9Ex* Handle
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _handle;
+            }
+        }
+
         public Direct3DDevice9Ex(IDirect3DDevice9Ex* handle)
         {
             if (handle == null)
             {
                 throw new ArgumentNullException(nameof(handle));
             }
+
             _handle = handle;
         }
 
@@ -62,15 +73,32 @@ namespace DirectXSharp
 
         public int CheckDeviceState()
         {
+            ThrowIfDisposed();
+
             return _handle->CheckDeviceState(null);
+        }
+
+        private void ThrowIfDisposed()
+        {
+            if (_handle == null)
+            {
+                var type = GetType();
+                var exception = new ObjectDisposedException(type.FullName);
+                throw exception;
+            }
         }
 
         public static implicit operator Direct3DDevice9(Direct3DDevice9Ex instance)
         {
+            if (instance is null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
             fixed (Guid* riid = &NativeMethods.IID_IDirect3DDevice9)
             {
                 IDirect3DDevice9* handle = null;
-                instance._handle->QueryInterface(riid, (void**)&handle);
+                instance.Handle->QueryInterface(riid, (void**)&handle);
                 return new Direct3DDevice9(handle);
             }
         }

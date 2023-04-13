@@ -107,6 +107,8 @@ namespace DirectXSharp
 
         public Window CreateWindow(string windowName, uint style)
         {
+            ThrowIfDisposed();
+
             if (windowName is null)
             {
                 throw new ArgumentNullException(nameof(windowName));
@@ -135,6 +137,16 @@ namespace DirectXSharp
             }
 
             return new Window(handle);
+        }
+
+        private void ThrowIfDisposed()
+        {
+            if (_disposed)
+            {
+                var type = GetType();
+                var exception = new ObjectDisposedException(type.FullName);
+                throw exception;
+            }
         }
 
         [UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvStdcall) })]

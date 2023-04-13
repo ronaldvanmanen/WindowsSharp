@@ -34,6 +34,8 @@ namespace DirectXSharp
 
         private readonly HMONITOR__* _handle;
 
+        public HMONITOR__* Handle => _handle;
+
         private Monitor(HMONITOR__* handle)
         {
             if (handle == null)
@@ -70,6 +72,16 @@ namespace DirectXSharp
                 }
                 return FromHandle(handle);
             }
+        }
+
+        public static implicit operator HMONITOR__*(Monitor instance)
+        {
+            if (instance is null)
+            {
+                throw new ArgumentNullException(nameof(instance));
+            }
+
+            return instance.Handle;
         }
     }
 }
