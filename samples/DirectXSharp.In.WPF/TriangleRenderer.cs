@@ -33,8 +33,8 @@ namespace DirectXSharp.In.WPF
     {
         private Direct3DVertexBuffer9<CustomVertex> _vertexBuffer;
 
-        public TriangleRenderer(Direct3D9 d3d, Direct3D9Ex d3dEx, HWND__* hwnd, uint adapter)
-        : base(d3d, d3dEx, hwnd, adapter)
+        public TriangleRenderer(Direct3D9 d3d, Direct3D9Ex d3dEx, Window window, uint adapter)
+        : base(d3d, d3dEx, window, adapter)
         {
             var eyePoint = new Vector3(0.0f, 0.0f, -5.0f);
             var lookatPoint = new Vector3(0.0f, 0.0f, 0.0f);

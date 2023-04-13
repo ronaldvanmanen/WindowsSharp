@@ -31,6 +31,8 @@ using DirectXSharp.Extensions.Windows.Interop;
 
 namespace DirectXSharp.In.WPF
 {
+    using Window = System.Windows.Window;
+
     public partial class MainWindow : Window
     {
         private readonly RendererManager _rendererManager;

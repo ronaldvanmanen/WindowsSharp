@@ -135,7 +135,7 @@ namespace DirectXSharp
             return caps;
         }
 
-        public Direct3DDevice9 CreateDevice(uint adapter, D3DDEVTYPE deviceType, HWND__* focusWindow, uint behaviorFlags, D3DPRESENT_PARAMETERS* presentationParameters)
+        public Direct3DDevice9 CreateDevice(uint adapter, D3DDEVTYPE deviceType, Window focusWindow, uint behaviorFlags, D3DPRESENT_PARAMETERS* presentationParameters)
         {
             IDirect3DDevice9* handle = null;
 

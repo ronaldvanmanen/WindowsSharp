@@ -23,75 +23,71 @@
 // SOFTWARE.
 
 using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 using DirectXSharp.Interop;
-using static DirectXSharp.Direct3D9Error;
 
 namespace DirectXSharp
 {
-    public sealed unsafe class Direct3D9Ex : IDisposable
+    public sealed unsafe class Window : IDisposable
     {
-        private IDirect3D9Ex* _handle;
+        private readonly HWND__* _handle;
 
-        public Direct3D9Ex()
-        : this(NativeMethods.D3D_SDK_VERSION)
-        { }
+        private bool _disposed;
 
-        public Direct3D9Ex(uint sdkVersion)
+        internal Window(HWND__* handle)
         {
-            fixed (IDirect3D9Ex** handle = &_handle)
+            if (handle == null)
             {
-                ThrowOnFailure(
-                    NativeMethods.Direct3DCreate9Ex(sdkVersion, handle)
-                );
+                throw new ArgumentNullException(nameof(handle));
             }
+
+            _handle = handle;
+            _disposed = false;
         }
 
-        ~Direct3D9Ex()
+        ~Window()
         {
             Dispose(false);
         }
 
         public void Dispose()
         {
-            Dispose(true);
             GC.SuppressFinalize(this);
+            Dispose(true);
         }
 
-        private void Dispose(bool disposing)
+        private void Dispose(bool _)
         {
-            if (_handle != null)
+            if (_disposed)
             {
-                _handle->Release();
-                _handle = null;
+                return;
+            }
+
+            try
+            {
+                var retval = NativeMethods.DestroyWindow(_handle);
+                if (retval == 0)
+                {
+                    var error = Marshal.GetLastPInvokeError();
+                    var exception = new Win32Exception(error);
+                    throw exception;
+                }
+            }
+            finally
+            {
+                _disposed = true;
             }
         }
 
-        public Direct3DDevice9Ex CreateDeviceEx(uint adapter, D3DDEVTYPE deviceType, Window focusWindow, uint behaviorFlags, D3DPRESENT_PARAMETERS* presentationParameters)
+        public static implicit operator HWND__*(Window window)
         {
-            IDirect3DDevice9Ex* handle = null;
-
-            ThrowOnFailure(
-               _handle->CreateDeviceEx(
-                    adapter,
-                    deviceType,
-                    focusWindow,
-                    behaviorFlags,
-                    presentationParameters,
-                    null,
-                    &handle)
-            );
-
-            return new Direct3DDevice9Ex(handle);
-        }
-
-        public static implicit operator Direct3D9(Direct3D9Ex instance)
-        {
-            fixed (Guid* riid = &NativeMethods.IID_IDirect3D9)
+            if (window is null)
             {
-                IDirect3D9* handle = null;
-                instance._handle->QueryInterface(riid, (void**)&handle);
-                return new Direct3D9(handle);
+                throw new ArgumentNullException(nameof(window));
             }
+
+            return window._handle;
         }
     }
 }

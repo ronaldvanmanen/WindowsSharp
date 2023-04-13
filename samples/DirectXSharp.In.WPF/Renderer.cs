@@ -35,7 +35,7 @@ namespace DirectXSharp.In.WPF
 
         protected Direct3DSurface9 _surface = null!;
 
-        public Renderer(Direct3D9 d3d, Direct3D9Ex d3dEx, HWND__* hwnd, uint adapter)
+        public Renderer(Direct3D9 d3d, Direct3D9Ex d3dEx, Window window, uint adapter)
         {
             var d3dpp = new D3DPRESENT_PARAMETERS
             {
@@ -62,7 +62,7 @@ namespace DirectXSharp.In.WPF
                 _deviceEx = d3dEx.CreateDeviceEx(
                     adapter,
                     D3DDEVTYPE.D3DDEVTYPE_HAL,
-                    hwnd,
+                    window,
                     (uint)(dwVertexProcessing | NativeMethods.D3DCREATE_MULTITHREADED | NativeMethods.D3DCREATE_FPU_PRESERVE),
                     &d3dpp);
 
@@ -73,7 +73,7 @@ namespace DirectXSharp.In.WPF
                 _device = d3d.CreateDevice(
                     adapter,
                     D3DDEVTYPE.D3DDEVTYPE_HAL,
-                    hwnd,
+                    window,
                     (uint)(dwVertexProcessing | NativeMethods.D3DCREATE_MULTITHREADED | NativeMethods.D3DCREATE_FPU_PRESERVE),
                     &d3dpp);
             }

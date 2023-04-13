@@ -24,14 +24,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Windows;
 using DirectXSharp.Extensions.Windows;
-using DirectXSharp.Internals;
 using DirectXSharp.Interop;
 
 namespace DirectXSharp.In.WPF
@@ -48,7 +44,9 @@ namespace DirectXSharp.In.WPF
 
         private Renderer _currentRenderer = null!;
 
-        private HWND__* _hwnd = null;
+        private WindowClass _windowClass = null!;
+
+        private Window _window = null!;
 
         private uint _width = 0;
 
@@ -186,7 +184,7 @@ namespace DirectXSharp.In.WPF
         {
             if (_renderers == null)
             {
-                EnsureHWND();
+                EnsureWindow();
 
                 _renderers = new List<Renderer>(_adapterCount);
 
@@ -194,7 +192,7 @@ namespace DirectXSharp.In.WPF
                 {
                     _renderers.Add(
                         new TriangleRenderer(
-                            _d3d, _d3dEx, _hwnd, (uint)i));
+                            _d3d, _d3dEx, _window, (uint)i));
                 }
 
                 // Default to the default adapter 
@@ -202,54 +200,17 @@ namespace DirectXSharp.In.WPF
             }
         }
 
-        private void EnsureHWND()
+        private void EnsureWindow()
         {
-            if (_hwnd == null)
+            if (_windowClass is null)
             {
-                var lpszClassName = new MarshaledString("D3DImageSample");
-                var wndclass = new WNDCLASSW
-                {
-                    style = NativeMethods.CS_HREDRAW | NativeMethods.CS_VREDRAW,
-                    lpfnWndProc = &WindowProc,
-                    cbClsExtra = 0,
-                    cbWndExtra = 0,
-                    hInstance = null,
-                    hIcon = null,
-                    hCursor = null,
-                    hbrBackground = null,
-                    lpszMenuName = null,
-                    lpszClassName = lpszClassName
-                };
-
-                if (0 == NativeMethods.RegisterClass(&wndclass))
-                {
-                    var error = Marshal.GetLastPInvokeError();
-                    var exception = new Win32Exception(error);
-                    throw exception;
-                }
-
-                var lpszWindowName = new MarshaledString("D3DImageSample");
-                var hwnd = NativeMethods.CreateWindowW(
-                    lpszClassName,
-                    lpszWindowName,
-                    NativeMethods.WS_OVERLAPPEDWINDOW,
-                    0,    // Initial X
-                    0,    // Initial Y
-                    0,    // Width
-                    0,    // Height
-                    null,
-                    null,
-                    null,
-                    null);
-
-                _hwnd = hwnd;
+                _windowClass = new WindowClass("D3DImageSample", NativeMethods.CS_HREDRAW | NativeMethods.CS_VREDRAW);
             }
-        }
 
-        [UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvStdcall) })]
-        private static long WindowProc(HWND__* hwnd, uint msg, ulong wparam, long lparam)
-        {
-            return NativeMethods.DefWindowProcW(hwnd, msg, wparam, lparam);
+            if (_window is null)
+            {
+                _window = _windowClass.CreateWindow("D3DImageSample", NativeMethods.WS_OVERLAPPEDWINDOW);
+            }
         }
 
         private void EnsureD3DObjects()
@@ -331,17 +292,15 @@ namespace DirectXSharp.In.WPF
 
         private void DestroyResources()
         {
-            if (_d3d != null)
-            {
-                _d3d.Dispose();
-                _d3d = null!;
-            }
+            _window?.Dispose();
+            _window = null!;
+            _windowClass?.Dispose();
+            _windowClass = null!;
 
-            if (_d3dEx != null)
-            {
-                _d3dEx.Dispose();
-                _d3dEx = null!;
-            }
+            _d3d?.Dispose();
+            _d3d = null!;
+            _d3dEx?.Dispose();
+            _d3dEx = null!;
 
             for (var i = 0; i < _renderers.Count; ++i)
             {
