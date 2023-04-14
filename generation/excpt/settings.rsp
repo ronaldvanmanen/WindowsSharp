@@ -50,11 +50,11 @@ Kernel32.dll
 --methodClassName
 NativeMethods
 --namespace
-DirectXSharp.Interop
+WindowsSharp.Interop
 --output
-..\..\sources\DirectXSharp.Interop\excpt
+..\..\sources\WindowsSharp.Interop\excpt
 --test-output
-..\..\tests\DirectXSharp.Interop.Tests\excpt
+..\..\tests\WindowsSharp.Interop.Tests\excpt
 --traverse
 C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.31.31103\include\excpt.h
 --with-callconv

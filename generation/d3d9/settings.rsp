@@ -572,15 +572,15 @@ D3D9.dll
 --methodClassName
 NativeMethods
 --namespace
-DirectXSharp.Interop
+WindowsSharp.Interop
 --output
-..\..\sources\DirectXSharp.Interop\d3d9
+..\..\sources\WindowsSharp.Interop\d3d9
 --traverse
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\d3d9.h
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\d3d9caps.h
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\d3d9types.h
 --test-output
-..\..\tests\DirectXSharp.Interop.Tests\d3d9
+..\..\tests\WindowsSharp.Interop.Tests\d3d9
 --with-callconv
 *=Winapi
 --with-type

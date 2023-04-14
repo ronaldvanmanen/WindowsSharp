@@ -13,7 +13,7 @@
   <PropertyGroup>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileDirectory)..\Directory.Build.props</MSBuildAllProjects>
-    <DirectXSharpProjectCategory>tests</DirectXSharpProjectCategory>
+    <WindowsSharpProjectCategory>tests</WindowsSharpProjectCategory>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

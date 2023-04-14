@@ -43,11 +43,11 @@ user32.dll
 --methodClassName
 NativeMethods
 --namespace
-DirectXSharp.Interop
+WindowsSharp.Interop
 --output
-..\..\sources\DirectXSharp.Interop\winuser
+..\..\sources\WindowsSharp.Interop\winuser
 --test-output
-..\..\tests\DirectXSharp.Interop.Tests\winuser
+..\..\tests\WindowsSharp.Interop.Tests\winuser
 --traverse
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\WinUser.h
 --with-callconv

@@ -1,8 +1,8 @@
-# DirectXSharp
+# WindowsSharp
 
-DirectXSharp provides DirectX bindings written in C#.
+WindowsSharp provides Windows API bindings written in C#.
 
-[![.NET](https://github.com/ronaldvanmanen/DirectXSharp/actions/workflows/ci.yml/badge.svg)](https://github.com/ronaldvanmanen/DirectXSharp/actions/workflows/ci.yml)
+[![.NET](https://github.com/ronaldvanmanen/WindowsSharp/actions/workflows/ci.yml/badge.svg)](https://github.com/ronaldvanmanen/WindowsSharp/actions/workflows/ci.yml)
 
 ## Table of Contents
 
@@ -23,11 +23,11 @@ See [LICENSE](LICENSE) in the project root for license information.
 
 ### Languages and Frameworks
 
-DirectXSharp uses C# as its primary development language and .NET 6 as its primary target framework.
+WindowsSharp uses C# as its primary development language and .NET 6 as its primary target framework.
 
 ### Building
 
-DirectXSharp requires the [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) and can be built simply with `dotnet build -c Release`.
+WindowsSharp requires the [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) and can be built simply with `dotnet build -c Release`.
 
 You can reproduce what the CI environment does by running `./scripts/cibuild.cmd` on Windows.
 This will download the required .NET SDK locally and use that to build the repo; it will also run through all available actions in the appropriate order.

@@ -70,11 +70,11 @@ Gdi32.dll
 --methodClassName
 NativeMethods
 --namespace
-DirectXSharp.Interop
+WindowsSharp.Interop
 --output
-..\..\sources\DirectXSharp.Interop\wingdi
+..\..\sources\WindowsSharp.Interop\wingdi
 --test-output
-..\..\tests\DirectXSharp.Interop.Tests\wingdi
+..\..\tests\WindowsSharp.Interop.Tests\wingdi
 --traverse
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\wingdi.h
 --with-callconv

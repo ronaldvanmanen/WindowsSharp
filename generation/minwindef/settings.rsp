@@ -41,11 +41,11 @@ c++
 --methodClassName
 NativeMethods
 --namespace
-DirectXSharp.Interop
+WindowsSharp.Interop
 --output
-..\..\sources\DirectXSharp.Interop\minwindef
+..\..\sources\WindowsSharp.Interop\minwindef
 --test-output
-..\..\tests\DirectXSharp.Interop.Tests\minwindef
+..\..\tests\WindowsSharp.Interop.Tests\minwindef
 --traverse
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h
 --with-callconv

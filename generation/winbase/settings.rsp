@@ -43,11 +43,11 @@ Kernel32.dll
 --methodClassName
 NativeMethods
 --namespace
-DirectXSharp.Interop
+WindowsSharp.Interop
 --output
-..\..\sources\DirectXSharp.Interop\winbase
+..\..\sources\WindowsSharp.Interop\winbase
 --test-output
-..\..\tests\DirectXSharp.Interop.Tests\winbase
+..\..\tests\WindowsSharp.Interop.Tests\winbase
 --traverse
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\Winbase.h
 --with-callconv
