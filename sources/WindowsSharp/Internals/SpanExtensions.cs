@@ -1,6 +1,6 @@
-﻿// WindowsSharp
+﻿// This file is part of WindowsSharp
 //
-// Copyright (C) 2021 Ronald van Manen <rvanmanen@gmail.com>
+// Copyright (C) 2021-2023 Ronald van Manen <rvanmanen@gmail.com>
 //
 // This software is provided 'as-is', without any express or implied
 // warranty.  In no event will the authors be held liable for any damages
