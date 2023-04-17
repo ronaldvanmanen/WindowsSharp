@@ -112,7 +112,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{0B9D
 		samples\Directory.Build.targets = samples\Directory.Build.targets
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectX.In.WPF", "samples\DirectX.In.WPF\DirectX.In.WPF.csproj", "{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Direct3D9Sharp.In.WPF", "samples\Direct3D9Sharp.In.WPF\Direct3D9Sharp.In.WPF.csproj", "{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsSharp", "sources\WindowsSharp\WindowsSharp.csproj", "{BE202136-D9B8-453B-B3D8-4F7F524E07A3}"
 EndProject

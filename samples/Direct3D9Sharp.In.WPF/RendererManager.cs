@@ -29,7 +29,7 @@ using System.Linq;
 using WindowsSharp;
 using WindowsSharp.Interop;
 
-namespace DirectX.In.WPF
+namespace Direct3D9Sharp.In.WPF
 {
     internal sealed unsafe class RendererManager : IDisposable
     {

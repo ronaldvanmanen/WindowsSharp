@@ -30,7 +30,7 @@ using System.Windows.Threading;
 using WindowsSharp.Extensions.Windows;
 using WindowsSharp.Extensions.Windows.Interop;
 
-namespace DirectX.In.WPF
+namespace Direct3D9Sharp.In.WPF
 {
     public partial class MainWindow : Window
     {
