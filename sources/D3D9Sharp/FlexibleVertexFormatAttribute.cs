@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WindowsSharp
+namespace D3D9Sharp
 {
     [AttributeUsage(AttributeTargets.Struct)]
     public sealed class FlexibleVertexFormatAttribute : Attribute

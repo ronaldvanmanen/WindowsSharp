@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\sources\D3D9Sharp\D3D9Sharp.csproj" />
+    <ProjectReference Include="..\..\sources\D3D9Sharp.Extensions.Windows.Interop\D3D9Sharp.Extensions.Windows.Interop.csproj" />
     <ProjectReference Include="..\..\sources\WindowsSharp.Extensions.Numerics\WindowsSharp.Extensions.Numerics.csproj" />
     <ProjectReference Include="..\..\sources\WindowsSharp.Extensions.Windows\WindowsSharp.Extensions.Windows.csproj" />
     <ProjectReference Include="..\..\sources\WindowsSharp.Interop\WindowsSharp.Interop.csproj" />

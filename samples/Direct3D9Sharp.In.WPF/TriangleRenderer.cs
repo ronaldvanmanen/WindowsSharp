@@ -24,6 +24,7 @@
 
 using System;
 using System.Numerics;
+using D3D9Sharp;
 using WindowsSharp;
 using WindowsSharp.Extensions.Numerics;
 using WindowsSharp.Interop;

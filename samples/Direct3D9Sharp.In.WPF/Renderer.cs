@@ -23,6 +23,7 @@
 // SOFTWARE.
 
 using System;
+using D3D9Sharp;
 using WindowsSharp;
 using WindowsSharp.Interop;
 

@@ -25,13 +25,13 @@
 using System;
 using WindowsSharp.Interop;
 
-namespace WindowsSharp
+namespace D3D9Sharp
 {
-    public sealed unsafe class Direct3DSurface9 : IDisposable
+    public sealed unsafe class Direct3DDevice9Ex : IDisposable
     {
-        private IDirect3DSurface9* _handle;
+        private IDirect3DDevice9Ex* _handle;
 
-        public IDirect3DSurface9* Handle
+        public IDirect3DDevice9Ex* Handle
         {
             get
             {
@@ -41,7 +41,7 @@ namespace WindowsSharp
             }
         }
 
-        public Direct3DSurface9(IDirect3DSurface9* handle)
+        public Direct3DDevice9Ex(IDirect3DDevice9Ex* handle)
         {
             if (handle == null)
             {
@@ -51,7 +51,7 @@ namespace WindowsSharp
             _handle = handle;
         }
 
-        ~Direct3DSurface9()
+        ~Direct3DDevice9Ex()
         {
             Dispose(false);
         }
@@ -71,6 +71,13 @@ namespace WindowsSharp
             }
         }
 
+        public int CheckDeviceState()
+        {
+            ThrowIfDisposed();
+
+            return _handle->CheckDeviceState(null);
+        }
+
         private void ThrowIfDisposed()
         {
             if (_handle == null)
@@ -81,24 +88,19 @@ namespace WindowsSharp
             }
         }
 
-        public static implicit operator IDirect3DSurface9*(Direct3DSurface9 instance)
+        public static implicit operator Direct3DDevice9(Direct3DDevice9Ex instance)
         {
             if (instance is null)
             {
                 throw new ArgumentNullException(nameof(instance));
             }
 
-            return instance.Handle;
-        }
-
-        public static explicit operator IntPtr(Direct3DSurface9 instance)
-        {
-            if (instance is null)
+            fixed (Guid* riid = &NativeMethods.IID_IDirect3DDevice9)
             {
-                throw new ArgumentNullException(nameof(instance));
+                IDirect3DDevice9* handle = null;
+                instance.Handle->QueryInterface(riid, (void**)&handle);
+                return new Direct3DDevice9(handle);
             }
-
-            return new IntPtr(instance.Handle);
         }
     }
 }

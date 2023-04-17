@@ -27,8 +27,8 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
+using D3D9Sharp.Extensions.Windows.Interop;
 using WindowsSharp.Extensions.Windows;
-using WindowsSharp.Extensions.Windows.Interop;
 
 namespace Direct3D9Sharp.In.WPF
 {

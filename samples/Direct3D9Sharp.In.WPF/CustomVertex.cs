@@ -22,7 +22,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using WindowsSharp;
+using D3D9Sharp;
 using WindowsSharp.Interop;
 
 namespace Direct3D9Sharp.In.WPF

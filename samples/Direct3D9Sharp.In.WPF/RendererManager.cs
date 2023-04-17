@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using D3D9Sharp;
 using WindowsSharp;
 using WindowsSharp.Interop;
 

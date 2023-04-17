@@ -24,11 +24,13 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using WindowsSharp;
 using WindowsSharp.Interop;
-using static WindowsSharp.Direct3D9Error;
 
-namespace WindowsSharp
+namespace D3D9Sharp
 {
+    using static Direct3D9Error;
+
     public sealed unsafe class Direct3D9 : IDisposable
     {
         private IDirect3D9* _handle;

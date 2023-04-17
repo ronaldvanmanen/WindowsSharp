@@ -23,15 +23,51 @@
 // SOFTWARE.
 
 using System;
-using System.Windows.Interop;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
+using WindowsSharp.Interop;
 
-namespace WindowsSharp.Extensions.Windows.Interop
+namespace D3D9Sharp
 {
-    public static class D3DImageExtensions
+    [Serializable]
+    public sealed class Direct3D9Error : Exception
     {
-        public static void SetBackBuffer(this D3DImage image, Direct3DSurface9 surface)
+        public int ErrorCode { get; }
+
+        public Direct3D9Error(int errorCode)
         {
-            image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, (IntPtr)surface);
+            ErrorCode = errorCode;
+        }
+
+        public Direct3D9Error(int errorCode, string? message)
+        : base(message)
+        {
+            ErrorCode = errorCode;
+        }
+
+        public Direct3D9Error(int errorCode, string? message, Exception? innerException)
+        : base(message, innerException)
+        {
+            ErrorCode = errorCode;
+        }
+
+        private Direct3D9Error(SerializationInfo info, StreamingContext context)
+        : base(info, context)
+        { }
+
+        public static unsafe void ThrowOnFailure(int returnCode)
+        {
+            if (!Succeeded(returnCode, out var error))
+            {
+                throw error;
+            }
+        }
+
+        public static bool Succeeded(int returnCode, [NotNullWhen(false)] out Direct3D9Error? error)
+        {
+            var succeeded = returnCode == NativeMethods.D3D_OK;
+            error = succeeded ? default : new Direct3D9Error(returnCode);
+            return succeeded;
         }
     }
 }

@@ -25,11 +25,13 @@
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using WindowsSharp;
 using WindowsSharp.Interop;
-using static WindowsSharp.Direct3D9Error;
 
-namespace WindowsSharp
+namespace D3D9Sharp
 {
+    using static Direct3D9Error;
+
     public sealed unsafe class Direct3DDevice9 : IDisposable
     {
         private IDirect3DDevice9* _handle;

@@ -23,16 +23,18 @@
 // SOFTWARE.
 
 using System;
+using System.Runtime.InteropServices;
 using WindowsSharp.Interop;
-using static WindowsSharp.Direct3D9Error;
 
-namespace WindowsSharp
+namespace D3D9Sharp
 {
-    public sealed unsafe class Direct3D9Ex : IDisposable
-    {
-        private IDirect3D9Ex* _handle;
+    using static Direct3D9Error;
 
-        public IDirect3D9Ex* Handle
+    public sealed unsafe class Direct3DVertexBuffer9<TVertex> : IDisposable
+    {
+        private IDirect3DVertexBuffer9* _handle;
+
+        public IDirect3DVertexBuffer9* Handle
         {
             get
             {
@@ -42,21 +44,29 @@ namespace WindowsSharp
             }
         }
 
-        public Direct3D9Ex()
-        : this(NativeMethods.D3D_SDK_VERSION)
-        { }
-
-        public Direct3D9Ex(uint sdkVersion)
+        public D3DVERTEXBUFFER_DESC Desc
         {
-            fixed (IDirect3D9Ex** handle = &_handle)
+            get
             {
-                ThrowOnFailure(
-                    NativeMethods.Direct3DCreate9Ex(sdkVersion, handle)
-                );
+                ThrowIfDisposed();
+
+                var desc = new D3DVERTEXBUFFER_DESC();
+                _handle->GetDesc(&desc);
+                return desc;
             }
         }
 
-        ~Direct3D9Ex()
+        public Direct3DVertexBuffer9(IDirect3DVertexBuffer9* handle)
+        {
+            if (handle == null)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
+
+            _handle = handle;
+        }
+
+        ~Direct3DVertexBuffer9()
         {
             Dispose(false);
         }
@@ -76,24 +86,28 @@ namespace WindowsSharp
             }
         }
 
-        public Direct3DDevice9Ex CreateDeviceEx(uint adapter, D3DDEVTYPE deviceType, Window focusWindow, uint behaviorFlags, D3DPRESENT_PARAMETERS* presentationParameters)
+        public Span<TVertex> Lock(uint offset, uint size, uint flags)
         {
             ThrowIfDisposed();
 
-            IDirect3DDevice9Ex* handle = null;
+            var byteSize = (uint)Marshal.SizeOf<TVertex>();
+            var offsetToLock = offset * byteSize;
+            var sizeToLock = size * byteSize;
+
+            void* data;
+            ThrowOnFailure(
+                _handle->Lock(offsetToLock, sizeToLock, &data, flags)
+            );
+            return new Span<TVertex>(data, (int)size);
+        }
+
+        public void Unlock()
+        {
+            ThrowIfDisposed();
 
             ThrowOnFailure(
-               _handle->CreateDeviceEx(
-                    adapter,
-                    deviceType,
-                    focusWindow,
-                    behaviorFlags,
-                    presentationParameters,
-                    null,
-                    &handle)
+                _handle->Unlock()
             );
-
-            return new Direct3DDevice9Ex(handle);
         }
 
         private void ThrowIfDisposed()
@@ -106,19 +120,14 @@ namespace WindowsSharp
             }
         }
 
-        public static implicit operator Direct3D9(Direct3D9Ex instance)
+        public static implicit operator IDirect3DVertexBuffer9*(Direct3DVertexBuffer9<TVertex> instance)
         {
             if (instance is null)
             {
                 throw new ArgumentNullException(nameof(instance));
             }
 
-            fixed (Guid* riid = &NativeMethods.IID_IDirect3D9)
-            {
-                IDirect3D9* handle = null;
-                instance.Handle->QueryInterface(riid, (void**)&handle);
-                return new Direct3D9(handle);
-            }
+            return instance.Handle;
         }
     }
 }

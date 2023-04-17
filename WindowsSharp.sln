@@ -199,6 +199,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rpc", "rpc", "{B612A9B6-4F6
 		generation\rpc\settings.rsp = generation\rpc\settings.rsp
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D3D9Sharp", "sources\D3D9Sharp\D3D9Sharp.csproj", "{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D9Sharp.Extensions.Windows.Interop", "sources\D3D9Sharp.Extensions.Windows.Interop\D3D9Sharp.Extensions.Windows.Interop.csproj", "{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +237,14 @@ Global
 		{6512219F-DE21-4565-908C-8E64B530D77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6512219F-DE21-4565-908C-8E64B530D77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6512219F-DE21-4565-908C-8E64B530D77C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -261,6 +273,8 @@ Global
 		{3DE0FEDB-C7ED-4994-88D0-26FD592A1C17} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 		{7F12D1D3-8B03-4715-A933-FB20E7F8B84D} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 		{B612A9B6-4F6B-4602-88EB-0E4C26C37B1B} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3219424D-8967-4446-B810-B80316687C37}
