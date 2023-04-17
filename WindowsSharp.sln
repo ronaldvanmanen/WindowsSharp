@@ -46,6 +46,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generation", "generation", "{65345BBF-BCE7-4EF2-8460-1B491062F266}"
 	ProjectSection(SolutionItems) = preProject
 		generation\header.txt = generation\header.txt
+		generation\remap-com.rsp = generation\remap-com.rsp
+		generation\remap-d3d.rsp = generation\remap-d3d.rsp
+		generation\remap-d3d11.rsp = generation\remap-d3d11.rsp
 		generation\remap-d3d9.rsp = generation\remap-d3d9.rsp
 		generation\remap-excpt.rsp = generation\remap-excpt.rsp
 		generation\remap-fileapi.rsp = generation\remap-fileapi.rsp
@@ -53,6 +56,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generation", "generation", 
 		generation\remap-minwinbase.rsp = generation\remap-minwinbase.rsp
 		generation\remap-minwindef.rsp = generation\remap-minwindef.rsp
 		generation\remap-processthreadsapi.rsp = generation\remap-processthreadsapi.rsp
+		generation\remap-rpc.rsp = generation\remap-rpc.rsp
 		generation\remap-winbase.rsp = generation\remap-winbase.rsp
 		generation\remap-windef.rsp = generation\remap-windef.rsp
 		generation\remap-wingdi.rsp = generation\remap-wingdi.rsp
@@ -163,9 +167,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "excpt", "excpt", "{3C1D91F4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsSharp.Interop.Internals", "sources\WindowsSharp.Interop.Internals\WindowsSharp.Interop.Internals.csproj", "{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsSharp.Extensions.Windows", "sources\WindowsSharp.Extensions.Windows\WindowsSharp.Extensions.Windows.csproj", "{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsSharp.Extensions.Windows", "sources\WindowsSharp.Extensions.Windows\WindowsSharp.Extensions.Windows.csproj", "{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsSharp.Extensions.Numerics", "sources\WindowsSharp.Extensions.Numerics\WindowsSharp.Extensions.Numerics.csproj", "{6512219F-DE21-4565-908C-8E64B530D77C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsSharp.Extensions.Numerics", "sources\WindowsSharp.Extensions.Numerics\WindowsSharp.Extensions.Numerics.csproj", "{6512219F-DE21-4565-908C-8E64B530D77C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "d3d11", "d3d11", "{44C34627-0715-4925-A803-B5486B14660A}"
+	ProjectSection(SolutionItems) = preProject
+		generation\d3d11\file.h = generation\d3d11\file.h
+		generation\d3d11\generate.ps1 = generation\d3d11\generate.ps1
+		generation\d3d11\settings.rsp = generation\d3d11\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dxgi", "dxgi", "{3DE0FEDB-C7ED-4994-88D0-26FD592A1C17}"
+	ProjectSection(SolutionItems) = preProject
+		generation\dxgi\file.h = generation\dxgi\file.h
+		generation\dxgi\generate.ps1 = generation\dxgi\generate.ps1
+		generation\dxgi\settings.rsp = generation\dxgi\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "com", "com", "{7F12D1D3-8B03-4715-A933-FB20E7F8B84D}"
+	ProjectSection(SolutionItems) = preProject
+		generation\com\file.h = generation\com\file.h
+		generation\com\generate.ps1 = generation\com\generate.ps1
+		generation\com\settings.rsp = generation\com\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rpc", "rpc", "{B612A9B6-4F6B-4602-88EB-0E4C26C37B1B}"
+	ProjectSection(SolutionItems) = preProject
+		generation\rpc\file.h = generation\rpc\file.h
+		generation\rpc\generate.ps1 = generation\rpc\generate.ps1
+		generation\rpc\settings.rsp = generation\rpc\settings.rsp
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -225,6 +257,10 @@ Global
 		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
 		{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
 		{6512219F-DE21-4565-908C-8E64B530D77C} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+		{44C34627-0715-4925-A803-B5486B14660A} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{3DE0FEDB-C7ED-4994-88D0-26FD592A1C17} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{7F12D1D3-8B03-4715-A933-FB20E7F8B84D} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{B612A9B6-4F6B-4602-88EB-0E4C26C37B1B} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3219424D-8967-4446-B810-B80316687C37}
