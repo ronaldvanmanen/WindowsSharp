@@ -1,0 +1,66 @@
+// This file is part of WindowsSharp
+//
+// Copyright (C) 2021-2023 Ronald van Manen <rvanmanen@gmail.com>
+//
+// MIT License
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+namespace WindowsSharp.Interop
+{
+    /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS"]/*' />
+    public enum D3D11_VIDEO_PROCESSOR_FEATURE_CAPS
+    {
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_FILL"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_FILL = 0x1,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_CONSTRICTION"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_CONSTRICTION = 0x2,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_LUMA_KEY"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_LUMA_KEY = 0x4,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_PALETTE"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_PALETTE = 0x8,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_LEGACY"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_LEGACY = 0x10,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_STEREO"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_STEREO = 0x20,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ROTATION"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ROTATION = 0x40,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_STREAM"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_STREAM = 0x80,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_PIXEL_ASPECT_RATIO"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_PIXEL_ASPECT_RATIO = 0x100,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_MIRROR"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_MIRROR = 0x200,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_SHADER_USAGE"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_SHADER_USAGE = 0x400,
+
+        /// <include file='D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.xml' path='doc/member[@name="D3D11_VIDEO_PROCESSOR_FEATURE_CAPS.D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_METADATA_HDR10"]/*' />
+        D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_METADATA_HDR10 = 0x800,
+    }
+}

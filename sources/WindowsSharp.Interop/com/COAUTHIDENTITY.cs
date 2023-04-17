@@ -1,0 +1,55 @@
+// This file is part of WindowsSharp
+//
+// Copyright (C) 2021-2023 Ronald van Manen <rvanmanen@gmail.com>
+//
+// MIT License
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+namespace WindowsSharp.Interop
+{
+    /// <include file='COAUTHIDENTITY.xml' path='doc/member[@name="COAUTHIDENTITY"]/*' />
+    public unsafe partial struct COAUTHIDENTITY
+    {
+        /// <include file='COAUTHIDENTITY.xml' path='doc/member[@name="COAUTHIDENTITY.User"]/*' />
+        public ushort* User;
+
+        /// <include file='COAUTHIDENTITY.xml' path='doc/member[@name="COAUTHIDENTITY.UserLength"]/*' />
+        [NativeTypeName("ULONG")]
+        public uint UserLength;
+
+        /// <include file='COAUTHIDENTITY.xml' path='doc/member[@name="COAUTHIDENTITY.Domain"]/*' />
+        public ushort* Domain;
+
+        /// <include file='COAUTHIDENTITY.xml' path='doc/member[@name="COAUTHIDENTITY.DomainLength"]/*' />
+        [NativeTypeName("ULONG")]
+        public uint DomainLength;
+
+        /// <include file='COAUTHIDENTITY.xml' path='doc/member[@name="COAUTHIDENTITY.Password"]/*' />
+        public ushort* Password;
+
+        /// <include file='COAUTHIDENTITY.xml' path='doc/member[@name="COAUTHIDENTITY.PasswordLength"]/*' />
+        [NativeTypeName("ULONG")]
+        public uint PasswordLength;
+
+        /// <include file='COAUTHIDENTITY.xml' path='doc/member[@name="COAUTHIDENTITY.Flags"]/*' />
+        [NativeTypeName("ULONG")]
+        public uint Flags;
+    }
+}
