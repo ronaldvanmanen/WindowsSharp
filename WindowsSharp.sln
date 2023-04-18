@@ -201,7 +201,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rpc", "rpc", "{B612A9B6-4F6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D3D9Sharp", "sources\D3D9Sharp\D3D9Sharp.csproj", "{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D9Sharp.Extensions.Windows.Interop", "sources\D3D9Sharp.Extensions.Windows.Interop\D3D9Sharp.Extensions.Windows.Interop.csproj", "{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D9Sharp.Extensions.Windows", "sources\D3D9Sharp.Extensions.Windows\D3D9Sharp.Extensions.Windows.csproj", "{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
