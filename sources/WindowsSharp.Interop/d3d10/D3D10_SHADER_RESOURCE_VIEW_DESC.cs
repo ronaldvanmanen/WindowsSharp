@@ -27,22 +27,22 @@ using System.Runtime.InteropServices;
 
 namespace WindowsSharp.Interop
 {
-    /// <include file='D3D11_SHADER_RESOURCE_VIEW_DESC.xml' path='doc/member[@name="D3D11_SHADER_RESOURCE_VIEW_DESC"]/*' />
-    public partial struct D3D11_SHADER_RESOURCE_VIEW_DESC
+    /// <include file='D3D10_SHADER_RESOURCE_VIEW_DESC.xml' path='doc/member[@name="D3D10_SHADER_RESOURCE_VIEW_DESC"]/*' />
+    public partial struct D3D10_SHADER_RESOURCE_VIEW_DESC
     {
-        /// <include file='D3D11_SHADER_RESOURCE_VIEW_DESC.xml' path='doc/member[@name="D3D11_SHADER_RESOURCE_VIEW_DESC.Format"]/*' />
+        /// <include file='D3D10_SHADER_RESOURCE_VIEW_DESC.xml' path='doc/member[@name="D3D10_SHADER_RESOURCE_VIEW_DESC.Format"]/*' />
         public DXGI_FORMAT Format;
 
-        /// <include file='D3D11_SHADER_RESOURCE_VIEW_DESC.xml' path='doc/member[@name="D3D11_SHADER_RESOURCE_VIEW_DESC.ViewDimension"]/*' />
-        [NativeTypeName("D3D11_SRV_DIMENSION")]
+        /// <include file='D3D10_SHADER_RESOURCE_VIEW_DESC.xml' path='doc/member[@name="D3D10_SHADER_RESOURCE_VIEW_DESC.ViewDimension"]/*' />
+        [NativeTypeName("D3D10_SRV_DIMENSION")]
         public D3D_SRV_DIMENSION ViewDimension;
 
-        /// <include file='D3D11_SHADER_RESOURCE_VIEW_DESC.xml' path='doc/member[@name="D3D11_SHADER_RESOURCE_VIEW_DESC.Anonymous"]/*' />
-        [NativeTypeName("D3D11_SHADER_RESOURCE_VIEW_DESC::(anonymous union at C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um/d3d11.h:3381:5)")]
+        /// <include file='D3D10_SHADER_RESOURCE_VIEW_DESC.xml' path='doc/member[@name="D3D10_SHADER_RESOURCE_VIEW_DESC.Anonymous"]/*' />
+        [NativeTypeName("D3D10_SHADER_RESOURCE_VIEW_DESC::(anonymous union at C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um/d3d10.h:2794:5)")]
         public _Anonymous_e__Union Anonymous;
 
         /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Buffer"]/*' />
-        public ref D3D11_BUFFER_SRV Buffer
+        public ref D3D10_BUFFER_SRV Buffer
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -52,7 +52,7 @@ namespace WindowsSharp.Interop
         }
 
         /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture1D"]/*' />
-        public ref D3D11_TEX1D_SRV Texture1D
+        public ref D3D10_TEX1D_SRV Texture1D
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -62,7 +62,7 @@ namespace WindowsSharp.Interop
         }
 
         /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture1DArray"]/*' />
-        public ref D3D11_TEX1D_ARRAY_SRV Texture1DArray
+        public ref D3D10_TEX1D_ARRAY_SRV Texture1DArray
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -72,7 +72,7 @@ namespace WindowsSharp.Interop
         }
 
         /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture2D"]/*' />
-        public ref D3D11_TEX2D_SRV Texture2D
+        public ref D3D10_TEX2D_SRV Texture2D
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -82,7 +82,7 @@ namespace WindowsSharp.Interop
         }
 
         /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture2DArray"]/*' />
-        public ref D3D11_TEX2D_ARRAY_SRV Texture2DArray
+        public ref D3D10_TEX2D_ARRAY_SRV Texture2DArray
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -92,7 +92,7 @@ namespace WindowsSharp.Interop
         }
 
         /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture2DMS"]/*' />
-        public ref D3D11_TEX2DMS_SRV Texture2DMS
+        public ref D3D10_TEX2DMS_SRV Texture2DMS
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -102,7 +102,7 @@ namespace WindowsSharp.Interop
         }
 
         /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture2DMSArray"]/*' />
-        public ref D3D11_TEX2DMS_ARRAY_SRV Texture2DMSArray
+        public ref D3D10_TEX2DMS_ARRAY_SRV Texture2DMSArray
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -112,7 +112,7 @@ namespace WindowsSharp.Interop
         }
 
         /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture3D"]/*' />
-        public ref D3D11_TEX3D_SRV Texture3D
+        public ref D3D10_TEX3D_SRV Texture3D
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -122,32 +122,12 @@ namespace WindowsSharp.Interop
         }
 
         /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.TextureCube"]/*' />
-        public ref D3D11_TEXCUBE_SRV TextureCube
+        public ref D3D10_TEXCUBE_SRV TextureCube
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
                 return ref MemoryMarshal.GetReference(MemoryMarshal.CreateSpan(ref Anonymous.TextureCube, 1));
-            }
-        }
-
-        /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.TextureCubeArray"]/*' />
-        public ref D3D11_TEXCUBE_ARRAY_SRV TextureCubeArray
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get
-            {
-                return ref MemoryMarshal.GetReference(MemoryMarshal.CreateSpan(ref Anonymous.TextureCubeArray, 1));
-            }
-        }
-
-        /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.BufferEx"]/*' />
-        public ref D3D11_BUFFEREX_SRV BufferEx
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get
-            {
-                return ref MemoryMarshal.GetReference(MemoryMarshal.CreateSpan(ref Anonymous.BufferEx, 1));
             }
         }
 
@@ -157,47 +137,39 @@ namespace WindowsSharp.Interop
         {
             /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Buffer"]/*' />
             [FieldOffset(0)]
-            public D3D11_BUFFER_SRV Buffer;
+            public D3D10_BUFFER_SRV Buffer;
 
             /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture1D"]/*' />
             [FieldOffset(0)]
-            public D3D11_TEX1D_SRV Texture1D;
+            public D3D10_TEX1D_SRV Texture1D;
 
             /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture1DArray"]/*' />
             [FieldOffset(0)]
-            public D3D11_TEX1D_ARRAY_SRV Texture1DArray;
+            public D3D10_TEX1D_ARRAY_SRV Texture1DArray;
 
             /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture2D"]/*' />
             [FieldOffset(0)]
-            public D3D11_TEX2D_SRV Texture2D;
+            public D3D10_TEX2D_SRV Texture2D;
 
             /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture2DArray"]/*' />
             [FieldOffset(0)]
-            public D3D11_TEX2D_ARRAY_SRV Texture2DArray;
+            public D3D10_TEX2D_ARRAY_SRV Texture2DArray;
 
             /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture2DMS"]/*' />
             [FieldOffset(0)]
-            public D3D11_TEX2DMS_SRV Texture2DMS;
+            public D3D10_TEX2DMS_SRV Texture2DMS;
 
             /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture2DMSArray"]/*' />
             [FieldOffset(0)]
-            public D3D11_TEX2DMS_ARRAY_SRV Texture2DMSArray;
+            public D3D10_TEX2DMS_ARRAY_SRV Texture2DMSArray;
 
             /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.Texture3D"]/*' />
             [FieldOffset(0)]
-            public D3D11_TEX3D_SRV Texture3D;
+            public D3D10_TEX3D_SRV Texture3D;
 
             /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.TextureCube"]/*' />
             [FieldOffset(0)]
-            public D3D11_TEXCUBE_SRV TextureCube;
-
-            /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.TextureCubeArray"]/*' />
-            [FieldOffset(0)]
-            public D3D11_TEXCUBE_ARRAY_SRV TextureCubeArray;
-
-            /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.BufferEx"]/*' />
-            [FieldOffset(0)]
-            public D3D11_BUFFEREX_SRV BufferEx;
+            public D3D10_TEXCUBE_SRV TextureCube;
         }
     }
 }

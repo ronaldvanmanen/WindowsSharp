@@ -1,0 +1,65 @@
+// This file is part of WindowsSharp
+//
+// Copyright (C) 2021-2023 Ronald van Manen <rvanmanen@gmail.com>
+//
+// MIT License
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+namespace WindowsSharp.Interop
+{
+    /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC"]/*' />
+    public partial struct D3D10_RASTERIZER_DESC
+    {
+        /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC.FillMode"]/*' />
+        public D3D10_FILL_MODE FillMode;
+
+        /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC.CullMode"]/*' />
+        public D3D10_CULL_MODE CullMode;
+
+        /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC.FrontCounterClockwise"]/*' />
+        [NativeTypeName("BOOL")]
+        public int FrontCounterClockwise;
+
+        /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC.DepthBias"]/*' />
+        public int DepthBias;
+
+        /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC.DepthBiasClamp"]/*' />
+        public float DepthBiasClamp;
+
+        /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC.SlopeScaledDepthBias"]/*' />
+        public float SlopeScaledDepthBias;
+
+        /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC.DepthClipEnable"]/*' />
+        [NativeTypeName("BOOL")]
+        public int DepthClipEnable;
+
+        /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC.ScissorEnable"]/*' />
+        [NativeTypeName("BOOL")]
+        public int ScissorEnable;
+
+        /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC.MultisampleEnable"]/*' />
+        [NativeTypeName("BOOL")]
+        public int MultisampleEnable;
+
+        /// <include file='D3D10_RASTERIZER_DESC.xml' path='doc/member[@name="D3D10_RASTERIZER_DESC.AntialiasedLineEnable"]/*' />
+        [NativeTypeName("BOOL")]
+        public int AntialiasedLineEnable;
+    }
+}

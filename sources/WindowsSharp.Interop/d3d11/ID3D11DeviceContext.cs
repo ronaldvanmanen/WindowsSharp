@@ -238,9 +238,9 @@ namespace WindowsSharp.Interop
         /// <include file='ID3D11DeviceContext.xml' path='doc/member[@name="ID3D11DeviceContext.IASetPrimitiveTopology"]/*' />
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(24)]
-        public void IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY Topology)
+        public void IASetPrimitiveTopology([NativeTypeName("D3D11_PRIMITIVE_TOPOLOGY")] D3D_PRIMITIVE_TOPOLOGY Topology)
         {
-            ((delegate* unmanaged<ID3D11DeviceContext*, D3D11_PRIMITIVE_TOPOLOGY, void>)(lpVtbl[24]))((ID3D11DeviceContext*)Unsafe.AsPointer(ref this), Topology);
+            ((delegate* unmanaged<ID3D11DeviceContext*, D3D_PRIMITIVE_TOPOLOGY, void>)(lpVtbl[24]))((ID3D11DeviceContext*)Unsafe.AsPointer(ref this), Topology);
         }
 
         /// <include file='ID3D11DeviceContext.xml' path='doc/member[@name="ID3D11DeviceContext.VSSetShaderResources"]/*' />
@@ -711,9 +711,9 @@ namespace WindowsSharp.Interop
         /// <include file='ID3D11DeviceContext.xml' path='doc/member[@name="ID3D11DeviceContext.IAGetPrimitiveTopology"]/*' />
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [VtblIndex(83)]
-        public void IAGetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY* pTopology)
+        public void IAGetPrimitiveTopology([NativeTypeName("D3D11_PRIMITIVE_TOPOLOGY *")] D3D_PRIMITIVE_TOPOLOGY* pTopology)
         {
-            ((delegate* unmanaged<ID3D11DeviceContext*, D3D11_PRIMITIVE_TOPOLOGY*, void>)(lpVtbl[83]))((ID3D11DeviceContext*)Unsafe.AsPointer(ref this), pTopology);
+            ((delegate* unmanaged<ID3D11DeviceContext*, D3D_PRIMITIVE_TOPOLOGY*, void>)(lpVtbl[83]))((ID3D11DeviceContext*)Unsafe.AsPointer(ref this), pTopology);
         }
 
         /// <include file='ID3D11DeviceContext.xml' path='doc/member[@name="ID3D11DeviceContext.VSGetShaderResources"]/*' />
