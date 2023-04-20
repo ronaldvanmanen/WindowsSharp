@@ -19,4 +19,22 @@
     <IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="Images\Background.jpg" />
+    <Content Include="Images\Checkbox_checked.png" />
+    <Content Include="Images\Checkbox_unchecked.png" />
+    <Content Include="Images\MagnifyingGlass.png" />
+    <Content Include="Images\radiobutton_off.png" />
+    <Content Include="Images\radiobutton_on.png" />
+    <Content Include="Images\Slider.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Visualization.fx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\sources\WindowsSharp.Interop\WindowsSharp.Interop.csproj" />
+  </ItemGroup>
+
 </Project>

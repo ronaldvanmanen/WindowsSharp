@@ -199,7 +199,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rpc", "rpc", "{B612A9B6-4F6
 		generation\rpc\settings.rsp = generation\rpc\settings.rsp
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Direct3D11Sharp.In.WPF", "samples\Direct3D11Sharp.In.WPF\Direct3D11Sharp.In.WPF.csproj", "{244C8978-483D-43CF-95D2-BF330A32ED8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D3D11Sharp.In.WPF", "samples\D3D11Sharp.In.WPF\D3D11Sharp.In.WPF.csproj", "{244C8978-483D-43CF-95D2-BF330A32ED8B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D3D9Sharp", "sources\D3D9Sharp\D3D9Sharp.csproj", "{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}"
 EndProject
