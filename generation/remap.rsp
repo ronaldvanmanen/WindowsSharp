@@ -5,6 +5,7 @@
 @..\remap-excpt.rsp
 @..\remap-fileapi.rsp
 @..\remap-guiddef.rsp
+@..\remap-hlsl.rsp
 @..\remap-minwinbase.rsp
 @..\remap-minwindef.rsp
 @..\remap-processthreadsapi.rsp
