@@ -34,7 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\sources\D3D11Sharp\D3D11Sharp.csproj" />
+    <ProjectReference Include="..\..\sources\DXGISharp\DXGISharp.csproj" />
     <ProjectReference Include="..\..\sources\WindowsSharp.Interop\WindowsSharp.Interop.csproj" />
+    <ProjectReference Include="..\..\sources\WindowsSharp\WindowsSharp.csproj" />
   </ItemGroup>
 
 </Project>

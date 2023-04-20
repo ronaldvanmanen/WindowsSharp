@@ -22,14 +22,44 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Numerics;
+using System;
+using WindowsSharp.Internals;
+using WindowsSharp.Interop;
+using static WindowsSharp.Interop.NativeMethods;
 
 namespace D3D11Sharp.In.WPF
 {
-    struct ConstantBuffer
+    internal static class Helpers
     {
-        Matrix4x4 mWorld;
-        Matrix4x4 mView;
-        Matrix4x4 mProjection;
-    };
+        public static unsafe D3DBlob CompileShaderFromFile(string fileName, string entryPoint, string shaderModel)
+        {
+            ID3DBlob* pErrorBlob = null;
+
+            using var szFileName = new MarshaledWideString(fileName);
+            using var szEntryPoint = new MarshaledString(entryPoint);
+            using var szShaderModel = new MarshaledString(shaderModel);
+
+            ID3DBlob* pCodeBlob = null;
+
+            var result = D3DCompileFromFile(szFileName, null, null, szEntryPoint, szShaderModel,
+                0, 0, &pCodeBlob, &pErrorBlob);
+
+            if (result != 0)
+            {
+                if (pErrorBlob != null)
+                {
+                    throw new InvalidOperationException(
+                        new string((sbyte*)pErrorBlob->GetBufferPointer())
+                    );
+                }
+            }
+
+            if (pErrorBlob != null)
+            {
+                pErrorBlob->Release();
+            }
+
+            return new D3DBlob(pCodeBlob);
+        }
+    }
 }

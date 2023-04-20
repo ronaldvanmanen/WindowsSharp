@@ -1,4 +1,4 @@
-﻿<!--
+<!--
     
   This file is part of WindowsSharp
 
@@ -25,11 +25,6 @@
   SOFTWARE.
 
 -->
-<Application x:Class="D3D11Sharp.In.WPF.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
-</Application>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+</ResourceDictionary>

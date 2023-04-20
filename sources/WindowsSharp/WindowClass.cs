@@ -44,7 +44,7 @@ namespace WindowsSharp
                 throw new ArgumentNullException(nameof(className));
             }
 
-            var lpszClassName = new MarshaledString(className);
+            var lpszClassName = new MarshaledWideString(className);
             var wndclass = new WNDCLASSW
             {
                 style = style,
@@ -114,7 +114,7 @@ namespace WindowsSharp
                 throw new ArgumentNullException(nameof(windowName));
             }
 
-            var lpszWindowName = new MarshaledString(windowName);
+            var lpszWindowName = new MarshaledWideString(windowName);
 
             var handle = NativeMethods.CreateWindowW(
                 _wndclass.lpszClassName,

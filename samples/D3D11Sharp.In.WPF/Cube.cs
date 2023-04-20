@@ -1,32 +1,59 @@
-﻿using System.Numerics;
+﻿// This file is part of WindowsSharp
+//
+// Copyright (C) 2021-2023 Ronald van Manen <rvanmanen@gmail.com>
+//
+// MIT License
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+using System.Numerics;
+using DXGISharp;
 using WindowsSharp.Interop;
 using static WindowsSharp.Interop.NativeMethods;
+using static D3D11Sharp.In.WPF.Helpers;
+using WindowsSharp.Internals;
 
 namespace D3D11Sharp.In.WPF
 {
     internal sealed unsafe class CCube
     {
-        private CCamera m_camera;
+        private readonly CCamera m_camera;
 
         private HINSTANCE m_hInst;
         private D3D_DRIVER_TYPE m_driverType;
-        private D3D_FEATURE_LEVEL m_featureLevel;
+        private readonly D3D_FEATURE_LEVEL m_featureLevel;
 
-        private ID3D11Device* m_pd3dDevice;
-        private ID3D11DeviceContext* m_pImmediateContext;
-        private IDXGISwapChain* m_pSwapChain = null;
-        private ID3D11RenderTargetView* m_pRenderTargetView = null;
-        private ID3D11InputLayout* m_pVertexLayout;
-        private ID3D11Buffer* m_pVertexBuffer;
-        private ID3D11Buffer* m_pIndexBuffer = null;
-        private ID3D11Buffer* m_pConstantBuffer = null;
+        private readonly D3D11Device m_pd3dDevice;
+        private readonly D3D11DeviceContext m_pImmediateContext;
+        private readonly DXGISwapChain m_pSwapChain;
+        private readonly D3D11RenderTargetView m_pRenderTargetView;
+        private D3D11InputLayout m_pVertexLayout;
+        private readonly D3D11Buffer m_pVertexBuffer;
+        private readonly D3D11Buffer m_pIndexBuffer;
+        private readonly D3D11Buffer m_pConstantBuffer;
 
         private Matrix4x4 m_World;
-        private Matrix4x4  m_View;
+        private Matrix4x4 m_View;
         private Matrix4x4 m_Projection;
 
-        private ID3D11VertexShader* m_pVertexShader;
-        private ID3D11PixelShader* m_pPixelShader;
+        private D3D11VertexShader m_pVertexShader;
+        private D3D11PixelShader m_pPixelShader;
 
         // Initial window resolution
         private uint m_Width;
@@ -34,79 +61,59 @@ namespace D3D11Sharp.In.WPF
 
         public CCube()
         {
+            m_camera = null!;
+
             m_Height = 0;
             m_Width = 0;
 
             m_hInst = null;
             m_featureLevel = D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_11_0;
-            m_pd3dDevice = null;
-            m_pImmediateContext = null;
-            m_pVertexLayout = null;
-            m_pVertexBuffer = null;
-            m_pVertexShader = null;
-            m_pPixelShader = null;
+            m_pd3dDevice = null!;
+            m_pImmediateContext = null!;
+            m_pSwapChain = null!;
+            m_pRenderTargetView = null!;
+            m_pVertexLayout = null!;
+            m_pVertexBuffer = null!;
+            m_pIndexBuffer = null!;
+            m_pConstantBuffer = null!;
+            m_pVertexShader = null!;
+            m_pPixelShader = null!;
         }
 
         ~CCube()
         {
-            if (m_pImmediateContext != null)
-            {
-                m_pImmediateContext->ClearState();
-            }
+            m_pImmediateContext?.ClearState();
 
-            SAFE_RELEASE(m_pIndexBuffer);
-            SAFE_RELEASE(m_pPixelShader);
-            SAFE_RELEASE(m_pVertexBuffer);
-            SAFE_RELEASE(m_pVertexLayout);
-            SAFE_RELEASE(m_pVertexShader);
-            SAFE_RELEASE(m_pImmediateContext);
-            SAFE_RELEASE(m_pd3dDevice);
+            m_pIndexBuffer?.Dispose();
+            m_pPixelShader?.Dispose();
+            m_pVertexBuffer?.Dispose();
+            m_pVertexLayout?.Dispose();
+            m_pVertexShader?.Dispose();
+            m_pSwapChain?.Dispose();
+            m_pImmediateContext?.Dispose();
+            m_pd3dDevice?.Dispose();
         }
 
-        public uint LoadShaders()
+        public void LoadShaders()
         {
-            uint hr = 0;
-
             // Compile the pixel shader
-            ID3DBlob* pPSBlob = NULL;
-            hr = CompileShaderFromFile(L"D3DVisualization.fx", "PS", "ps_4_0", &pPSBlob);
-            if (FAILED(hr))
-            {
-                MessageBox(NULL,
-                    L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
-                return hr;
-            }
+            using var pPSBlob = CompileShaderFromFile("Visualization.fx", "PS", "ps_4_0");
 
             // Create the pixel shader
-            hr = m_pd3dDevice->CreatePixelShader(pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), NULL, &m_pPixelShader);
-            pPSBlob->Release();
-            if (FAILED(hr))
-                return hr;
+            m_pPixelShader = m_pd3dDevice.CreatePixelShader(pPSBlob.GetBuffer());
 
             // Compile the vertex shader
-            ID3DBlob* pVSBlob = NULL;
-            hr = CompileShaderFromFile(L"D3DVisualization.fx", "VS", "vs_4_0", &pVSBlob);
-            if (FAILED(hr))
-            {
-                MessageBox(NULL,
-                    L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
-                return hr;
-            }
+            using var pVSBlob = CompileShaderFromFile("D3DVisualization.fx", "VS", "vs_4_0");
 
             // Create the vertex shader
-            hr = m_pd3dDevice->CreateVertexShader(pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), NULL, &m_pVertexShader);
-            if (FAILED(hr))
-            {
-                pVSBlob->Release();
-                return hr;
-            }
+            m_pVertexShader = m_pd3dDevice.CreateVertexShader(pVSBlob.GetBuffer());
 
             // Define the input layout
             D3D11_INPUT_ELEMENT_DESC[] layout =
             {
                 new D3D11_INPUT_ELEMENT_DESC
                 {
-                    SemanticName = "POSITION",
+                    SemanticName = new MarshaledString("POSITION"),
                     SemanticIndex = 0,
                     Format = DXGI_FORMAT.DXGI_FORMAT_R32G32B32_FLOAT,
                     InputSlot = 0,
@@ -116,7 +123,7 @@ namespace D3D11Sharp.In.WPF
                 },
                 new D3D11_INPUT_ELEMENT_DESC
                 {
-                    SemanticName = "COLOR",
+                    SemanticName = new MarshaledString("COLOR"),
                     SemanticIndex = 0,
                     Format = DXGI_FORMAT.DXGI_FORMAT_R32G32B32A32_FLOAT,
                     InputSlot = 0,
@@ -125,19 +132,12 @@ namespace D3D11Sharp.In.WPF
                     InstanceDataStepRate = 0
                 },
             };
-            UINT numElements = ARRAYSIZE(layout);
 
             // Create the input layout
-            hr = m_pd3dDevice->CreateInputLayout(layout, numElements, pVSBlob->GetBufferPointer(),
-                pVSBlob->GetBufferSize(), &m_pVertexLayout);
-            pVSBlob->Release();
-            if (FAILED(hr))
-                return hr;
+            m_pVertexLayout = m_pd3dDevice.CreateInputLayout(layout, pVSBlob.GetBuffer());
 
             // Set the input layout
-            m_pImmediateContext->IASetInputLayout(m_pVertexLayout);
-
-            return hr;
+            m_pImmediateContext.IASetInputLayout(m_pVertexLayout);
         }
 
         public HRESULT InitDevice()
@@ -181,26 +181,21 @@ namespace D3D11Sharp.In.WPF
                 return hr;
             }
 
-            hr = LoadShaders();
-
-            if (FAILED(hr))
-            {
-                MessageBox(NULL, L"Could not load shaders.", L"Error", MB_ICONHAND | MB_OK);
-                return hr;
-            }
+            LoadShaders();
 
             // Create vertex buffer
-            SimpleVertex vertices[] =
+            SimpleVertex[] vertices =
             {
-                { XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 0.0f, 1.0f, 0.5f) },
-                { XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT4(0.0f, 1.0f, 0.0f, 0.5f) },
-                { XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT4(0.0f, 1.0f, 1.0f, 0.5f) },
-                { XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 0.0f, 0.0f, 0.5f) },
-                { XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(1.0f, 0.0f, 1.0f, 0.5f) },
-                { XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT4(1.0f, 1.0f, 0.0f, 0.5f) },
-                { XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f) },
-                { XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 0.5f) },
+                new SimpleVertex { Pos = new Vector3(-1.0f, 1.0f, -1.0f), Color = new Vector4(0.0f, 0.0f, 1.0f, 0.5f) },
+                new SimpleVertex { Pos = new Vector3(1.0f, 1.0f, -1.0f), Color = new Vector4(0.0f, 1.0f, 0.0f, 0.5f) },
+                new SimpleVertex { Pos = new Vector3(1.0f, 1.0f, 1.0f), Color = new Vector4(0.0f, 1.0f, 1.0f, 0.5f) },
+                new SimpleVertex { Pos = new Vector3(-1.0f, 1.0f, 1.0f), Color = new Vector4(1.0f, 0.0f, 0.0f, 0.5f) },
+                new SimpleVertex { Pos = new Vector3(-1.0f, -1.0f, -1.0f), Color = new Vector4(1.0f, 0.0f, 1.0f, 0.5f) },
+                new SimpleVertex { Pos = new Vector3(1.0f, -1.0f, -1.0f), Color = new Vector4(1.0f, 1.0f, 0.0f, 0.5f) },
+                new SimpleVertex { Pos = new Vector3(1.0f, -1.0f, 1.0f), Color = new Vector4(1.0f, 1.0f, 1.0f, 0.5f) },
+                new SimpleVertex { Pos = new Vector3(-1.0f, -1.0f, 1.0f), Color = new Vector4(0.0f, 0.0f, 0.0f, 0.5f) },
             };
+
             D3D11_BUFFER_DESC bd;
             ZeroMemory(&bd, sizeof(bd));
             bd.Usage = D3D11_USAGE_DEFAULT;
@@ -286,7 +281,7 @@ namespace D3D11Sharp.In.WPF
             vp.MaxDepth = 1.0f;
             vp.TopLeftX = 0;
             vp.TopLeftY = 0;
-            m_pImmediateContext->RSSetViewports(1, &vp);
+            m_pImmediateContext.RSSetViewports(1, &vp);
 
             // Initialize the projection matrix
             m_Projection = Matrix4x4.CreatePerspectiveFieldOfView(XM_PIDIV4, m_Width / (float)m_Height, 0.01f, 100.0f);

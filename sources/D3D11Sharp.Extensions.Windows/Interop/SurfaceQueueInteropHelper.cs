@@ -22,14 +22,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Numerics;
+using System;
 
-namespace D3D11Sharp.In.WPF
+namespace D3D9Sharp.Extensions.Windows.Interop
 {
-    struct ConstantBuffer
+    internal class SurfaceQueueInteropHelper
     {
-        Matrix4x4 mWorld;
-        Matrix4x4 mView;
-        Matrix4x4 mProjection;
-    };
+        public IntPtr HWND { get; internal set; }
+        public Action<IntPtr, bool> RenderD2D { get; internal set; }
+        public D3D11Image D3DImage { get; internal set; }
+
+        internal void RequestRenderD2D()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void SetPixelSize(int pixelWidth, int pixelHeight)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
