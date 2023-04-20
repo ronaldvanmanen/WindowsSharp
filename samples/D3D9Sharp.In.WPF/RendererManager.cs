@@ -26,11 +26,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using D3D9Sharp;
 using WindowsSharp;
 using WindowsSharp.Interop;
 
-namespace Direct3D9Sharp.In.WPF
+namespace D3D9Sharp.In.WPF
 {
     internal sealed unsafe class RendererManager : IDisposable
     {

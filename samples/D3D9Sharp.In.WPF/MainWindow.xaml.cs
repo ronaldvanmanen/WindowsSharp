@@ -29,7 +29,7 @@ using System.Windows.Threading;
 using D3D9Sharp.Extensions.Windows.Interop;
 using WindowsSharp.Extensions.Windows;
 
-namespace Direct3D9Sharp.In.WPF
+namespace D3D9Sharp.In.WPF
 {
     public partial class MainWindow : Window
     {

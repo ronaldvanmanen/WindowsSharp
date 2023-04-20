@@ -22,14 +22,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Windows;
+using WindowsSharp.Interop;
 
-namespace Direct3D9Sharp.In.WPF
+namespace D3D9Sharp.In.WPF
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    [FlexibleVertexFormat(NativeMethods.D3DFVF_XYZ | NativeMethods.D3DFVF_DIFFUSE)]
+    internal struct CustomVertex
     {
-    }
+        public float X, Y, Z;
+
+        public uint Color;
+    };
 }
