@@ -205,6 +205,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D3D9Sharp", "sources\D3D9Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D9Sharp.Extensions.Windows", "sources\D3D9Sharp.Extensions.Windows\D3D9Sharp.Extensions.Windows.csproj", "{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "d3d10", "d3d10", "{B7BCF909-E099-4B3A-8091-E7C7996C9EAB}"
+	ProjectSection(SolutionItems) = preProject
+		generation\d3d10\file.h = generation\d3d10\file.h
+		generation\d3d10\generate.ps1 = generation\d3d10\generate.ps1
+		generation\d3d10\settings.rsp = generation\d3d10\settings.rsp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -282,6 +289,7 @@ Global
 		{244C8978-483D-43CF-95D2-BF330A32ED8B} = {0B9DBC85-BE4B-47EC-9512-F9C0054B24DD}
 		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
 		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+		{B7BCF909-E099-4B3A-8091-E7C7996C9EAB} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3219424D-8967-4446-B810-B80316687C37}
