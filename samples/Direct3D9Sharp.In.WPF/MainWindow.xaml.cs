@@ -24,7 +24,6 @@
 
 using System;
 using System.Windows;
-using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
 using D3D9Sharp.Extensions.Windows.Interop;
@@ -141,22 +140,19 @@ namespace Direct3D9Sharp.In.WPF
 
             // It's possible for Rendering to call back twice in the same frame
             // so only render when we haven't already rendered in this frame.
-            if (D3DImage.IsFrontBufferAvailable && _lastRenderingTime != renderingTime)
+            if (_d3dImage.IsFrontBufferAvailable && _lastRenderingTime != renderingTime)
             {
-                unsafe
+                var surface = _rendererManager.GetBackBuffer();
+                if (surface is not null)
                 {
-                    var surface = _rendererManager.GetBackBuffer();
-                    if (surface is not null)
-                    {
-                        // Repeatedly calling SetBackBuffer with the same IntPtr is a no-op. There is no performance penalty.
-                        D3DImage.Lock();
-                        D3DImage.SetBackBuffer(surface);
-                        _rendererManager.Render(renderingTime);
-                        D3DImage.AddDirtyRect(new Int32Rect(0, 0, D3DImage.PixelWidth, D3DImage.PixelHeight));
-                        D3DImage.Unlock();
+                    // Repeatedly calling SetBackBuffer with the same IntPtr is a no-op. There is no performance penalty.
+                    _d3dImage.Lock();
+                    _d3dImage.SetBackBuffer(surface);
+                    _rendererManager.Render(renderingTime);
+                    _d3dImage.AddDirtyRect(new Int32Rect(0, 0, _d3dImage.PixelWidth, _d3dImage.PixelHeight));
+                    _d3dImage.Unlock();
 
-                        _lastRenderingTime = renderingTime;
-                    }
+                    _lastRenderingTime = renderingTime;
                 }
             }
         }
@@ -164,7 +160,7 @@ namespace Direct3D9Sharp.In.WPF
         private void AdapterTimerTick(object? sender, EventArgs e)
         {
             _rendererManager.SetAdapter(
-                Image.PointToScreen(
+                _image.PointToScreen(
                     new Point(0, 0)
                 ).ToPOINT());
         }
@@ -178,10 +174,10 @@ namespace Direct3D9Sharp.In.WPF
             // Given that the D3DImage is at 96.0 DPI, its Width and Height
             // properties will always be integers. ActualWidth/Height
             // may not be integers, so they are cast to integers.
-            var actualWidth = (uint)Image.ActualWidth;
-            var actualHeight = (uint)Image.ActualHeight;
-            var imageWidth = (uint)D3DImage.Width;
-            var imageHeight = (uint)D3DImage.Height;
+            var actualWidth = (uint)_image.ActualWidth;
+            var actualHeight = (uint)_image.ActualHeight;
+            var imageWidth = (uint)_d3dImage.Width;
+            var imageHeight = (uint)_d3dImage.Height;
             if (actualWidth > 0 && actualHeight > 0 && (actualWidth != imageWidth || actualHeight != imageHeight))
             {
                 _rendererManager.SetSize(actualWidth, actualHeight);

@@ -35,9 +35,9 @@
         Title="Direct3D9Sharp in WPF" Height="384" Width="512">
 
     <Grid>
-        <Image x:Name="Image" Stretch="Fill">
+        <Image x:Name="_image" Stretch="Fill">
             <Image.Source>
-                <i:D3DImage x:Name="D3DImage"  />
+                <i:D3DImage x:Name="_d3dImage"  />
             </Image.Source>
         </Image>
     </Grid>
