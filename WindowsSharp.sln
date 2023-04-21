@@ -1,0 +1,282 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sources", "sources", "{7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}"
+	ProjectSection(SolutionItems) = preProject
+		sources\Directory.Build.props = sources\Directory.Build.props
+		sources\Directory.Build.targets = sources\Directory.Build.targets
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsSharp.Interop", "sources\WindowsSharp.Interop\WindowsSharp.Interop.csproj", "{122B0BD4-4D9A-4172-A097-19BE0ABC0732}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".root", ".root", "{E3C21058-6AC9-4E16-B70F-FB82AE7F5DF8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		build.cmd = build.cmd
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		generate.cmd = generate.cmd
+		GitVersion.yml = GitVersion.yml
+		LICENSE = LICENSE
+		nuget.config = nuget.config
+		pack.cmd = pack.cmd
+		README.md = README.md
+		restore.cmd = restore.cmd
+		test.cmd = test.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{FDFC47DF-C171-40FA-8DB6-650CBB54E7BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{527EC2A1-BCE1-464E-B7B1-E8331DAE2180}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\ci.yml = .github\workflows\ci.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{AD075166-36B9-44F7-8CA8-FBB949C92495}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\build.ps1 = scripts\build.ps1
+		scripts\cibuild.cmd = scripts\cibuild.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generation", "generation", "{65345BBF-BCE7-4EF2-8460-1B491062F266}"
+	ProjectSection(SolutionItems) = preProject
+		generation\header.txt = generation\header.txt
+		generation\remap-com.rsp = generation\remap-com.rsp
+		generation\remap-d3d.rsp = generation\remap-d3d.rsp
+		generation\remap-d3d11.rsp = generation\remap-d3d11.rsp
+		generation\remap-d3d9.rsp = generation\remap-d3d9.rsp
+		generation\remap-excpt.rsp = generation\remap-excpt.rsp
+		generation\remap-fileapi.rsp = generation\remap-fileapi.rsp
+		generation\remap-guiddef.rsp = generation\remap-guiddef.rsp
+		generation\remap-minwinbase.rsp = generation\remap-minwinbase.rsp
+		generation\remap-minwindef.rsp = generation\remap-minwindef.rsp
+		generation\remap-processthreadsapi.rsp = generation\remap-processthreadsapi.rsp
+		generation\remap-rpc.rsp = generation\remap-rpc.rsp
+		generation\remap-winbase.rsp = generation\remap-winbase.rsp
+		generation\remap-windef.rsp = generation\remap-windef.rsp
+		generation\remap-wingdi.rsp = generation\remap-wingdi.rsp
+		generation\remap-winnt.rsp = generation\remap-winnt.rsp
+		generation\remap-winuser.rsp = generation\remap-winuser.rsp
+		generation\remap.rsp = generation\remap.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E44F67D8-F1B0-4E9F-8C01-AE57186A36A6}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Build.props = tests\Directory.Build.props
+		tests\Directory.Build.targets = tests\Directory.Build.targets
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsSharp.Interop.Tests", "tests\WindowsSharp.Interop.Tests\WindowsSharp.Interop.Tests.csproj", "{45348CFF-BA58-4115-923C-B5C6F3EC9456}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{DDECEBA4-9B53-468B-84C3-35D161870B2C}"
+	ProjectSection(SolutionItems) = preProject
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "d3d9", "d3d9", "{7A8DCE13-D140-497E-93CA-5D3992F6046A}"
+	ProjectSection(SolutionItems) = preProject
+		generation\d3d9\file.h = generation\d3d9\file.h
+		generation\d3d9\generate.ps1 = generation\d3d9\generate.ps1
+		generation\d3d9\settings.rsp = generation\d3d9\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wingdi", "wingdi", "{1C3C4975-6236-4B39-BBFB-7D52C1317889}"
+	ProjectSection(SolutionItems) = preProject
+		generation\wingdi\file.h = generation\wingdi\file.h
+		generation\wingdi\generate.ps1 = generation\wingdi\generate.ps1
+		generation\wingdi\settings.rsp = generation\wingdi\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "windef", "windef", "{99144D50-25DF-45DD-81ED-42B647902DA8}"
+	ProjectSection(SolutionItems) = preProject
+		generation\windef\file.h = generation\windef\file.h
+		generation\windef\generate.ps1 = generation\windef\generate.ps1
+		generation\windef\settings.rsp = generation\windef\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "winnt", "winnt", "{E5D646F0-3731-4635-B347-5B546EB0BB51}"
+	ProjectSection(SolutionItems) = preProject
+		generation\winnt\file.h = generation\winnt\file.h
+		generation\winnt\generate.ps1 = generation\winnt\generate.ps1
+		generation\winnt\settings.rsp = generation\winnt\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{0B9DBC85-BE4B-47EC-9512-F9C0054B24DD}"
+	ProjectSection(SolutionItems) = preProject
+		samples\Directory.Build.props = samples\Directory.Build.props
+		samples\Directory.Build.targets = samples\Directory.Build.targets
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D3D9Sharp.In.WPF", "samples\D3D9Sharp.In.WPF\D3D9Sharp.In.WPF.csproj", "{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsSharp", "sources\WindowsSharp\WindowsSharp.csproj", "{BE202136-D9B8-453B-B3D8-4F7F524E07A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "winuser", "winuser", "{C4B08D53-A968-4242-AECD-9F0C12346205}"
+	ProjectSection(SolutionItems) = preProject
+		generation\winuser\file.h = generation\winuser\file.h
+		generation\winuser\generate.ps1 = generation\winuser\generate.ps1
+		generation\winuser\settings.rsp = generation\winuser\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "minwindef", "minwindef", "{E4950F2C-EEE1-413E-BF8A-2A5A070D728D}"
+	ProjectSection(SolutionItems) = preProject
+		generation\minwindef\file.h = generation\minwindef\file.h
+		generation\minwindef\generate.ps1 = generation\minwindef\generate.ps1
+		generation\minwindef\settings.rsp = generation\minwindef\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "winbase", "winbase", "{039D72FB-2E70-4DA6-A370-F7AE4A6669C0}"
+	ProjectSection(SolutionItems) = preProject
+		generation\winbase\file.h = generation\winbase\file.h
+		generation\winbase\generate.ps1 = generation\winbase\generate.ps1
+		generation\winbase\settings.rsp = generation\winbase\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "minwinbase", "minwinbase", "{E855D549-752D-44A6-B385-2FC04AAB840C}"
+	ProjectSection(SolutionItems) = preProject
+		generation\minwinbase\file.h = generation\minwinbase\file.h
+		generation\minwinbase\generate.ps1 = generation\minwinbase\generate.ps1
+		generation\minwinbase\settings.rsp = generation\minwinbase\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "processthreadsapi", "processthreadsapi", "{D77873FF-EAC1-4D63-A0D7-E4D2016BF00A}"
+	ProjectSection(SolutionItems) = preProject
+		generation\processthreadsapi\file.h = generation\processthreadsapi\file.h
+		generation\processthreadsapi\generate.ps1 = generation\processthreadsapi\generate.ps1
+		generation\processthreadsapi\settings.rsp = generation\processthreadsapi\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fileapi", "fileapi", "{F884AE78-D1B3-4E27-AF7D-15EE044CA658}"
+	ProjectSection(SolutionItems) = preProject
+		generation\fileapi\file.h = generation\fileapi\file.h
+		generation\fileapi\generate.ps1 = generation\fileapi\generate.ps1
+		generation\fileapi\settings.rsp = generation\fileapi\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "excpt", "excpt", "{3C1D91F4-52B9-422E-979E-B8A6E2F8635E}"
+	ProjectSection(SolutionItems) = preProject
+		generation\excpt\file.h = generation\excpt\file.h
+		generation\excpt\generate.ps1 = generation\excpt\generate.ps1
+		generation\excpt\settings.rsp = generation\excpt\settings.rsp
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsSharp.Interop.Internals", "sources\WindowsSharp.Interop.Internals\WindowsSharp.Interop.Internals.csproj", "{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsSharp.Extensions.Windows", "sources\WindowsSharp.Extensions.Windows\WindowsSharp.Extensions.Windows.csproj", "{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsSharp.Extensions.Numerics", "sources\WindowsSharp.Extensions.Numerics\WindowsSharp.Extensions.Numerics.csproj", "{6512219F-DE21-4565-908C-8E64B530D77C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "d3d11", "d3d11", "{44C34627-0715-4925-A803-B5486B14660A}"
+	ProjectSection(SolutionItems) = preProject
+		generation\d3d11\file.h = generation\d3d11\file.h
+		generation\d3d11\generate.ps1 = generation\d3d11\generate.ps1
+		generation\d3d11\settings.rsp = generation\d3d11\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dxgi", "dxgi", "{3DE0FEDB-C7ED-4994-88D0-26FD592A1C17}"
+	ProjectSection(SolutionItems) = preProject
+		generation\dxgi\file.h = generation\dxgi\file.h
+		generation\dxgi\generate.ps1 = generation\dxgi\generate.ps1
+		generation\dxgi\settings.rsp = generation\dxgi\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "com", "com", "{7F12D1D3-8B03-4715-A933-FB20E7F8B84D}"
+	ProjectSection(SolutionItems) = preProject
+		generation\com\file.h = generation\com\file.h
+		generation\com\generate.ps1 = generation\com\generate.ps1
+		generation\com\settings.rsp = generation\com\settings.rsp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rpc", "rpc", "{B612A9B6-4F6B-4602-88EB-0E4C26C37B1B}"
+	ProjectSection(SolutionItems) = preProject
+		generation\rpc\file.h = generation\rpc\file.h
+		generation\rpc\generate.ps1 = generation\rpc\generate.ps1
+		generation\rpc\settings.rsp = generation\rpc\settings.rsp
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D3D9Sharp", "sources\D3D9Sharp\D3D9Sharp.csproj", "{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D9Sharp.Extensions.Windows", "sources\D3D9Sharp.Extensions.Windows\D3D9Sharp.Extensions.Windows.csproj", "{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{122B0BD4-4D9A-4172-A097-19BE0ABC0732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{122B0BD4-4D9A-4172-A097-19BE0ABC0732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{122B0BD4-4D9A-4172-A097-19BE0ABC0732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{122B0BD4-4D9A-4172-A097-19BE0ABC0732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45348CFF-BA58-4115-923C-B5C6F3EC9456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45348CFF-BA58-4115-923C-B5C6F3EC9456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45348CFF-BA58-4115-923C-B5C6F3EC9456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45348CFF-BA58-4115-923C-B5C6F3EC9456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE202136-D9B8-453B-B3D8-4F7F524E07A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE202136-D9B8-453B-B3D8-4F7F524E07A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE202136-D9B8-453B-B3D8-4F7F524E07A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE202136-D9B8-453B-B3D8-4F7F524E07A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6512219F-DE21-4565-908C-8E64B530D77C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6512219F-DE21-4565-908C-8E64B530D77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6512219F-DE21-4565-908C-8E64B530D77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6512219F-DE21-4565-908C-8E64B530D77C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{122B0BD4-4D9A-4172-A097-19BE0ABC0732} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+		{527EC2A1-BCE1-464E-B7B1-E8331DAE2180} = {FDFC47DF-C171-40FA-8DB6-650CBB54E7BF}
+		{45348CFF-BA58-4115-923C-B5C6F3EC9456} = {E44F67D8-F1B0-4E9F-8C01-AE57186A36A6}
+		{7A8DCE13-D140-497E-93CA-5D3992F6046A} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{1C3C4975-6236-4B39-BBFB-7D52C1317889} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{99144D50-25DF-45DD-81ED-42B647902DA8} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{E5D646F0-3731-4635-B347-5B546EB0BB51} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{75DB79F3-B7CE-4231-A05D-6081EDEEBF79} = {0B9DBC85-BE4B-47EC-9512-F9C0054B24DD}
+		{BE202136-D9B8-453B-B3D8-4F7F524E07A3} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+		{C4B08D53-A968-4242-AECD-9F0C12346205} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{E4950F2C-EEE1-413E-BF8A-2A5A070D728D} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{039D72FB-2E70-4DA6-A370-F7AE4A6669C0} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{E855D549-752D-44A6-B385-2FC04AAB840C} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{D77873FF-EAC1-4D63-A0D7-E4D2016BF00A} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{F884AE78-D1B3-4E27-AF7D-15EE044CA658} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{3C1D91F4-52B9-422E-979E-B8A6E2F8635E} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{8EA3A6FC-97E9-4A77-B7EC-8D2621CD248B} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+		{2D7D65F4-AF8F-4099-BB47-0D9A13192B3B} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+		{6512219F-DE21-4565-908C-8E64B530D77C} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+		{44C34627-0715-4925-A803-B5486B14660A} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{3DE0FEDB-C7ED-4994-88D0-26FD592A1C17} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{7F12D1D3-8B03-4715-A933-FB20E7F8B84D} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{B612A9B6-4F6B-4602-88EB-0E4C26C37B1B} = {65345BBF-BCE7-4EF2-8460-1B491062F266}
+		{E553B1D7-96BE-4CBB-93EA-CB9612929BDF} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+		{D70580B9-6592-43B8-BF25-1D3C8B5EECF9} = {7314AB90-AD69-49AA-AB34-FEAEEABFCD6F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3219424D-8967-4446-B810-B80316687C37}
+	EndGlobalSection
+EndGlobal

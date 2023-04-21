@@ -1,0 +1,87 @@
+// This file is part of WindowsSharp
+//
+// Copyright (C) 2021-2023 Ronald van Manen <rvanmanen@gmail.com>
+//
+// MIT License
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+namespace WindowsSharp.Interop
+{
+    /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES"]/*' />
+    public enum CO_MARSHALING_CONTEXT_ATTRIBUTES
+    {
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_SOURCE_IS_APP_CONTAINER"]/*' />
+        CO_MARSHALING_SOURCE_IS_APP_CONTAINER = 0,
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_1"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_1 = unchecked((int)(0x80000000)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_2"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_2 = unchecked((int)(0x80000001)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_3"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_3 = unchecked((int)(0x80000002)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_4"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_4 = unchecked((int)(0x80000003)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_5"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_5 = unchecked((int)(0x80000004)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_6"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_6 = unchecked((int)(0x80000005)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_7"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_7 = unchecked((int)(0x80000006)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_8"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_8 = unchecked((int)(0x80000007)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_9"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_9 = unchecked((int)(0x80000008)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_10"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_10 = unchecked((int)(0x80000009)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_11"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_11 = unchecked((int)(0x8000000a)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_12"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_12 = unchecked((int)(0x8000000b)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_13"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_13 = unchecked((int)(0x8000000c)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_14"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_14 = unchecked((int)(0x8000000d)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_15"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_15 = unchecked((int)(0x8000000e)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_16"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_16 = unchecked((int)(0x8000000f)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_17"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_17 = unchecked((int)(0x80000010)),
+
+        /// <include file='CO_MARSHALING_CONTEXT_ATTRIBUTES.xml' path='doc/member[@name="CO_MARSHALING_CONTEXT_ATTRIBUTES.CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_18"]/*' />
+        CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_18 = unchecked((int)(0x80000011)),
+    }
+}

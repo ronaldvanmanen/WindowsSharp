@@ -1,0 +1,64 @@
+@..\remap.rsp
+--additional
+-m64
+-Wno-comment
+-Wno-deprecated-declarations
+-Wno-expansion-to-defined
+-Wno-extern-c-compat
+-Wno-extern-initializer
+-Wno-extra-tokens
+-Wno-ignored-attributes
+-Wno-ignored-pragma-intrinsic
+-Wno-macro-redefined
+-Wno-nonportable-include-path
+-Wno-pragma-pack
+--config
+exclude-enum-operators
+exclude-funcs-with-body
+generate-aggressive-inlining
+generate-cpp-attributes
+generate-doc-includes
+generate-macro-bindings
+generate-native-inheritance-attribute
+generate-tests-xunit
+generate-vtbl-index-attribute
+latest-codegen
+log-exclusions
+log-potential-typedef-remappings
+log-visited-files
+multi-file
+--define-macro
+UNICODE
+--exclude
+_D3DCOLORVALUE
+__REQUIRED_RPCNDR_H_VERSION__
+__REQUIRED_RPCSAL_H_VERSION__
+--file
+file.h
+--headerFile
+..\header.txt
+--include-directory
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\winrt
+--language
+c++
+--libraryPath
+DXGI.dll
+--methodClassName
+NativeMethods
+--namespace
+WindowsSharp.Interop
+--output
+..\..\sources\WindowsSharp.Interop\dxgi
+--traverse
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\dxgi.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\dxgicommon.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\dxgiformat.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\dxgitype.h
+--test-output
+..\..\tests\WindowsSharp.Interop.Tests\dxgi
+--with-callconv
+*=Winapi
+--with-type
+D3DFORMAT=uint

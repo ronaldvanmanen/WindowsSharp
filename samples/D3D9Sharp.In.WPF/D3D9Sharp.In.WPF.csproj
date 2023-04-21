@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\sources\D3D9Sharp\D3D9Sharp.csproj" />
+    <ProjectReference Include="..\..\sources\D3D9Sharp.Extensions.Windows\D3D9Sharp.Extensions.Windows.csproj" />
+    <ProjectReference Include="..\..\sources\WindowsSharp.Extensions.Numerics\WindowsSharp.Extensions.Numerics.csproj" />
+    <ProjectReference Include="..\..\sources\WindowsSharp.Extensions.Windows\WindowsSharp.Extensions.Windows.csproj" />
+    <ProjectReference Include="..\..\sources\WindowsSharp.Interop\WindowsSharp.Interop.csproj" />
+    <ProjectReference Include="..\..\sources\WindowsSharp\WindowsSharp.csproj" />
+  </ItemGroup>
+
+</Project>
