@@ -1416,7 +1416,7 @@ namespace WindowsSharp.Interop
         public const uint RPC_C_AUTHN_DEFAULT = 0xFFFFFFFF;
 
         [NativeTypeName("#define RPC_C_NO_CREDENTIALS ((RPC_AUTH_IDENTITY_HANDLE) MAXUINT_PTR)")]
-        public static readonly void* RPC_C_NO_CREDENTIALS = ((void*)(~((ulong)(0))));
+        public static readonly void* RPC_C_NO_CREDENTIALS = unchecked((void*)(~((ulong)(0))));
 
         [NativeTypeName("#define RPC_C_SECURITY_QOS_VERSION 1L")]
         public const int RPC_C_SECURITY_QOS_VERSION = 1;
